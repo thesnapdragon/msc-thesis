@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0">
+    <initial>
+        <transition target="A"/>
+    </initial>
+    <state id="A">
+        <transition event="b" target="B"/>
+    </state>
+    <state id="B">
+        <transition event="c" target="C"/>
+    </state>
+    <state id="C">
+        <transition event="d" target="D"/>
+    </state>
+    <final id="D" />
+</scxml>
