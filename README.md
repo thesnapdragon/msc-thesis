@@ -1,3 +1,3 @@
 # MSc Project Laboratory 1
 
-Modell-based testgeneration
+Model-based testgeneration
