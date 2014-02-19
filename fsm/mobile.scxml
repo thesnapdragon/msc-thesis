@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0">
+    <initial>
+        <transition target="PowerOff"/>
+        <transition target="StandBy"/>
+        <transition target="LineOk"/>
+    </initial>
+    <state id="PowerOff">
+        <transition event="evKeyNoHold()" target="PowerOn"/>
+    </state>
+    <state id="PowerOn">
+        <transition event="evKeyNoHold()" target="PowerOff"/>
+        <parallel id="States">
+            <state id="rCalling">
+                <state id="TryConnect">
+                    <transition event="evConnect()" target="Speak"/>
+                </state>
+                <state id="Speak">
+                    <transition event="evKeyNo()" target="StandBy"/>
+                    <transition event="evConn...()" target="Speak"/>
+                </state>
+                <state id="CallWait">
+                    <transition event="evKeyYes()" target="Speak"/>
+                    <transition event="evCallingRequest()" target="StandBy"/>
+                    <transition event="evKeyNo()" target="StandBy"/>
+                </state>
+                <state id="Editing">
+                    <transition event="evKeyYes()" target="TryConnect"/>
+                    <transition event="evCallingRequest()" target="CallWait"/>
+                    <transition event="evKeyExit()" target="StandBy"/>
+                    <transition event="evKeyDi...()" target="Editing"/>
+                    <transition event="evKeyC...()" target="Editing"/>
+                </state>
+                <state id="StandBy">
+                    <transition event="evCallingRequest()" target="CallWait"/>>
+                </state>
+            </state>
+            <state id="rTestLine">
+                <state id="LineOk">
+                    <transition event="evLineLost()" target="TestLine"/>
+                    <transition event="evWeakSig()" target="LineWeak"/>
+                </state>
+                <state id="TestLine">
+                    <transition event="evStrongSig()" target="LineOk"/>
+                    <transition event="evWeakSig()" target="LineWeak"/>
+                </state>
+                <state id="LineWeak">
+                    <transition event="evLineLost()" target="TestLine"/>
+                    <transition event="evStrongSig()" target="LineOk"/>
+                </state>
+            </state>
+        </parallel>
+    </state>
+</scxml>
