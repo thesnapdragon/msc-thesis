@@ -2,12 +2,13 @@
 
 * szoftvertesztelőnek tanulmányoznia kell a szoftvert a tesztelés előtt
 * *pesticide paradox*, a tesztek egyre kevésbé hatékonyak, mert a fejlesztő olyan problémára írja, amit már megoldott
+    * bizonyos szint felett újabb módszer szerint érdemes teszteket készíteni
 * túl statikusak, nehezen megváltoztathatóak
 
 ## Kínai postás problémája
 
 * ha egy gráfban nincs Euler kör, melyik az a bejárás, ahol a legkevesebbszer kell újra bejárni éleket
-* Eulerizálás: gráf kiegészítése duplikált élekkel, hogy minden csúcs foka páros legyen
+* Eulerizálás: gráf kiegészítése duplikált élekkel, hogy minden csúcs foka páros legyen: páratlan fokú csúcsok közötti lehetséges párok közül a legrövidebb utakat kell megismételni
 
 ## New York-i utcaseprő problémája
 

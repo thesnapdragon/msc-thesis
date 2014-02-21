@@ -12,3 +12,10 @@
 * egyszerű állapotgépes példák készítése
 * egyszerű algoritmusok implementálása
 * teszt lefedettség: átmenetek alapján
+
+# 2013.02.21.
+
+* több rövidebb tesztsorozat készítése, próbálkozással
+* kipróbálni az algoritmusokat, próbálkozásokat: legyenek példa implementációk
+* hibás állapotgép kipróbálása
+
