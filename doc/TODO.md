@@ -19,3 +19,7 @@
 * kipróbálni az algoritmusokat, próbálkozásokat: legyenek példa implementációk
 * hibás állapotgép kipróbálása
 
+# 2013.02.25.
+
+* közös megbeszélés, hosszú távú célok meghatározása
+* egymás feladatainak megismerése
