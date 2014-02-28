@@ -23,3 +23,10 @@
 
 * közös megbeszélés, hosszú távú célok meghatározása
 * egymás feladatainak megismerése
+
+# 2013.02.28.
+
+* PyModel
+* GraphWalker
+* irányított chinese postman
+* calculator implementáció, tesztelni
