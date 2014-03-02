@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+    <key id="d1" for="edge" attr.name="event" attr.type="string"/>
+    <graph id="G" edgedefault="directed">
+        <node id="ready"/>
+        <node id="running"/>
+        <node id="paused"/>
+        <node id="stopped"/>
+        <edge id="watch.start" source="ready" target="running">
+            <data key="d1">running</data>
+        </edge>
+        <edge id="watch.split" source="running" target="paused">
+            <data key="d1">paused</data>
+        </edge>
+        <edge id="watch.stop" source="running" target="stopped">
+            <data key="d1">stopped</data>
+        </edge>
+        <edge id="watch.unsplit" source="paused" target="running">
+            <data key="d1">running</data>
+        </edge>
+        <edge id="watch.stop" source="paused" target="stopped">
+            <data key="d1">stopped</data>
+        </edge>
+        <edge id="watch.reset" source="stopped" target="ready">
+            <data key="d1">ready</data>
+        </edge>
+    </graph>
+</graphml>
