@@ -95,6 +95,7 @@ if __name__ == '__main__':
 
     for i, testcase in enumerate(test):
         print 'TEST' + str(i) + ': ' + testcase['method']
+        print 'Result: ' + testcase['result']
         if testcase['result'] == calc.next_method(testcase['method']):
             print 'PASSED'
         else:

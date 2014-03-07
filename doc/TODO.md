@@ -30,3 +30,9 @@
 * GraphWalker
 * irányított chinese postman
 * calculator implementáció, tesztelni
+* kérdés: Mi történik akkor, hogy ha egy programnak több végállapota is van, ahonnan nem tud új állapotba kerülni?
+
+# 2013.03.07.
+
+* PyModel kipróbálni
+* GraphWalker kipróbálni, dokumentációból érdekes részeket kijegyzetelni
