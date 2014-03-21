@@ -36,3 +36,12 @@
 
 * PyModel kipróbálni
 * GraphWalker kipróbálni, dokumentációból érdekes részeket kijegyzetelni
+
+# 2013.03.14.
+
+* guard-ok a PyModel és GraphWalker eszközökben
+
+# 2013.03.21.
+
+* Model-Based Testing of Reactive Systems olvasás
+* saját szkript guard implementáció
