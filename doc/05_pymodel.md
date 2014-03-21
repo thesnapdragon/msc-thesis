@@ -5,6 +5,7 @@
 * 3 féle modell: modell program, FSM, test suite
 * modell leírása kóddal: nyomok (trace) sorozata, melyek akciókból állnak
 * modell leírása FSM-mel: átmenetek = akciók; útvonalak = nyomok
+* guard-ok megvalósítása engedélyezéssel (pl.: Pop() <-> PopEnabled())
 * a nyomokat tesztesetekként lehet használni
 * teszt oracle
 * teszt adapter (PyModel terminológiában *stepper*)

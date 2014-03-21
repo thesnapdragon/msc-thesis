@@ -4,6 +4,8 @@
 
 * online és offline tesztek is
 * FSM-ből és EFSM-ből tud teszteket generálni
+* guard-ok az éleken belső [BeanShell-interpreter](http://www.beanshell.org/) segítségével lesznek kiértékelve
+* BeanShell = Java forráskód értelmező, mely támogatja a szokásos szkriptnyelv tulajdonságokat (gyenge típusosság, closures, stb)
 
 # Felhasznált technológiák
 
