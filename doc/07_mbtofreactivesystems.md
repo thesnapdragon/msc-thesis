@@ -50,4 +50,3 @@ Tartalom:
 * SUT: a teljes rendszer, amit tesztelünk: vannak olyan részei, amit nem tesztelünk
 * modell: a SUT és környezetének absztrakciója, egyszerűsítése
 * teszt kontextus: a SUT azon része, amit nem akarunk tesztelni, de rajta kívül érhető el IUT
-
