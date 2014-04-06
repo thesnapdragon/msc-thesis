@@ -45,3 +45,8 @@
 
 * Model-Based Testing of Reactive Systems olvasás, jegyzetelés
 * saját szkript guard implementáció
+
+# 2013.04.04.
+
+* guard implementáció saját szkriptben
+* beszámoló részeinek végiggondolása, vázlat készítése
