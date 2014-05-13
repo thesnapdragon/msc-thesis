@@ -83,20 +83,20 @@ def eulerize(graph):
     return eulerian_graph
 
 if __name__ == '__main__':
-    graph = nx.read_graphml("../fsm/calculator.graphml")
+    graph = nx.read_graphml("../fsm/stopwatch.graphml")
     eulerian_graph = eulerize(graph)
     test = []
     for edge in nx.eulerian_circuit(eulerian_graph):
         test.append({'method': eulerian_graph[edge[0]][edge[1]][0]['id'],
                         'result': eulerian_graph[edge[0]][edge[1]][0]['event']})
 
-    from calculator import Calculator
-    calc = Calculator()
+    from stopwatch import StopWatch
+    watch = StopWatch()
 
     for i, testcase in enumerate(test):
         print 'TEST' + str(i) + ': ' + testcase['method']
         print 'Result: ' + testcase['result']
-        if testcase['result'] == calc.next_method(testcase['method']):
+        if testcase['result'] == watch.next_method(testcase['method']):
             print 'PASSED'
         else:
             print 'FAILED'

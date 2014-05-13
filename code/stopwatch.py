@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-class Calculator(object):
+class StopWatch(object):
 
     def __init__(self):
         self.state = 'ready'
