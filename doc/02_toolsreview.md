@@ -45,3 +45,4 @@
 * több féle bemeneti formátum támogatása ritka
 * teszteléshez szükséges kiegészítő elemek készítése (test scaffolding) hiányos
 * third party eszközök használata miatt nehezebb a használatuk
+* követelmények ellenőrzése nem támogatott
