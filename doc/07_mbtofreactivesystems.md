@@ -13,19 +13,19 @@ Tartalom:
 1. módszertanok áttekintése
 
 * motiváció:
- * Miért nem egyből a SUT-ot teszteljük? A SUT modelljének előállítása egyszűbb, könnyebb megérteni, validálni, karbantartani és könnyebb új tesztesetek készíttetni vele.
- * kódgenerálás
+    * Miért nem egyből a SUT-ot teszteljük? A SUT modelljének előállítása egyszűbb, könnyebb megérteni, validálni, karbantartani és könnyebb új tesztesetek készíttetni vele.
+    * kódgenerálás
 * modell:
- * leképezés: konkrétról az absztrakt világra
- * szándék kifejezése
- * egyszerűsítés: absztrakcióval
-  * részletek elhagyása vagy részletek egységbezárása
-  * mivel a modell alapján származtatott bemenetek más absztrakciós szinten vannak, ezért egy adapterre van szükség, hogy a rendszernek bemenetként lehessen adni
+    * leképezés: konkrétról az absztrakt világra
+    * szándék kifejezése
+    * egyszerűsítés: absztrakcióval
+        * részletek elhagyása vagy részletek egységbezárása
+        * mivel a modell alapján származtatott bemenetek más absztrakciós szinten vannak, ezért egy adapterre van szükség, hogy a rendszernek bemenetként lehessen adni
 * MBT alkalmazási scenario-k:
- * általános: egy modellt készítünk a specifikáció alapján, melyből a teszteseteket és a tesztelendő kódot is legeneráljuk
- * automatikus teszt kinyerés: a specifikáció alapján megírt kódból nyerjük ki a modellt, amelyből generáljuk a teszteseteket
- * manuális modellezés: a specifikáció alapján a kódot és a modellt is manuálisan készítjük
- * eltérő modellek: különböző modellje van a kódgenerálásnak és a tesztelésnek
+    * általános: egy modellt készítünk a specifikáció alapján, melyből a teszteseteket és a tesztelendő kódot is legeneráljuk
+    * automatikus teszt kinyerés: a specifikáció alapján megírt kódból nyerjük ki a modellt, amelyből generáljuk a teszteseteket
+    * manuális modellezés: a specifikáció alapján a kódot és a modellt is manuálisan készítjük
+    * eltérő modellek: különböző modellje van a kódgenerálásnak és a tesztelésnek
 
 2. bemenetek előállítása struktúrális (pl.: állapot/átmenet lefedettség), funkcionális vagy sztochasztikus kritériumok alapján
 3. teszt generálási technológia: modell ellenőrző, tétel bizonyító, szimbolikus futtatás, logikai programozás

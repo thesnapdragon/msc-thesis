@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
+import time
+
 class StopWatch(object):
 
     def __init__(self):
         self.state = 'ready'
+        self.time_start = None
+        self.time_stop = None
 
     def next_method(self, method):
         methods = ['watch.start', 'watch.split', 'watch.unsplit', 'watch.stop', 'watch.reset']
@@ -23,36 +27,29 @@ class StopWatch(object):
             raise ValueError('invalid method')
 
     def start(self):
-        if self.state == 'ready':
-            self.state = 'running'
-        else:
-            raise ValueError('invalid event')
+        self.time_start = time.time()
+        self.state = 'running'
         return self.state
 
     def split(self):
-        if self.state == 'running':
-            self.state = 'paused'
-        else:
-            raise ValueError('invalid event')
+        self.time_stop = time.time()
+        self.state = 'paused'
         return self.state
 
     def unsplit(self):
-        if self.state == 'paused':
-            self.state = 'running'
-        else:
-            raise ValueError('invalid event')
+        self.state = 'running'
         return self.state
 
     def stop(self):
-        if self.state == 'running' or self.state == 'paused':
-            self.state = 'stopped'
-        else:
-            raise ValueError('invalid event')
+        self.time_stop = time.time()
+        self.state = 'stopped'
         return self.state
 
     def reset(self):
-        if self.state == 'stopped':
-            self.state = 'ready'
-        else:
-            raise ValueError('invalid event')
+        self.time_start = None
+        self.time_stop = None
+        self.state = 'ready'
         return self.state
+
+    def get_time(self):
+        return time.time()

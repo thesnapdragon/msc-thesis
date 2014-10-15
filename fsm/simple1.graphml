@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+    <key id="d1" for="edge" attr.name="event" attr.type="string"/>
     <graph id="G" edgedefault="undirected">
         <node id="S"/>
         <node id="A"/>
         <node id="B"/>
         <node id="C"/>
         <node id="D"/>
-        <edge id="a" source="S" target="A"/>
-        <edge id="b" source="A" target="B"/>
-        <edge id="c" source="B" target="C"/>
-        <edge id="d" source="C" target="D"/>
+        <edge id="a" source="S" target="A">
+            <data key="d1">1</data>
+        </edge>
+        <edge id="b" source="A" target="B">
+            <data key="d1">2</data>
+        </edge>
+        <edge id="c" source="B" target="C">
+            <data key="d1">3</data>
+        </edge>
+        <edge id="d" source="C" target="D">
+            <data key="d1">4</data>
+        </edge>
     </graph>
 </graphml>
