@@ -9,7 +9,7 @@
 * megismételhető, szisztematikus
 * könnyebb karbantarthatóság -> kisebb költség, kevesebb idő; követhetőség - konzisztencia
 
-## Támogatott modellezők:
+## Támogatott követelménymodellezők:
 
 * IBM Rational
 * Rhapsody
@@ -40,8 +40,8 @@ vagy a beépített Conformiq Modeler
 1. [követelmények]
 2. (modell)
 3. teszt generálás
-    3.1. teszt lefedettség
-    3.2. követhetőségi mátrix
+   3.1. teszt lefedettség
+   3.2. követhetőségi mátrix
 4. [tesztesetek]
 5. teszt exportálás: absztrakt tesztesetekből konkrét tesztesetek (*scripting backend*)
 6. (teszt szkriptek)
