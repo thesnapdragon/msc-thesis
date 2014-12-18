@@ -49,13 +49,13 @@ if __name__ == '__main__':
     chinese_postman = ChinesePostman(graph)
     eulerian_graph = chinese_postman.eulerize()
     create_tests(eulerian_graph, tests)
-    commands = []
+    actions = []
     for edge in nx.eulerian_circuit(eulerian_graph):
         datas = get_item(edge[0], 'node', eulerian_graph)[1]
-        if datas.has_key('command'):
-            commands.append(datas['command'])
-    for command in commands:
-        evaluate(command)
+        if datas.has_key('action'):
+            actions.append(datas['action'])
+    for action in actions:
+        evaluate(action)
         for edge in nx.eulerian_circuit(eulerian_graph):
             edge_data = get_item(edge, 'edge', eulerian_graph)[2]
             if edge_data.has_key('guard'):
