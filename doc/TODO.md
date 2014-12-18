@@ -68,3 +68,12 @@
 # 2014.10.08.
 
 * GraphWalker tutorial készítése SzET-re
+
+# 2014.11.12.
+
+* Implementing Conformiq Qtronic
+* Language Specific Analysis of State Machine Models of Reactive Systems
+* Projected Statemachine coverage for software testing
+* Test Models and Coverage Criteria for Automatic Model-Based Test Generation with UML State Machines
+* saját példákat Conformiq-ban lefuttatni
+* Tóth Tamás-nak írni
