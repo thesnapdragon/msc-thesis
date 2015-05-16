@@ -1,0 +1,106 @@
+<alloy builddate="2012-09-25 15:54 EDT">
+
+<instance bitwidth="4" maxseq="7" command="Run transition_coverage for 10 but exactly 1 Path" filename="/home/chef/Egyetem/Onlab1/psm_transitioncoverage_guards.als">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/S" ID="4" parentID="5">
+   <atom label="S$0"/>
+   <atom label="S$1"/>
+</sig>
+
+<field label="a" ID="6" parentID="4">
+   <tuple> <atom label="S$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="S$1"/> <atom label="0"/> </tuple>
+   <types> <type ID="5"/> <type ID="1"/> </types>
+</field>
+
+<sig label="this/System" ID="5" parentID="2" abstract="yes">
+</sig>
+
+<sig label="this/Initial" ID="7" parentID="8" one="yes">
+   <atom label="Initial$0"/>
+</sig>
+
+<sig label="this/End" ID="9" parentID="8" one="yes">
+   <atom label="End$0"/>
+</sig>
+
+<sig label="this/A" ID="10" parentID="8" one="yes">
+   <atom label="A$0"/>
+</sig>
+
+<sig label="this/B" ID="11" parentID="8" one="yes">
+   <atom label="B$0"/>
+</sig>
+
+<sig label="this/State" ID="8" parentID="2" abstract="yes">
+</sig>
+
+<sig label="this/T0" ID="13" parentID="14" one="yes">
+   <atom label="T0$0"/>
+</sig>
+
+<sig label="this/T1" ID="15" parentID="14" one="yes">
+   <atom label="T1$0"/>
+</sig>
+
+<sig label="this/T2" ID="16" parentID="14" one="yes">
+   <atom label="T2$0"/>
+</sig>
+
+<sig label="this/Transition" ID="14" parentID="2" abstract="yes">
+</sig>
+
+<field label="from" ID="17" parentID="14">
+   <tuple> <atom label="T0$0"/> <atom label="Initial$0"/> </tuple>
+   <tuple> <atom label="T1$0"/> <atom label="A$0"/> </tuple>
+   <tuple> <atom label="T2$0"/> <atom label="B$0"/> </tuple>
+   <types> <type ID="14"/> <type ID="8"/> </types>
+</field>
+
+<field label="to" ID="18" parentID="14">
+   <tuple> <atom label="T0$0"/> <atom label="A$0"/> </tuple>
+   <tuple> <atom label="T1$0"/> <atom label="B$0"/> </tuple>
+   <tuple> <atom label="T2$0"/> <atom label="End$0"/> </tuple>
+   <types> <type ID="14"/> <type ID="8"/> </types>
+</field>
+
+<sig label="this/Path" ID="19" parentID="2">
+   <atom label="Path$0"/>
+</sig>
+
+<field label="firstStep" ID="20" parentID="19">
+   <tuple> <atom label="Path$0"/> <atom label="Step$2"/> </tuple>
+   <types> <type ID="19"/> <type ID="21"/> </types>
+</field>
+
+<sig label="this/Step" ID="21" parentID="2">
+   <atom label="Step$0"/>
+   <atom label="Step$1"/>
+   <atom label="Step$2"/>
+</sig>
+
+<field label="nextStep" ID="25" parentID="21">
+   <tuple> <atom label="Step$1"/> <atom label="Step$0"/> </tuple>
+   <tuple> <atom label="Step$2"/> <atom label="Step$1"/> </tuple>
+   <types> <type ID="21"/> <type ID="21"/> </types>
+</field>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+</instance>
+
+<source filename="/home/chef/Egyetem/Onlab1/psm_transitioncoverage_guards.als" content="module psm_statecoverage&#x000a;&#x000a;open util/integer&#x000a;&#x000a;abstract sig System {}&#x000a;abstract sig State {system: one System}&#x000a;abstract sig Transition {from, to: one State}&#x000a;&#x000a;one sig Initial, End extends State {}&#x000a;&#x000a;sig Path { firstStep: Step }&#x000a;sig Step {&#x000a;&#x0009;from, to: State,&#x000a;&#x0009;via: Transition,&#x000a;&#x0009;nextStep: lone Step&#x000a;} {&#x000a;&#x0009;via.from = from&#x000a;&#x0009;via.to = to&#x000a;}&#x000a;fun steps (p:Path): set Step {&#x000a;&#x0009;p.firstStep.*nextStep&#x000a;}&#x000a;&#x000a;fact {&#x000a;&#x0009;all s:Step, p:Path | s in p.firstStep.*nextStep&#x000a;&#x0009;all p:Path | p.firstStep.from = Initial&#x000a;&#x0009;all t:Transition | one s:Step | s.via = t&#x000a;&#x0009;all curr:Step, next:curr.nextStep | next.from = curr.to&#x000a;&#x0009;all sys:System | some s:State | sys = s.system&#x000a;&#x0009;all s:State | some t:Transition | t.from = s or t.to = s&#x000a;}&#x000a;&#x000a;pred inheritSystem(s1, s2: System) {&#x000a;&#x0009;s1 = s2&#x000a;}&#x000a;&#x000a;/***GENERATE START***/&#x000a;one sig A, B extends State {}&#x000a;sig S extends System {&#x000a;&#x0009;a: Int&#x000a;}&#x000a;one sig T0 extends Transition {}{&#x000a;&#x0009;from = Initial&#x000a;&#x0009;to = A&#x000a;&#x0009;initSystem[from.system]&#x000a;&#x0009;E0[from.system, to.system]&#x000a;}&#x000a;one sig T1 extends Transition {}{&#x000a;&#x0009;from = A&#x000a;&#x0009;to = B&#x000a;&#x0009;inheritSystem[from.system, to.system]&#x000a;//&#x0009;G0[from.system]&#x000a;}&#x000a;one sig T2 extends Transition {}{&#x000a;&#x0009;from = B&#x000a;&#x0009;to = End&#x000a;&#x0009;inheritSystem[from.system, to.system]&#x000a;}&#x000a;/*one sig T3 extends Transition {}{&#x000a;&#x0009;from = A&#x000a;&#x0009;to = B&#x000a;&#x0009;inheritSystem[from.system, to.system]&#x000a;}*/&#x000a;&#x000a;pred initSystem(s:System) {&#x000a;&#x0009;s.a = 0&#x000a;}&#x000a;pred E0(s1, s2: System) {&#x000a;&#x0009;s2.a = add[s1.a, 1]&#x000a;}&#x000a;pred G0(s: System) {&#x000a;&#x0009;s.a &gt; 1&#x000a;}&#x000a;/***GENERATE END***/&#x000a;&#x000a;pred transition_coverage() {&#x000a;&#x0009;some p:Path | steps[p].via = Transition&#x000a;}&#x000a;&#x000a;pred state_coverage() {&#x000a;&#x0009;some p:Path | all s:State | s in steps[p].from + steps[p].to&#x000a;}&#x000a;&#x000a;run transition_coverage for 10 but exactly 1 Path&#x000a;"/>
+
+<source filename="/$alloy4$/models/util/integer.als" content="module util/integer&#x000a;&#x000a;/*&#x000a; * A collection of utility functions for using Integers in Alloy.&#x000a; * Note that integer overflows are silently truncated to the current bitwidth&#x000a; * using the 2&apos;s complement arithmetic, unless the &quot;forbid overfows&quot; option is&#x000a; * turned on, in which case only models that don&apos;t have any overflows are &#x000a; * analyzed. &#x000a; */&#x000a;&#x000a;fun add  [n1, n2: Int] : Int { this/plus[n1, n2] }&#x000a;fun plus [n1, n2: Int] : Int { n1 fun/add n2 }&#x000a;&#x000a;fun sub   [n1, n2: Int] : Int { this/minus[n1, n2] }&#x000a;fun minus [n1, n2: Int] : Int { n1 fun/sub n2 }&#x000a;&#x000a;fun mul [n1, n2: Int] : Int { n1 fun/mul n2 }&#x000a;&#x000a;/**&#x000a; * Performs the division with &quot;round to zero&quot; semantics, except the following 3 cases&#x000a; * 1) if a is 0, then it returns 0&#x000a; * 2) else if b is 0, then it returns 1 if a is negative and -1 if a is positive&#x000a; * 3) else if a is the smallest negative integer, and b is -1, then it returns a&#x000a; */&#x000a;fun div [n1, n2: Int] : Int { n1 fun/div n2 }&#x000a;&#x000a;/** answer is defined to be the unique integer that satisfies &quot;a = ((a/b)*b) + remainder&quot; */&#x000a;fun rem [n1, n2: Int] : Int { n1 fun/rem n2 }&#x000a;&#x000a;/** negate */&#x000a;fun negate [n: Int] : Int { 0 fun/sub n }&#x000a;&#x000a;/** equal to */&#x000a;pred eq [n1, n2: Int] { int[n1] = int[n2] }&#x000a;&#x000a;/** greater than */&#x000a;pred gt [n1, n2: Int] { n1 &gt; n2 }&#x000a;&#x000a;/** less then */&#x000a;pred lt [n1, n2: Int] { n1 &lt; n2 }&#x000a;&#x000a;/** greater than or equal */&#x000a;pred gte [n1, n2: Int] { n1 &gt;= n2 }&#x000a;&#x000a;/** less than or equal */&#x000a;pred lte [n1, n2: Int] { n1 &lt;= n2 }&#x000a;&#x000a;/** integer is zero */&#x000a;pred zero [n: Int] { n = 0 }&#x000a;&#x000a;/** positive */&#x000a;pred pos  [n: Int] { n &gt; 0 }&#x000a;&#x000a;/** negative */&#x000a;pred neg  [n: Int] { n &lt; 0 }&#x000a;&#x000a;/** non-positive */&#x000a;pred nonpos [n: Int] { n &lt;= 0 }&#x000a;&#x000a;/** non-negative */&#x000a;pred nonneg [n: Int] { n &gt;= 0 }&#x000a;&#x000a;/** signum (aka sign or sgn) */&#x000a;fun signum [n: Int] : Int { n&lt;0 =&gt; (0 fun/sub 1) else (n&gt;0 =&gt; 1 else 0) }&#x000a;&#x000a;/**&#x000a; * returns the ith element (zero-based) from the set s&#x000a; * in the ordering of &apos;next&apos;, which is a linear ordering&#x000a; * relation like that provided by util/ordering&#x000a; */&#x000a;fun int2elem[i: Int, next: univ-&gt;univ, s: set univ] : lone s {&#x000a;  {e: s | #^next.e = int i }&#x000a;}&#x000a;&#x000a;/**&#x000a; * returns the index of the element (zero-based) in the&#x000a; * ordering of next, which is a linear ordering relation&#x000a; * like that provided by util/ordering&#x000a; */&#x000a;fun elem2int[e: univ, next: univ-&gt;univ] : lone Int {&#x000a;  Int[#^next.e]&#x000a;}&#x000a;&#x000a;/** returns the largest integer in the current bitwidth */&#x000a;fun max:one Int { fun/max }&#x000a;&#x000a;/** returns the smallest integer in the current bitwidth */&#x000a;fun min:one Int { fun/min }&#x000a;&#x000a;/** maps each integer (except max) to the integer after it */&#x000a;fun next:Int-&gt;Int { fun/next }&#x000a;&#x000a;/** maps each integer (except min) to the integer before it */&#x000a;fun prev:Int-&gt;Int { ~next }&#x000a;&#x000a;/** given a set of integers, return the largest element */&#x000a;fun max [es: set Int]: lone Int { es - es.^prev }&#x000a;&#x000a;/** given a set of integers, return the smallest element */&#x000a;fun min [es: set Int]: lone Int { es - es.^next }&#x000a;&#x000a;/** given an integer, return all integers prior to it */&#x000a;fun prevs [e: Int]: set Int { e.^prev }&#x000a;&#x000a;/** given an integer, return all integers following it */&#x000a;fun nexts [e: Int]: set Int { e.^next }&#x000a;&#x000a;/** returns the larger of the two integers */&#x000a;fun larger [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; b else a) }&#x000a;&#x000a;/** returns the smaller of the two integers */&#x000a;fun smaller [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; a else b) }&#x000a;"/>
+
+</alloy>

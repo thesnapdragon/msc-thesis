@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Acceleo Sample Module IDE Plug-in
+Bundle-SymbolicName: hu.bme.mit.plcspec.alloygenerator.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.acceleo.module.sample.ui.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ hu.bme.mit.plcspec.alloygenerator,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ocl,
+ org.eclipse.ocl.ecore,
+ org.eclipse.acceleo.model,
+ org.eclipse.acceleo.engine
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

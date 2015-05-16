@@ -1,0 +1,106 @@
+<alloy builddate="2012-09-25 15:54 EDT">
+
+<instance bitwidth="4" maxseq="7" command="Run state_coverage for 10 but exactly 1 Path" filename="/home/chef/Egyetem/Onlab1/psm_transitioncoverage_guards.als">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/S" ID="4" parentID="5">
+   <atom label="S$0"/>
+   <atom label="S$1"/>
+</sig>
+
+<field label="a" ID="6" parentID="4">
+   <tuple> <atom label="S$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="S$1"/> <atom label="0"/> </tuple>
+   <types> <type ID="5"/> <type ID="1"/> </types>
+</field>
+
+<sig label="this/System" ID="5" parentID="2" abstract="yes">
+</sig>
+
+<sig label="this/Initial" ID="7" parentID="8" one="yes">
+   <atom label="Initial$0"/>
+</sig>
+
+<sig label="this/End" ID="9" parentID="8" one="yes">
+   <atom label="End$0"/>
+</sig>
+
+<sig label="this/A" ID="10" parentID="8" one="yes">
+   <atom label="A$0"/>
+</sig>
+
+<sig label="this/B" ID="11" parentID="8" one="yes">
+   <atom label="B$0"/>
+</sig>
+
+<sig label="this/State" ID="8" parentID="2" abstract="yes">
+</sig>
+
+
+<sig label="this/T0" ID="13" parentID="14" lone="yes">
+   <atom label="T0$0"/>
+</sig>
+
+<sig label="this/T1" ID="15" parentID="14" lone="yes">
+</sig>
+
+<sig label="this/T2" ID="16" parentID="14" lone="yes">
+   <atom label="T2$0"/>
+</sig>
+
+<sig label="this/T3" ID="17" parentID="14" lone="yes">
+   <atom label="T3$0"/>
+</sig>
+
+<sig label="this/Transition" ID="14" parentID="2" abstract="yes">
+</sig>
+
+<field label="from" ID="18" parentID="14">
+   <tuple> <atom label="T3$0"/> <atom label="A$0"/> </tuple>
+   <tuple> <atom label="T2$0"/> <atom label="B$0"/> </tuple>
+   <tuple> <atom label="T0$0"/> <atom label="Initial$0"/> </tuple>
+   <types> <type ID="14"/> <type ID="8"/> </types>
+</field>
+
+<field label="to" ID="19" parentID="14">
+   <tuple> <atom label="T3$0"/> <atom label="B$0"/> </tuple>
+   <tuple> <atom label="T2$0"/> <atom label="End$0"/> </tuple>
+   <tuple> <atom label="T0$0"/> <atom label="A$0"/> </tuple>
+   <types> <type ID="14"/> <type ID="8"/> </types>
+</field>
+
+<sig label="this/Path" ID="20" parentID="2">
+   <atom label="Path$0"/>
+</sig>
+
+<field label="firstStep" ID="21" parentID="20">
+   <tuple> <atom label="Path$0"/> <atom label="Step$2"/> </tuple>
+   <types> <type ID="20"/> <type ID="22"/> </types>
+</field>
+
+<sig label="this/Step" ID="22" parentID="2">
+   <atom label="Step$0"/>
+   <atom label="Step$1"/>
+   <atom label="Step$2"/>
+</sig>
+
+<field label="nextStep" ID="26" parentID="22">
+   <tuple> <atom label="Step$1"/> <atom label="Step$0"/> </tuple>
+   <tuple> <atom label="Step$2"/> <atom label="Step$1"/> </tuple>
+   <types> <type ID="22"/> <type ID="22"/> </types>
+</field>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+</instance>
+
+</alloy>

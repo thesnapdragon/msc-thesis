@@ -65,10 +65,6 @@
 * Répás Gergő. "Biztonságkritikus beágyazott rendszerek szisztematikus tesztelése" TDK 2007: állapotgép modellek, saját szöveges szintaxis nyelv, tesztgenerálás SAL-ATG-vel, saját C felműszerező és lefedettséget mérő eszköz (pdf a FTSRG WIKI csatolt fájloknál)
 * http://ucaat.etsi.org/2014/Program.html
 
-# 2014.10.08.
-
-* GraphWalker tutorial készítése SzET-re
-
 # 2014.11.12.
 
 * Implementing Conformiq Qtronic
@@ -77,3 +73,33 @@
 * Test Models and Coverage Criteria for Automatic Model-Based Test Generation with UML State Machines
 * saját példákat Conformiq-ban lefuttatni
 * Tóth Tamás-nak írni
+
+# 2015.02.18.
+
+* Darvas Dani dokumentációk olvasása
+
+# 2015.03.11.
+
+* Daninak írni példamodellekért
+* megkérdezni, hogy áll a modellellenőrző?
+ + modellellenőrzőt megismerni
+ - Oszkár - kényszermegoldó kérdés; statemachine - constraint solving leképezés
+* kézzel őrfeltételes állapotgépek alapján tesztesetek készítése
+
+# 2015.03.18.
+
+* állapotgépek leképezése Alloy-ra; Alloy tutorialok
+* contraint solving: SAT solvers, SMT solvers
+
+# 2015.03.25.
+
+* tesztgenerálás állapotgépek alapján
+
+# 2015.04.01.
+
+* átmenetlefedettség vizsgálat Alloy tesztgenerálásnál
+
+# 2015.04.08.
+
+* tesztgenerálás további vizsgálatok
+* példánymodell leképezése Alloy-ra

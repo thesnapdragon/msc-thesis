@@ -1,0 +1,6 @@
+version=0.6.0
+typesetter=pdflatex
+steps=texpdf
+root=/home/chef/Egyetem/Onlab1/msc-thesis/doc/onlab2/unicsovicsmilangyorgy_jzk2.tex
+
+file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/onlab2/unicsovicsmilangyorgy_jzk2.bib
