@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper,oneside]{report}             % Single-side
+%\documentclass[11pt,a4paper,twoside,openright]{report}  % Duplex
+
+\input{include/packages}
+
+%--------------------------------------------------------------------------------------
+% Language configuration
+%--------------------------------------------------------------------------------------
+\input{include/thesis-en} % Settings for English documents
+
+
+%--------------------------------------------------------------------------------------
+% Main variables
+%TODO edit names and captions
+%--------------------------------------------------------------------------------------
+\newcommand{\vikszerzo}{Unicsovics Milán György} % Szerző neve
+\newcommand{\vikkonzulensA}{Dr. Micskei Zoltán} % Első konzulens neve
+\newcommand{\vikkonzulensB}{} % Második konzulens neve; hagyd üresen, ha egy konzulensed van.
+\newcommand{\vikcim}{Test generation based on state machine models} % Cím
+\newcommand{\viktanszek}{\bmemit} % Tanszék
+\newcommand{\vikdoktipus}{\msc} % Dokumentum típusa
+
+\input{include/preamble.tex}
+
+%--------------------------------------------------------------------------------------
+% Table of contents and the main text
+%--------------------------------------------------------------------------------------
+\begin{document}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\input{include/titlepage}		% Diploma
+
+% Table of Contents
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\pagenumbering{gobble}
+	\tableofcontents\newpage
+
+
+% Declaration and Abstract
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	%TODO Hallgatói nyilatkozat
+	\input{include/declaration}
+	\input{content/abstract}	  %TODO Összefoglaló
+
+
+% The main part of the thesis
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	\input{content/introduction}
+
+\pagenumbering{roman}
+\setcounter{page}{\value{romanPage}}
+
+	
+
+
+% List of Figures, Tables
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\listoffigures\addcontentsline{toc}{chapter}{\abrakjegyzeke}
+	\listoftables\addcontentsline{toc}{chapter}{\tablazatokjegyzeke}
+
+
+% Bibliography
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\bibliography{bib/unicsovicsmilangyorgy_jzk3.bib}
+	\addcontentsline{toc}{chapter}{\irodalomjegyzek}
+	\bibliographystyle{plain}
+
+
+% Appendix
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\input{content/appendices}
+
+\label{page:last}
+\end{document}
