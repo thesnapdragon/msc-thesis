@@ -15,8 +15,8 @@ Shafique and Labiche \cite{toolsreview} collected the available tools that rely 
 	\item[Scaffolding criteria] Scaffolding means generating part of a required code. Fully support refers to scaffolding out all needed part of the process, partially support means only a few of them.
 \end{description}
 
-\subsection{GraphWalker}
-\label{sub:graphwalker}
+\section{GraphWalker}
+\label{sec:graphwalker}
 
 The first investigated tool was GraphWalker \cite{graphwalker}, which can create online and offline tests from finite state machines, extended finite state machines or from both of them. The framework is written in Java, the related tools belong to Java world as well. Maven is used to run the tests, TestNG to describe the test cases.
 
@@ -24,10 +24,10 @@ The input model has to be in GraphML format, which is an easy-to-use, highly ext
 
 After designing the model, test stubs, adaptors and oracles will be generated. The test stub has to be filled with the linking logic with the SUT. While running the tests GraphWalker can use different methods to walk on the state space. For example A* search, shortest path, random path, all permutation. The tests will stop when a certain stop criterion has been satisfied. The stop criteria are state coverage, transition coverage, requirement coverage and time limit.
 
-% subsection graphwalker (end)
+% secsection graphwalker (end)
 
-\subsection{PyModel}
-\label{sub:pymodel}
+\section{PyModel}
+\label{sec:pymodel}
 
 PyModel \cite{pymodelarticle}\cite{pymodel} is an open-source MBT testing framework written in Python. It consists three main tools:
 
@@ -39,10 +39,10 @@ PyModel \cite{pymodelarticle}\cite{pymodel} is an open-source MBT testing framew
 
 PyModel's test input has to be created by code. The methods will be the transitions in the FSM, states are the defined attributes. It is possible to combine different models in a test. Scenarios supported as well, so user can guide the tests with a given test case sequence. There are two test coverage criteria, state-based and transition-based coverage.
 
-% subsection pymodel (end)
+% section pymodel (end)
 
-\subsection{Conformiq}
-\label{sub:conformiq}
+\section{Conformiq}
+\label{sec:conformiq}
 
 Conformiq Designer is one of the most famous, industrial model based testing tool. It is available as a plugin for Eclipse, and in a form of a standalone testing framework. Seeing the success of this software, the design of the software has to be investigated.
 
@@ -62,24 +62,24 @@ The MBT process using Conformiq is identical to the original high level MBT proc
 	\item Abstract test cases have to be exported with so called scripting backend which creates concrete test cases for the SUT.
 \end{enumerate}
 
-% subsection conformiq (end)
+% section conformiq (end)
 
-\subsection{GOTCHA}
-\label{sub:gotcha}
-
-...
-
-% subsection gotcha (end)
-
-\subsection{ParTeG}
-\label{sub:parteg}
+\section{GOTCHA}
+\label{sec:gotcha}
 
 ...
 
-% subsection parteg (end)
+% section gotcha (end)
 
-\subsection{Conclusion}
-\label{sub:conclusion}
+\section{ParTeG}
+\label{sec:parteg}
+
+...
+
+% section parteg (end)
+
+\section{Conclusions}
+\label{sec:conclusions}
 
 After investigating five widely used MBT tools, we can draw some consequences.
 
@@ -108,5 +108,7 @@ After investigating five widely used MBT tools, we can draw some consequences.
 	\item The intermediate model is just always some kind of graph representations, because the test case generation algorithms are the easiest to implement using graph models (search based test case generation, coverage criteria).
 	\item Important thing to note, that the most successful tools use symbolic execution and it can handle the most complex models.
 \end{itemize}
+
+% section conclusions (end)
 
 % chapter relatedwork (end)

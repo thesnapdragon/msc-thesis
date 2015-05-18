@@ -14,7 +14,7 @@ The idea of model-based testing originates from the 70's, and now it has an exte
 
 \begin{enumerate}
     \item From informal requirements or created specifications a model can be built. The model is an abstract representation of the \textit{system under test (SUT)}. It uses encapsulation to information reduction, because it has to be more simple, than the original system to achieve an easier modifying, maintaining \cite{mbttestcasegeneration}. During a model-based software development it can be used for many other tasks too, as the model serves analysing, synthesising and documenting the SUT as well.
-     \item Test selection criteria decide how the test cases are chosen, which point of view is important by testing. Further details are at the subsection~\ref{sub:taxonomy}.
+     \item Test selection criteria decide how the test cases are chosen, which point of view is important by testing.
      \item Criteria are transformed into test case specifications. These test case specifications are the formalised versions of the critera.
      \item After creating the model and the test case specifications set of test cases is generated from the model regarding all the specifications. One of the biggest challenges is to create the \textit{test cases}. A simple test case consists of a pair of input parameters and expected outputs. Finite set of test cases forms a \textit{test suite}. The difficulty comes from the need to satisfy the test case specifications and create a minimised set of test cases.
      \item A successfully generated test suite can be executed on the SUT. For the execution a \textit{test script} can be used, which executes the test cases.
@@ -57,7 +57,111 @@ Utting, Pretschner and Legeard investigated the currently available MBT solution
 \section{Process}
 \label{sec:process}
 
+\subsection{Modelling}
+\label{sub:modelling}
+
 ...
+
+% subsection modelling (end)
+
+\subsection{Test design}
+\label{sub:testdesign}
+
+...
+
+% subsection testdesign (end)
+
+\subsection{Test generation}
+\label{sub:testgeneration}
+
+Investigating test case generation algorithms is important, because it has a strong impact on the effectiveness of software testing \cite{testcasegen} \cite{mbttestcasegeneration}. That's why this topic is under activate research and resulted different approaches. The available method should be studied, because the efficiency can be improved by combining these methods.
+
+\subsubsection{Symbolic execution}
+\label{ssub:symbolicexecution}
+
+Symbolic execution is a program analysis technique that analyses a program’s code to automatically generate test cases from it. It belongs to white box testing, because the inner structure of the SUT is known during the test.
+
+Symbolic execution uses symbolic values, instead of concrete values, as program inputs. During the symbolic execution the state of the program is represented with \textit{symbolic values} of program variables at that point, a \textit{path constraint} created by symbolic values, and a \textit{program counter}. The path constraint is a Boolean formula, that has to be satisfied to reach that point on the path. At each branch point the path constraint is updated with constraints of the inputs. If the path constraint becomes unsatisfiable, the path can not be continued. If the the path constraint stays satisfiable, then all solution for the Boolean formula can be an input for a given test case.
+
+There are numerous tools which proves the usefulness of this technique, but there are three main problem that limits the effectiveness of this method by real world programs.
+
+\begin{description}
+	\item[Path explosion] The most real world program have a huge number of computational path. The execution of each path can be mean an unacceptable overhead. Solutions for this problem can be use the specification of the parts that affect the symbolic execution or avoid some branch, which are relevant to the test data criteria.
+	\item[Path divergence] Programs usually implemented in a mixture of different programming languages. The symbolic execution of such a complex infrastructure is almost impossible. The unavailability of these paths leads to path divergence, and some paths may not be found during the symbolic execution.
+	\item[Complex constraints] Solving Boolean formulas involves using constraint solvers during the symbolic execution. There are some formula that, which can not be solved with the today available tools.
+\end{description}
+
+% subsubsection symbolicexecution (end)
+
+\subsubsection{Model based testing (MBT)}
+\label{ssub:mbt}
+
+The known test case generation techniques, that are used in model based testing are introduced here. The model based testing terminology and process was presented last semester in the final report of the previous project laboratory.
+
+There are three main approaches by traditional model based testing:
+
+\begin{description}
+	\item[Axiomatic approaches] Axiomatic foundations of MBT are based on some form of logic calculus. The logic formula has to be transformed into disjunctive normal form (DNF), and this form has to be solved with a higher-order logical theorem prover or the problem has to be transformed into solving finite state machines.
+	\item[Finite state machine approaches] The model is formalised with a Mealy machine, where inputs and outputs are paired on each transition. Test cases can be generated using some coverage criteria. These criteria was discussed last semester.
+	\item[Labelled transition system approaches] This is a common formalism for describing operational semantics of process algebra. There are two common techniques generating test cases (input/output conformance and interface automata), which describe the conformance of the SUT. These techniques do not define test selection strategies, they have to be combined with coverage criteria as seen by FSMs.
+\end{description}
+
+% subsubsection mbt (end)
+
+\subsubsection{Combinatorial testing}
+\label{ssub:combinatorialtesting}
+
+In combinatorial testing samples of input parameters have to be chosen, that cover a prescribed subset of combinations of the elements to be tested. Usually sample consists all t-way combination of possible input parameters, this method is called \textit{combinatorial interaction testing} (CIT). The inputs can be described with a covering array:
+\begin{displaymath}
+CA=(N;t, k, v),
+\end{displaymath}
+
+where $N$ represents sample size, $t$ is called strength, $k$ are the factors and $v$ are the possible symbols. So $CA$ is an $N$ * $k$ array on $v$ symbols such that every $N$ * $t$ sub-array contains all $t$-tuples from the $v$ symbols at least once. Finding an appropriate coverage array is possible using heuristics.
+
+Combinatorial testing can be used if the domains of the input parameters are known.
+
+% subsubsection combinatorialtesting (end)
+
+\subsubsection{Adaptive random testing (ART)}
+\label{ssub:randomtesting}
+
+Random testing is based on that the inputs have to spread across the domain of the input parameters to find failure causing inputs. There are five method in the field of ART:
+
+\begin{enumerate}
+	\item From a randomly generated input set, next candidate is chosen by a selected criterion.
+	\item Next input parameter is chosen by exclusion: the randomly generated input parameter has to be outside of previously executed regions (exclusion regions).
+	\item This approach uses the information about previously executed input parameters, to divide the input domain into partitions. Next input parameter will be chosen from a new partition.
+	\item The next input parameter can be chosen by dynamically adjusted test profiles.
+	\item Distribution metrics can also help to find the next input parameter to achieve dispersion on the input domain.
+\end{enumerate}
+
+% subsubsection randomtesting (end)
+
+\subsubsection{Search based software testing (SBST)}
+\label{ssub:searchbasedtestgen}
+
+In the last few decades there has been an exhausting research in the field of using graph theory at model-based testing. These techniques belong to search-based test generation algorithms.
+
+One of the most used algorithms refers to the \textit{Chinese Postman Problem} \cite{graphtheorymbt}. Given that it is impossible to cross each edge once in an undirected graph during a graph walk, in other words it does not have an Eulerian tour. What is the minimal amount of re-crossing we need to create a walk that uses each edge? The solution is to duplicate the shortest edges between the vertices having odd degree. This process is called "Eulerizing" the graph. In model-based testing one can use this idea, by creating a transition-based model, which can be represented as a graph. The vertices are the states of the SUT and the edges are the callable methods. A generated Eulerian tour gives a full transition-based structural model coverage.
+
+The \textit{New York Street Sweeper Problem} is a variant of the previous graph theory problem. It applies to directed graphs, and arcs need to duplicate to reach, that each nodes have out-degree minus in-degree equal zero.
+
+The previous algorithms give full transition-based coverage, but not pair-wise coverage. The following algorithm named \textit{de Bruijn sequences} creates every combination of the methods. First create a dual graph of the original graph, then eulerize the dual graph (by duplicating arcs to balance node polarities). Create an Eulerian tour, noting the names of the passed nodes.
+
+Dill, Ho, Horowitz and Yang constructed worked on the \textit{limited sub-tour problem} where the test case sequences can not be longer, than a specified upper limit. There is no optimal solution for that problem, but there are some heuristics. For example if an upper limit was set, the current sub-tour has to end and a new sub-tour has to start from that node.
+
+Other approaches using a fitness function to find input parameters that maximises the achievement of test goals, while minimising testing costs.
+
+% subsubsection searchbasedtestgen (end)
+
+% subsection testgeneration (end)
+
+\subsection{Test execution}
+\label{sub:testexecution}
+
+...
+
+% subsection testexecution (end)
 
 % section process (end)
 
