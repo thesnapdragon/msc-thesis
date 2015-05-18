@@ -4,13 +4,13 @@ steps=texpdf
 root=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/unicsovicsmilangyorgy_jzk3.tex
 
 file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/bib/unicsovicsmilangyorgy_jzk3.bib
-file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/include/declaration.tex
-file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/include/packages.tex
+
+
 file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/include/preamble.tex
 
-file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/include/thesis-en.tex
 
-file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/include/titlepage.tex
+
+
 file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/content/abstract.tex
 file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/content/appendices.tex
 file=/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv1/content/introduction.tex
