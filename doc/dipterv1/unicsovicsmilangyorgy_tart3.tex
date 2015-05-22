@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+%\usepackage{a4wide}
+\usepackage[magyar]{babel}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage[top=0.5in, bottom=0.5in]{geometry}
+%opening
+\author{Milán Unicsovics}
+\title{MSc Önálló laboratórium 2}
+\date{\today}
+\sloppy
+\begin{document}
+%%%%%%%%%%%%%%%%%%%Szöveg%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.3]{figures/bme_logo.pdf}
+\begin{center}
+Budapesti Műszaki és Gazdaságtudományi Egyetem\\
+Méréstechnika és Információs Rendszerek Tanszék
+\end{center}
+\end{figure}
+\vspace*{-0.1in}
+\begin{center}
+\subsection*{Tesztgenerálás állapotgép alapú modellekből}
+{\bf
+Unicsovics Milán György (II. évf, MSc) mérnök inf. szakos hallgató\\[0.3cm]
+
+Konzulens: Dr. Micskei Zoltán adjunktus, MIT\\[0.3cm]
+
+Szolgáltatásbiztos rendszertervezés szakirány
+
+Diplomatervezés 1 összefoglaló
+
+2014/15. II. félév
+}
+\end{center}
+\vspace{0.5cm}
+
+A tesztelés célja a hibadetektálás, mely során egy szoftver elvárt és aktuális működését összehasonlítjuk. A modell alapú tesztelés ennek egy változata, ahol modellekel írjuk le a tesztelni kívánt szoftver viselkedését. A modellekből tesztek generálhatóak, melyek később futtathatóak a szoftveren. Kutatásaim célja, hogy későbbiekben egy olyan eszköz fejlesztésébe kezdhessek, mely állapotgép alapú modellt használó szoftverekhez tesztelő keretrendszerként használható.
+
+Az előző két félév feladata a modell alapú tesztelés elméleti hátterének és a modell alapú tesztelési folyamat megismerése volt. Ezen ismereteket az elérhető ipari tesztelő eszközökkel való ismerkedéssel folytattam. A tapasztalatok elmélyítését néhány példa implementáció elkészítésével fejeztem be.
+
+Az idei félévet egy UML szemantikához hasonló állapotgép leíró modell, a CERN és a BME együttműködéséből Darvas Dániel által készített PLC-HSM leírónyelv megismerésével kezdtem. A formális, hierarchikus, moduláris nyelv könnyen felhasználható volt a tesztgenerálási folyamat részeként, így sikerült egy iparban is használt modell megoldást beépíteni a tervezés során.
+
+Tesztgenerálási algoritmusként az előző félévek tapasztalatai alapján egy erősebb eszközt vetettem be. Ez az Alloy modellező nyelv volt, melynek kiismerésével a félévet folytattam. A nyelv képességeinek elsajátítását a modellellenőrzés világából vett verifikációs módszer implementálásával folytattam Alloy-t felhasználva.
+
+Először a PLC-HSM metamodelljét kellett Alloy segítségével modellezni, majd ezt a modellt kiegészíteni a kívánt tesztesetek metamodelljével. A generált tesztesetek állapot-, vagy átmenetlefedettséget képesek garantálni az adott szoftver modelljét tekintve.
+
+Az Alloy kódok felépítését megvizsgálva nyilvánvalóvá válik, hogy a példánymodell információit vizsgálva az Alloy kód nagy része automatikusan generálható. Ezt a generálást az Eclipse Modeling Tools részét képező Acceleo segítségével végeztem el. Az Acceleo valójában egy olyan eszköz, amely modelleket képes szöveg formátumba transzformálni, így jól illik a modellvezérelt fejlesztés módszertanába is.
+
+A félévet az eddigi tapasztalatok és eredmények összefoglalásával folytattam, mely dokumentációk a diploma részeiként fognak szolgálni.
+
+A diploma felépítésének megtervezése során a rendszer továbbfejlesztési lehetőségei is nyilvánvalóvá váltak. Mindenképpen fontos a rendszer teljesítményének vizsgálata, hogy a különböző méretű és felépítésű modelleken milyen korlátok között generálhatóak tesztesetek. Valószínűleg a modellek méretének növelésével a rendszer skálázódásának finomhangolására is szükség lesz, így használhatóak lesznek a korábbi félévek gráfalgoritmus implementációi is a kevert stratégiájú teszgenerálási algoritmusok használatakor. További lehetőségként szolgálhat a bonyolultabb állapotgép elemek támogatása.
+
+Az elvégzett feladatok során az eddig összegyűjtött tapasztalatokra építve megkezdhettem a rendszer tervezését és implementációját. A tervezés során olyan eszközöket választottam, amelyek teljesítik a kitűzött célokat, majd az implementáció során sikerült egy végleges verzió létrehozását megkezdeni. A célként kitűzött alkalmazás jelenlegi változata, már megfelel az alapvető követelményeknek, csak finomhangolásra lesz szükség, illetve további szolgáltatásokkal lesz kiegészítve a rendszer. Összesítve elmondhatom, hogy nagyon élveztem a féléves feladatokat és sikerült egy olyan alkalmazást készíteni, mely teljesíti a kitűzött célokat és a következő félévben könnyen továbbfejleszthető lesz egy végleges verzióvá.
+
+\end{document}
