@@ -35,28 +35,28 @@ pred inheritSystem(s1, s2: System) {
 }
 
 /***GENERATE START***/
-lone sig A, B extends State {}
+one sig A, B extends State {}
 sig S extends System {
 	a: Int
 }
-one sig T0 extends Transition {}{
+lone sig T0 extends Transition {}{
 	from = Initial
 	to = A
 	initSystem[from.system]
 	E0[from.system, to.system]
 }
-one sig T1 extends Transition {}{
+lone sig T1 extends Transition {}{
 	from = A
 	to = B
 	inheritSystem[from.system, to.system]
 	G0[from.system]
 }
-one sig T2 extends Transition {}{
+lone sig T2 extends Transition {}{
 	from = B
 	to = End
 	inheritSystem[from.system, to.system]
 }
-one sig T3 extends Transition {}{
+lone sig T3 extends Transition {}{
 	from = A
 	to = B
 	inheritSystem[from.system, to.system]
@@ -81,4 +81,4 @@ pred state_coverage() {
 	some p:Path | all s:State | s in steps[p].from + steps[p].to
 }
 
-run transition_coverage for 10 but exactly 1 Path
+run state_coverage for 10 but exactly 1 Path
