@@ -8,19 +8,13 @@
 [file ('psm_transitioncoverage.als', false, 'UTF-8')]
 module psm_statecoverage
 
-abstract sig State {}
+open util/integer
+
+abstract sig System {}
+abstract sig State {system: one System}
 abstract sig Transition {from, to: one State}
 
 one sig Initial, End extends State {}
-
-one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name/][/for]extends State {}
-
-[for (transition : Transition | sm.transitions) separator('\n')]
-one sig [transition.name/] extends Transition {}{
-	from = [transition.from.name /]
-	to = [transition.to.name /]
-}
-[/for]
 
 sig Path { firstStep: Step }
 sig Step {
@@ -31,28 +25,41 @@ sig Step {
 	via.from = from
 	via.to = to
 }
-
-fact {
-	all s:Step, p:Path | s in p.firstStep.*nextStep
-	all p:Path | p.firstStep.from = Initial
-	all curr:Step, next:curr.nextStep | next.from = curr.to
-}
-
 fun steps (p:Path): set Step {
 	p.firstStep.*nextStep
 }
 
-pred transition_coverage() {
-	some p:Path | steps[ '[' /]p[ ']' /].via = Transition
+fact {
+	all s:Step, p:Path | s in p.firstStep.*nextStep
+	all p:Path | p.firstStep.from = Initial
+	all t:Transition | one s:Step | s.via = t
+	all curr:Step, next:curr.nextStep | next.from = curr.to
+	all sys:System | some s:State | sys = s.system
+	all s:State | some t:Transition | t.from = s or t.to = s
 }
+
+pred inheritSystem(s1, s2: System) {
+	s1 = s2
+}
+
+/*** GENERATED CODE START ***/
+one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name/][/for] extends State {}
+
+[for (transition : Transition | sm.transitions) separator('\n')]
+lone sig [transition.name/] extends Transition {}{
+	from = [transition.from.name /]
+	to = [transition.to.name /]
+	inheritSystem['['/]from.system, to.system[']'/]
+}
+[/for]
+
+/*** GENERATED CODE END ***/
 
 pred state_coverage() {
-	some p:Path | all s:State | s in steps[ '[' /]p[ ']' /].from or  s in steps[ '[' /]p[ ']' /].to
+	some p:Path | all s:State | s in steps[ '[' /]p[ ']' /].from + steps[ '[' /]p[ ']' /].to
 }
 
-run transition_coverage for 10 but exactly 1 Path
-
-
+run state_coverage for 10 but exactly 1 Path
 [/file]
 
 [/template]

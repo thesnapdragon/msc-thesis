@@ -15,7 +15,7 @@
                enablesFor="+"
                id="org.eclipse.acceleo.module.sample.ui.popupMenus.acceleoGenerateSampleAction"
                icon="icons/default.gif"
-               label="Generate Sample"
+               label="Generate Test Suite with State Coverage"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
       </objectContribution>
    </extension>

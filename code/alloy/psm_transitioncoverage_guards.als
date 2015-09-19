@@ -34,7 +34,7 @@ pred inheritSystem(s1, s2: System) {
 	s1 = s2
 }
 
-/***GENERATE START***/
+/*** GENERATED CODE START ***/
 one sig A, B extends State {}
 sig S extends System {
 	a: Int
@@ -71,7 +71,7 @@ pred E0(s1, s2: System) {
 pred G0(s: System) {
 	s.a > 1
 }
-/***GENERATE END***/
+/*** GENERATED CODE END ***/
 
 pred transition_coverage() {
 	some p:Path | steps[p].via = Transition
