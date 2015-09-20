@@ -5,7 +5,7 @@
 [template public generateElement(sm : StatemachineModule)]
 
 [comment @main/]
-[file ('psm_transitioncoverage.als', false, 'UTF-8')]
+[file ('psm_statecoverage.als', false, 'UTF-8')]
 module psm_statecoverage
 
 open util/integer
@@ -43,15 +43,74 @@ pred inheritSystem(s1, s2: System) {
 }
 
 /*** GENERATED CODE START ***/
-one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name/][/for] extends State {}
+one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name /][/for] extends State {}
+
+sig S extends System {
+[for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
+	[variable.name /]: Int
+[/for]
+}
 
 [for (transition : Transition | sm.transitions) separator('\n')]
-lone sig [transition.name/] extends Transition {}{
+lone sig [transition.name /] extends Transition {}{
 	from = [transition.from.name /]
 	to = [transition.to.name /]
 	inheritSystem['['/]from.system, to.system[']'/]
+[if (not transition.trigger.oclIsUndefined())]
+	[transition.trigger.name /][ '[' /]from.system, to.system[']' /]
+[/if]
+[if (not transition.guard.oclIsUndefined())]
+	G_[transition.name /][ '[' /]from.system[']' /]
+[/if]
 }
+[if (not transition.trigger.oclIsUndefined())]
+pred [transition.trigger.name /](s1, s2: System) {
+[let operation : ArithmeticOperation = transition.trigger.triggerExpression.oclAsType(ArithmeticOperation)]
+[if (operation.operator = BinaryArithmeticOperator::ADD)]
+	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = add[ '[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][ ']' /]	
+[elseif (operation.operator = BinaryArithmeticOperator::SUBTRACT)]
+	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = sub[ '[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][ ']' /]
+[else]
+[if (operation.operator = BinaryArithmeticOperator::MULTIPLY)]
+	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = mul[ '[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][ ']' /]
+[elseif (operation.operator = BinaryArithmeticOperator::DIVIDE)]
+	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = div[ '[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][ ']' /]
+[/if]
+[/if]
+[/let]
+}
+[/if]
+[if (not transition.guard.oclIsUndefined())]
+pred G_[transition.name /](s: System) {
+[let operation : Comparison = transition.guard.oclAsType(Comparison)]
+[if (operation.operator = ComparisonOperator::EQUALS)]
+	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = [operation.rightArgument.oclAsType(Constant).value /]
+[elseif (operation.operator = ComparisonOperator::NOT_EQUALS)]
+	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] != [operation.rightArgument.oclAsType(Constant).value /]
+[else]
+[if (operation.operator = ComparisonOperator::LESS_THAN)]
+	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] < [operation.rightArgument.oclAsType(Constant).value /]
+[elseif (operation.operator = ComparisonOperator::GREATER_THAN)]
+	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] > [operation.rightArgument.oclAsType(Constant).value /]
+[else]
+[if (operation.operator = ComparisonOperator::LESS_EQ)]
+	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] <= [operation.rightArgument.oclAsType(Constant).value /]
+[elseif (operation.operator = ComparisonOperator::GREATER_EQ)]
+	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] >= [operation.rightArgument.oclAsType(Constant).value /]
+[/if]
+[/if]
+[/if]
+[/let]
+}
+[/if]
 [/for]
+
+pred initSystem(s:System) {
+[for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
+	s.[variable.name /] = 0
+[comment]	s.[variable.name /] = [variable.defaultValue.value /][/comment]
+[/for]
+}
 
 /*** GENERATED CODE END ***/
 
