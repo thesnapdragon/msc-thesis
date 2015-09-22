@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.acceleo.module.sample.ui;
+package hu.bme.mit.plcspec.alloygenerator.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -21,7 +21,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.acceleo.module.sample.ui";
+	public static final String PLUGIN_ID = "hu.bme.mit.plcspec.alloygenerator.ui";
 
 	/**
 	 * The shared instance.

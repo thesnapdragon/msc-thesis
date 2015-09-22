@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.acceleo.module.sample.ui.common;
+package hu.bme.mit.plcspec.alloygenerator.ui.common;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +24,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.osgi.framework.Bundle;
+
+import hu.bme.mit.plcspec.alloygenerator.common.Generate;
 
 
 /**
@@ -87,9 +89,9 @@ public class GenerateAll {
 		//};
 		//gen0.doGenerate(BasicMonitor.toMonitor(monitor));
 		monitor.subTask("Loading...");
-		org.eclipse.acceleo.module.sample.common.Generate gen0 = new org.eclipse.acceleo.module.sample.common.Generate(modelURI, targetFolder.getLocation().toFile(), arguments);
+		Generate gen0 = new Generate(modelURI, targetFolder.getLocation().toFile(), arguments);
 		monitor.worked(1);
-		String generationID = org.eclipse.acceleo.engine.utils.AcceleoLaunchingUtil.computeUIProjectID("org.eclipse.acceleo.module.sample", "org.eclipse.acceleo.module.sample.common.Generate", modelURI.toString(), targetFolder.getFullPath().toString(), new ArrayList<String>());
+		String generationID = org.eclipse.acceleo.engine.utils.AcceleoLaunchingUtil.computeUIProjectID("hu.bme.mit.plcspec.alloygenerator", "hu.bme.mit.plcspec.alloygenerator.common.Generate", modelURI.toString(), targetFolder.getFullPath().toString(), new ArrayList<String>());
 		gen0.setGenerationID(generationID);
 		gen0.doGenerate(BasicMonitor.toMonitor(monitor));
 			

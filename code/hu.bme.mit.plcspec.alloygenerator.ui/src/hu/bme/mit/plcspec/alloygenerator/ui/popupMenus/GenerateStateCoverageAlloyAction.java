@@ -8,16 +8,16 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.acceleo.module.sample.ui.popupMenus;
+package hu.bme.mit.plcspec.alloygenerator.ui.popupMenus;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -28,16 +28,17 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.acceleo.module.sample.ui.Activator;
-import org.eclipse.acceleo.module.sample.ui.common.GenerateAll;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
 
+import hu.bme.mit.plcspec.alloygenerator.ui.Activator;
+import hu.bme.mit.plcspec.alloygenerator.ui.common.GenerateAll;
+
 /**
  * Sample code generation.
  */
-public class AcceleoGenerateSampleAction extends ActionDelegate implements IActionDelegate {
+public class GenerateStateCoverageAlloyAction extends ActionDelegate implements IActionDelegate {
 	
 	/**
 	 * Selected model files.

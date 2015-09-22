@@ -2,7 +2,7 @@
 [module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://cern.ch/enice/plcspec/1.0')]
 
 
-[template public generateElement(sm : StatemachineModule)]
+[template public generateStateCoverage(sm : StatemachineModule)]
 
 [comment @main/]
 [file ('psm_statecoverage.als', false, 'UTF-8')]

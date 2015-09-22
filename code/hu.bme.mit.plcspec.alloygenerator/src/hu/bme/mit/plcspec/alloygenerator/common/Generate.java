@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.acceleo.module.sample.common;
+package hu.bme.mit.plcspec.alloygenerator.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,14 +35,14 @@ public class Generate extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/sample/common/generate";
+    public static final String MODULE_FILE_NAME = "/hu/bme/mit/plcspec/alloygenerator/common/generate";
     
     /**
      * The name of the templates that are to be generated.
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateElement" };
+    public static final String[] TEMPLATE_NAMES = { "generateStateCoverage" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).

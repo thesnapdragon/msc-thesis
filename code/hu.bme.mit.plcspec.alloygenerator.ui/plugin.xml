@@ -6,14 +6,14 @@
             adaptable="true"
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.*"
-            id="org.eclipse.acceleo.module.sample.ui.popupMenus.contribution.IFile">
+            id="hu.bme.mit.plcspec.alloygenerator.ui.popupMenus.contribution.IFile">
          <menu id="org.eclipse.acceleo.module.menu" label="Acceleo Model to Text" path="additionsAcceleo">
                <groupMarker name="acceleo"/> 
          </menu>
          <action
-               class="org.eclipse.acceleo.module.sample.ui.popupMenus.AcceleoGenerateSampleAction"
+               class="hu.bme.mit.plcspec.alloygenerator.ui.popupMenus.GenerateStateCoverageAlloyAction"
                enablesFor="+"
-               id="org.eclipse.acceleo.module.sample.ui.popupMenus.acceleoGenerateSampleAction"
+               id="hu.bme.mit.plcspec.alloygenerator.ui.popupMenus.generateStateCoverageAlloyAction"
                icon="icons/default.gif"
                label="Generate Test Suite with State Coverage"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
