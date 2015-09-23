@@ -17,6 +17,13 @@
                icon="icons/default.gif"
                label="Generate Test Suite with State Coverage"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
+       	 <action
+               class="hu.bme.mit.plcspec.alloygenerator.ui.popupMenus.GenerateTransitionCoverageAlloyAction"
+               enablesFor="+"
+               id="hu.bme.mit.plcspec.alloygenerator.ui.popupMenus.generateTransitionCoverageAlloyAction"
+               icon="icons/default.gif"
+               label="Generate Test Suite with Transition Coverage"
+               menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
       </objectContribution>
    </extension>
 </plugin>

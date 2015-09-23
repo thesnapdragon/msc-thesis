@@ -39,7 +39,7 @@ import hu.bme.mit.plcspec.alloygenerator.ui.common.GenerateAll;
 /**
  * Sample code generation.
  */
-public class GenerateStateCoverageAlloyAction extends ActionDelegate implements IActionDelegate {
+public class GenerateTransitionCoverageAlloyAction extends ActionDelegate implements IActionDelegate {
 	
 	/**
 	 * Selected model files.
@@ -75,7 +75,7 @@ public class GenerateStateCoverageAlloyAction extends ActionDelegate implements 
 							try {
 								IContainer target = model.getProject().getFolder("src-gen");
 								GenerateAll generator = new GenerateAll(modelURI, target, getArguments());
-								generator.setGenerationType(GenerationType.STATE_COVERAGE);
+								generator.setGenerationType(GenerationType.TRANSITION_COVERAGE);
 								generator.doGenerate(monitor);
 							} catch (IOException e) {
 								IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);

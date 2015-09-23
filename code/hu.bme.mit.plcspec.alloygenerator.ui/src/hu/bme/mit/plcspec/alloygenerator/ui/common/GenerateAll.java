@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.osgi.framework.Bundle;
 
 import hu.bme.mit.plcspec.alloygenerator.common.Generate;
+import hu.bme.mit.plcspec.alloygenerator.common.GenerationType;
 
 
 /**
@@ -42,6 +43,8 @@ public class GenerateAll {
 	 * The output folder.
 	 */
 	private IContainer targetFolder;
+	
+	private GenerationType generationType;
 
 	/**
 	 * The other arguments.
@@ -74,7 +77,7 @@ public class GenerateAll {
 	 *            This will be used to display progress information to the user.
 	 * @throws IOException
 	 *             Thrown when the output cannot be saved.
-	 * @generated
+	 * @generated NOT
 	 */
 	public void doGenerate(IProgressMonitor monitor) throws IOException {
 		if (!targetFolder.getLocation().toFile().exists()) {
@@ -90,6 +93,7 @@ public class GenerateAll {
 		//gen0.doGenerate(BasicMonitor.toMonitor(monitor));
 		monitor.subTask("Loading...");
 		Generate gen0 = new Generate(modelURI, targetFolder.getLocation().toFile(), arguments);
+		gen0.setGenerationType(this.generationType);
 		monitor.worked(1);
 		String generationID = org.eclipse.acceleo.engine.utils.AcceleoLaunchingUtil.computeUIProjectID("hu.bme.mit.plcspec.alloygenerator", "hu.bme.mit.plcspec.alloygenerator.common.Generate", modelURI.toString(), targetFolder.getFullPath().toString(), new ArrayList<String>());
 		gen0.setGenerationID(generationID);
@@ -145,6 +149,10 @@ public class GenerateAll {
 			result = URI.createPlatformResourceURI(new Path(bundleID).append(relativePath).toString(), false);
 		}
 		return result;
+	}
+
+	public void setGenerationType(GenerationType generationType) {
+		this.generationType = generationType;
 	}
 
 }

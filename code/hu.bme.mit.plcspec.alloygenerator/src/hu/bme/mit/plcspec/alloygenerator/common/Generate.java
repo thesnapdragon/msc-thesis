@@ -42,7 +42,21 @@ public class Generate extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateStateCoverage" };
+    public static final String[] TEMPLATE_NAMES = { "generateStateCoverage", "generateTransitionCoverage" };
+
+    /**
+     * The name of the templates that are to be generated.
+     *
+     * @generated NOT
+     */
+    public static final String[] TEMPLATE_STATE_COVERAGE = { "generateStateCoverage" };
+    
+    /**
+     * The name of the templates that are to be generated.
+     *
+     * @generated NOT
+     */
+    public static final String[] TEMPLATE_TRANSITION_COVERAGE = { "generateTransitionCoverage" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
@@ -50,6 +64,8 @@ public class Generate extends AbstractAcceleoGenerator {
      * @generated
      */
     private List<String> propertiesFiles = new ArrayList<String>();
+    
+    private GenerationType generationType;
 
     /**
      * Allows the public constructor to be used. Note that a generator created
@@ -323,11 +339,17 @@ public class Generate extends AbstractAcceleoGenerator {
      * This will be used to get the list of templates that are to be launched by this launcher.
      * 
      * @return The list of templates to call on the module {@link #getModuleName()}.
-     * @generated
+     * @generated NOT
      */
     @Override
     public String[] getTemplateNames() {
-        return TEMPLATE_NAMES;
+        switch (this.generationType) {
+		case STATE_COVERAGE:
+			return TEMPLATE_STATE_COVERAGE;
+		case TRANSITION_COVERAGE:
+			return TEMPLATE_TRANSITION_COVERAGE;
+		}
+        return null;
     }
     
     /**
@@ -405,5 +427,9 @@ public class Generate extends AbstractAcceleoGenerator {
         
         // resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
     }
+
+	public void setGenerationType(GenerationType generationType) {
+		this.generationType = generationType;
+	}
     
 }

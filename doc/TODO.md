@@ -103,3 +103,7 @@
 
 * tesztgenerálás további vizsgálatok
 * példánymodell leképezése Alloy-ra
+
+# 2015.09.23.
+
+* http://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.acceleo.doc%2Fpages%2Freference%2Flanguage.html
