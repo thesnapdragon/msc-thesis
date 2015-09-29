@@ -26,4 +26,6 @@ Export-Package: hu.bme.mit.plcspec.alloygenerator;uses:="org.osgi.framework,org.
    org.eclipse.emf.ecore.resource,
    org.eclipse.acceleo.engine.generation.strategy"
 Eclipse-LazyStart: true
+Bundle-ClassPath: libs/edu.mit.csail.sdg/alloy/4.2_2015-02-22/alloy-4.2_2015-02-22.jar,
+ .
 

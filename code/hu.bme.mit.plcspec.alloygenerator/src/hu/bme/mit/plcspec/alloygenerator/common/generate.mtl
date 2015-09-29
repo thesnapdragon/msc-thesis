@@ -51,7 +51,11 @@ sig S extends System {
 lone sig [transition.name /] extends Transition {}{
 	from = [transition.from.name /]
 	to = [transition.to.name /]
+[if (transition.from.name.matches('Initial'))]
+	initSystem['[' /]from.system[']' /]
+[else]
 	inheritSystem['['/]from.system, to.system[']'/]
+[/if]
 [if (not transition.trigger.oclIsUndefined())]
 	[transition.trigger.name /][ '[' /]from.system, to.system[']' /]
 [/if]
@@ -103,8 +107,7 @@ pred G_[transition.name /](s: System) {
 
 pred initSystem(s:System) {
 [for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
-	s.[variable.name /] = 0
-[comment]	s.[variable.name /] = [variable.defaultValue.value /][/comment]
+	s.[variable.name /] = [variable.defaultValue.value /]
 [/for]
 }
 
@@ -159,7 +162,7 @@ pred inheritSystem(s1, s2: System) {
 }
 
 /*** GENERATED CODE START ***/
-lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED[/if][/for] extends State {}
+lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED_[i /][/if][/for] extends State {}
 
 sig S extends System {
 [for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
@@ -171,7 +174,11 @@ sig S extends System {
 one sig [transition.name /] extends Transition {}{
 	from = [transition.from.name /]
 	to = [transition.to.name /]
+[if (transition.from.name.matches('Initial'))]
+	initSystem['[' /]from.system[']' /]
+[else]
 	inheritSystem['['/]from.system, to.system[']'/]
+[/if]
 [if (not transition.trigger.oclIsUndefined())]
 	[transition.trigger.name /][ '[' /]from.system, to.system[']' /]
 [/if]
@@ -223,8 +230,7 @@ pred G_[transition.name /](s: System) {
 
 pred initSystem(s:System) {
 [for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
-	s.[variable.name /] = 0
-[comment]	s.[variable.name /] = [variable.defaultValue.value /][/comment]
+	s.[variable.name /] = [variable.defaultValue.value /]
 [/for]
 }
 

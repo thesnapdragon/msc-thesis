@@ -24,6 +24,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import hu.bme.mit.plcspec.alloygenerator.compiler.Compiler;
+
 /**
  * Entry point of the 'Generate' generation module.
  *
@@ -65,7 +67,15 @@ public class Generate extends AbstractAcceleoGenerator {
      */
     private List<String> propertiesFiles = new ArrayList<String>();
     
+    /**
+     * The type of the generation process: can be state or transition coverage. 
+     */
     private GenerationType generationType;
+    
+    /**
+     * Target folder of the generation.
+     */
+    private File targetFolder;
 
     /**
      * Allows the public constructor to be used. Note that a generator created
@@ -99,11 +109,12 @@ public class Generate extends AbstractAcceleoGenerator {
      * @throws IOException
      *             This can be thrown in three scenarios : the module cannot be found, it cannot be loaded, or
      *             the model cannot be loaded.
-     * @generated
+     * @generated NOT
      */
     public Generate(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(modelURI, targetFolder, arguments);
+        this.targetFolder = targetFolder;
     }
 
     /**
@@ -187,7 +198,7 @@ public class Generate extends AbstractAcceleoGenerator {
      *            This will be used to display progress information to the user.
      * @throws IOException
      *             This will be thrown if any of the output files cannot be saved to disk.
-     * @generated
+     * @generated NOT
      */
     @Override
     public void doGenerate(Monitor monitor) throws IOException {
@@ -216,6 +227,9 @@ public class Generate extends AbstractAcceleoGenerator {
         //}
 
         super.doGenerate(monitor);
+
+        Compiler compiler = new Compiler(targetFolder, generationType);
+        compiler.compile();
     }
     
     /**
