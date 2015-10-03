@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://cern.ch/enice/plcspec/1.0')]
+[module generateAlloy('http://www.eclipse.org/emf/2002/Ecore', 'http://cern.ch/enice/plcspec/1.0')]
 
 [template public generateStateCoverage(sm : StatemachineModule)]
 [comment @main/]

@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.osgi.framework.Bundle;
 
-import hu.bme.mit.plcspec.alloygenerator.common.Generate;
+import hu.bme.mit.plcspec.alloygenerator.common.GenerateAlloy;
 import hu.bme.mit.plcspec.alloygenerator.common.GenerationType;
 
 
@@ -92,7 +92,7 @@ public class GenerateAll {
 		//};
 		//gen0.doGenerate(BasicMonitor.toMonitor(monitor));
 		monitor.subTask("Loading...");
-		Generate gen0 = new Generate(modelURI, targetFolder.getLocation().toFile(), arguments);
+		GenerateAlloy gen0 = new GenerateAlloy(modelURI, targetFolder.getLocation().toFile(), arguments);
 		gen0.setGenerationType(this.generationType);
 		monitor.worked(1);
 		String generationID = org.eclipse.acceleo.engine.utils.AcceleoLaunchingUtil.computeUIProjectID("hu.bme.mit.plcspec.alloygenerator", "hu.bme.mit.plcspec.alloygenerator.common.Generate", modelURI.toString(), targetFolder.getFullPath().toString(), new ArrayList<String>());

@@ -44,6 +44,8 @@ public class Compiler {
 	        Command cmd = world.getAllCommands().get(0);
 	        A4Solution sol = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), cmd, opt);
 	        System.out.println(sol.satisfiable());
+	        System.out.println(sol.toString());
+	        sol.writeXML("/tmp/test.xml");
         } catch (Err e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
