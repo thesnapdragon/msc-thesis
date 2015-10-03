@@ -106,4 +106,29 @@
 
 # 2015.09.23.
 
-* http://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.acceleo.doc%2Fpages%2Freference%2Flanguage.html
+* Acceleo:
+  * http://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.acceleo.doc%2Fpages%2Freference%2Flanguage.html
+
+# 2015.09.26.
+
+* Eclipse pluginek:
+  * http://www.vogella.com/tutorials/EclipsePlugIn/article.html
+  * https://spring.io/guides/gs/maven/
+  * http://www.javaworld.com/article/2071772/java-app-dev/the-maven-2-pom-demystified.html
+* Alloy:
+  * http://alloy.mit.edu/alloy/code/ExampleUsingTheCompiler.java.html
+* Notes:
+  * http://robertvarttinen.blogspot.hu/2007/01/adding-third-party-jar-to-your-eclipse.html
+
+# 2015.09.29.
+
+*  -XX:MaxPermSize=128M
+
+# 2015.10.01.
+
+* absztrakt test definíciós nyelv
+1. hibás demonstrációs eset
+	* JUnit tesztek
+	* mutációs teszteléssel ellenőrizni (Major, mutation-testing.org)
+2. minél teljesebb modell, minél több felhasznált elem
+3. skálázhatóság: generált modell
