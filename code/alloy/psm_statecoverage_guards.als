@@ -30,15 +30,15 @@ fact {
 	all p:Path | some c:Coverage | p in c.paths // all path belongs to a coverage
 	no p1,p2:Path | p1! = p2 && steps[p1] = steps[p2] && transitions[p1] = transitions[p2] // there are no two equivalent paths
 	no s1,s2:Step | s1! = s2 && s1.via = s2.via // there are no two equivalent steps
-    all s:Step | some p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
+	all s:Step | some p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
 
 	// model consistency
 	all p:Path | p.firstStep.from = Initial // all path starts with an Initial state
-	all p:Path | some s:Step | s in steps[p] && s.to = End
+	all p:Path | some s:Step | s in steps[p] && s.to = End // all path end with End state
 	
 	// state machine properties
 	all t:Transition | one s:Step | s.via = t // all transitions belongs to a step
-	all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
+    all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
 	all sys:System | some s:State | sys = s.system // all system belongs to a state
 	all s:State | some t:Transition | t.from = s or t.to = s // all state belongs to a transition
 }
@@ -48,30 +48,41 @@ pred inheritSystem(s1, s2: System) {
 }
 
 /*** GENERATED CODE START ***/
-sig A, B extends State {}
+one sig A, B, C extends State {}
 some sig S extends System {
 	a: Int
 }
-some sig T0 extends Transition {}{
+sig T0 extends Transition {}{
 	from = Initial
 	to = A
 	initSystem[from.system]
 	E0[from.system, to.system]
 }
-some sig T1 extends Transition {}{
+sig T1 extends Transition {}{
+	from = A
+	to = B
+	inheritSystem[from.system, to.system]
+	//G0[from.system]
+}
+sig T5 extends Transition {}{
 	from = A
 	to = B
 	inheritSystem[from.system, to.system]
 	G0[from.system]
 }
-some sig T2 extends Transition {}{
+sig T2 extends Transition {}{
 	from = B
 	to = End
 	inheritSystem[from.system, to.system]
 }
-some sig T3 extends Transition {}{
+sig T3 extends Transition {}{
 	from = A
-	to = B
+	to = C
+	inheritSystem[from.system, to.system]
+}
+sig T4 extends Transition {}{
+	from = C
+	to = End
 	inheritSystem[from.system, to.system]
 }
 
@@ -82,12 +93,12 @@ pred E0(s1, s2: System) {
 	s2.a = add[s1.a, 1]
 }
 pred G0(s: System) {
-	s.a = 1
+	s.a > 1
 }
 /*** GENERATED CODE END ***/
 
-pred transition_coverage() {
-	all t:Transition | some p:Path | t in steps[p].via
+pred state_coverage() {
+	all s:State | some p:Path | s in steps[p].from + steps[p].to
 }
 
-run transition_coverage for 6 but exactly 1 Coverage, 4 System
+run state_coverage for 6 but exactly 1 Coverage, 4 System
