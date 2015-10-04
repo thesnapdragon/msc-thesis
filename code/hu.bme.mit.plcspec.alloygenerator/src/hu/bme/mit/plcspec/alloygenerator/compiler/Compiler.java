@@ -24,6 +24,7 @@ public class Compiler {
 	}
 
 	public void compile() {
+		System.out.println(System.getProperty("java.library.path"));
 		A4Reporter rep = new A4Reporter() {
             @Override public void warning(ErrorWarning msg) {
 //            	TODO Correct error handling
@@ -31,21 +32,26 @@ public class Compiler {
         };
         String fileName = null;
         if (this.generationType.equals(GenerationType.STATE_COVERAGE)) {
-        	fileName = "psm_statecoverage.als";
+        	fileName = "statecoverage.als";
         } else {
-        	fileName = "psm_transitioncoverage.als";
+        	fileName = "transitioncoverage.als";
         }
         File alloyFile = new File(targetFolder, fileName); 
         try {
 			Module world = CompUtil.parseEverything_fromFile(rep, null, alloyFile.getAbsolutePath());
 			A4Options opt = new A4Options();
 	        opt.originalFilename = alloyFile.getAbsolutePath();
-	        opt.solver = A4Options.SatSolver.SAT4J;
+	        if (this.generationType.equals(GenerationType.STATE_COVERAGE)) {
+	        	opt.solver = A4Options.SatSolver.MiniSatJNI;
+	        } else {
+	        	opt.solver = A4Options.SatSolver.LingelingJNI;
+	        }
 	        Command cmd = world.getAllCommands().get(0);
 	        A4Solution sol = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), cmd, opt);
 	        System.out.println(sol.satisfiable());
-	        System.out.println(sol.toString());
-	        sol.writeXML("/tmp/test.xml");
+	        if (sol.satisfiable()) {
+	        	System.out.println(sol.getAllReachableSigs().toString());
+	        }
         } catch (Err e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

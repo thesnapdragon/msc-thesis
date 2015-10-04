@@ -30,7 +30,7 @@ fact {
 	all p:Path | some c:Coverage | p in c.paths // all path belongs to a coverage
 	no p1,p2:Path | p1! = p2 && steps[p1] = steps[p2] && transitions[p1] = transitions[p2] // there are no two equivalent paths
 	no s1,s2:Step | s1! = s2 && s1.via = s2.via // there are no two equivalent steps
-    all s:Step | some p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
+	all s:Step | some p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
 
 	// model consistency
 	all p:Path | p.firstStep.from = Initial // all path starts with an Initial state

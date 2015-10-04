@@ -38,7 +38,7 @@ fact {
 	
 	// state machine properties
 	all t:Transition | one s:Step | s.via = t // all transitions belongs to a step
-    all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
+	all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
 	all sys:System | some s:State | sys = s.system // all system belongs to a state
 	all s:State | some t:Transition | t.from = s or t.to = s // all state belongs to a transition
 }
@@ -62,7 +62,6 @@ sig T1 extends Transition {}{
 	from = A
 	to = B
 	inheritSystem[from.system, to.system]
-	//G0[from.system]
 }
 sig T5 extends Transition {}{
 	from = A
@@ -101,4 +100,4 @@ pred state_coverage() {
 	all s:State | some p:Path | s in steps[p].from + steps[p].to
 }
 
-run state_coverage for 6 but exactly 1 Coverage, 4 System
+run state_coverage for 10 but exactly 1 Coverage, 4 System

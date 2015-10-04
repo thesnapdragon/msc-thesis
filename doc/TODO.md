@@ -132,3 +132,9 @@
 	* mutációs teszteléssel ellenőrizni (Major, mutation-testing.org)
 2. minél teljesebb modell, minél több felhasznált elem
 3. skálázhatóság: generált modell
+
+# 2015.10.04.
+
+* különböző solverek teljesítményének mérése (state: MiniSAT, transition: Lingeling)
+* -Xms128m -Xmx1024m -XX:MaxPermSize=128M
+* telepítés: https://www.chilkatsoft.com/java-loadLibrary-MacOSX.asp
