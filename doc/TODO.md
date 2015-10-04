@@ -138,3 +138,5 @@
 * különböző solverek teljesítményének mérése (state: MiniSAT, transition: Lingeling)
 * -Xms128m -Xmx1024m -XX:MaxPermSize=128M
 * telepítés: https://www.chilkatsoft.com/java-loadLibrary-MacOSX.asp
+* metamodell készítése interfész alapján: http://help.eclipse.org/mars/topic/org.eclipse.emf.doc/tutorials/clibmod/clibmod.html?cp=20_1_0#step1b
+* példánymodell készítése kódból: http://www.vogella.com/tutorials/EclipseEMFPersistence/article.html

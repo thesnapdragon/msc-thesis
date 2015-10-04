@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test suite generator
+Bundle-SymbolicName: hu.bme.mit.plcspec.testsuitegenerator;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: hu.bme.mit.plcspec.testsuitegenerator.common.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ocl,
+ org.eclipse.ocl.ecore,
+ org.eclipse.acceleo.common;bundle-version="3.3.0",
+ org.eclipse.acceleo.model;bundle-version="3.3.0",
+ org.eclipse.acceleo.profiler;bundle-version="3.3.0",
+ org.eclipse.acceleo.engine;bundle-version="3.3.0",
+ com.google.guava
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: hu.bme.mit.plcspec.testsuitegenerator;uses:="org.osgi.framework,org.eclipse.core.runtime",
+ hu.bme.mit.plcspec.testsuitegenerator.alloy,
+ hu.bme.mit.plcspec.testsuitegenerator.common;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.common.util,
+   org.eclipse.acceleo.engine.service,
+   org.eclipse.emf.ecore.resource,
+   org.eclipse.acceleo.engine.generation.strategy",
+ hu.bme.mit.plcspec.testsuitegenerator.testing,
+ hu.bme.mit.plcspec.testsuitegenerator.testing.impl,
+ hu.bme.mit.plcspec.testsuitegenerator.testing.util
+Eclipse-LazyStart: true
+Bundle-ClassPath: libs/edu.mit.csail.sdg/alloy/4.2_2015-02-22/alloy-4.2_2015-02-22.jar,
+ .
+Bundle-Vendor: BME-MIT
+

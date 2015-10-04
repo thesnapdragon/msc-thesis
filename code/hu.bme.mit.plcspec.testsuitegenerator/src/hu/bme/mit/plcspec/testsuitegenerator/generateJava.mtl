@@ -1,0 +1,46 @@
+[comment encoding = UTF-8 /]
+[module generateJava('http:///hu/bme/mit/plcspec/alloygenerator/testing.ecore')]
+
+[template public generateJava(testSuite : TestSuite)]
+[comment @main/]
+[file ('Test.java', false, 'UTF-8')]
+import org.junit.*;
+
+public class TestFoobar {
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        // első test metódus előtt végehajtandó kód
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+        // az utolsó test metódus után végrehajtandó kód
+    }
+    
+    @Test(timeout=1000)    
+    public void testOneThing() {
+        // egy dolog tesztelésére szolgáló kód - időtullépés megadásával
+    }
+ 
+    @Test
+    public void testAnotherThing() {
+        // másik dolog tesztelésére szolgáló kód
+    }
+
+    @Ignore
+    public void testSomethingElse() {
+        // egyéb másik dolog tesztelésére szolgáló kód - nem fog végrehajtódni
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        // minden test előtt végrehajtandó metódus
+    }
+ 
+    @After
+    public void tearDown() throws Exception {
+        // minden test után végrehajtandó metódus
+    }
+}
+[/file]
+[/template]
