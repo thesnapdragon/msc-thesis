@@ -113,13 +113,13 @@ public interface TestingPackage extends EPackage {
 	int TEST_SUITE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Test Cases</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Test Coverages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__TEST_CASES = 0;
+	int TEST_SUITE__TEST_COVERAGES = 0;
 
 	/**
 	 * The number of structural features of the '<em>Test Suite</em>' class.
@@ -138,6 +138,44 @@ public interface TestingPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEST_SUITE_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl <em>Test Coverage</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getTestCoverage()
+	 * @generated
+	 */
+	int TEST_COVERAGE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Test Cases</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_COVERAGE__TEST_CASES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Test Coverage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_COVERAGE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Test Coverage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_COVERAGE_OPERATION_COUNT = 0;
 
 
 	/**
@@ -183,15 +221,36 @@ public interface TestingPackage extends EPackage {
 	EClass getTestSuite();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getTestCases <em>Test Cases</em>}'.
+	 * Returns the meta object for the containment reference list '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getTestCoverages <em>Test Coverages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Test Cases</em>'.
-	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getTestCases()
+	 * @return the meta object for the containment reference list '<em>Test Coverages</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getTestCoverages()
 	 * @see #getTestSuite()
 	 * @generated
 	 */
-	EReference getTestSuite_TestCases();
+	EReference getTestSuite_TestCoverages();
+
+	/**
+	 * Returns the meta object for class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage <em>Test Coverage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Test Coverage</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage
+	 * @generated
+	 */
+	EClass getTestCoverage();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage#getTestCases <em>Test Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Test Cases</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage#getTestCases()
+	 * @see #getTestCoverage()
+	 * @generated
+	 */
+	EReference getTestCoverage_TestCases();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -253,12 +312,30 @@ public interface TestingPackage extends EPackage {
 		EClass TEST_SUITE = eINSTANCE.getTestSuite();
 
 		/**
+		 * The meta object literal for the '<em><b>Test Coverages</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_SUITE__TEST_COVERAGES = eINSTANCE.getTestSuite_TestCoverages();
+
+		/**
+		 * The meta object literal for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl <em>Test Coverage</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl
+		 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getTestCoverage()
+		 * @generated
+		 */
+		EClass TEST_COVERAGE = eINSTANCE.getTestCoverage();
+
+		/**
 		 * The meta object literal for the '<em><b>Test Cases</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_SUITE__TEST_CASES = eINSTANCE.getTestSuite_TestCases();
+		EReference TEST_COVERAGE__TEST_CASES = eINSTANCE.getTestCoverage_TestCases();
 
 	}
 

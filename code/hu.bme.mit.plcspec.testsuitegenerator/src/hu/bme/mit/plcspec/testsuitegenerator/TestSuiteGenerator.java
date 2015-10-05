@@ -18,6 +18,7 @@ import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
 import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
 import hu.bme.mit.plcspec.testsuitegenerator.alloy.GenerationType;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCase;
+import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingFactory;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage;
@@ -53,10 +54,12 @@ public class TestSuiteGenerator {
 				TestSuite testSuite = factory.createTestSuite();
 				
 				for (Sig path : paths) {
+					TestCoverage testCoverage = factory.createTestCoverage();
 					TestCase testCase = factory.createTestCase();
 					testCase.setInput("input");
 					testCase.setOutput("output");
-					testSuite.getTestCases().add(testCase);
+					testCoverage.getTestCases().add(testCase);
+					testSuite.getTestCoverages().add(testCoverage);
 				}
 				
 				try {

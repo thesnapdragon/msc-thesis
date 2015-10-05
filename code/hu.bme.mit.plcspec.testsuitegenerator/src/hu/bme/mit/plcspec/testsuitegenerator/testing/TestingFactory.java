@@ -40,6 +40,15 @@ public interface TestingFactory extends EFactory {
 	TestSuite createTestSuite();
 
 	/**
+	 * Returns a new object of class '<em>Test Coverage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Test Coverage</em>'.
+	 * @generated
+	 */
+	TestCoverage createTestCoverage();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

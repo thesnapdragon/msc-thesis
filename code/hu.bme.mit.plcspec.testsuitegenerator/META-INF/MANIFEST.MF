@@ -18,7 +18,9 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.guava
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: hu.bme.mit.plcspec.testsuitegenerator;uses:="org.osgi.framework,org.eclipse.core.runtime",
+Export-Package: hu.bme.mit.plcspec.testsuitegenerator;
+  uses:="org.osgi.framework,
+   org.eclipse.core.runtime",
  hu.bme.mit.plcspec.testsuitegenerator.alloy,
  hu.bme.mit.plcspec.testsuitegenerator.common;
   uses:="org.eclipse.emf.ecore,

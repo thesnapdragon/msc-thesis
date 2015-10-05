@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCase;
+import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingFactory;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage;
@@ -34,6 +35,13 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 	 * @generated
 	 */
 	private EClass testSuiteEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass testCoverageEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -137,8 +145,26 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestSuite_TestCases() {
+	public EReference getTestSuite_TestCoverages() {
 		return (EReference)testSuiteEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTestCoverage() {
+		return testCoverageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestCoverage_TestCases() {
+		return (EReference)testCoverageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -174,7 +200,10 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 		createEAttribute(testCaseEClass, TEST_CASE__OUTPUT);
 
 		testSuiteEClass = createEClass(TEST_SUITE);
-		createEReference(testSuiteEClass, TEST_SUITE__TEST_CASES);
+		createEReference(testSuiteEClass, TEST_SUITE__TEST_COVERAGES);
+
+		testCoverageEClass = createEClass(TEST_COVERAGE);
+		createEReference(testCoverageEClass, TEST_COVERAGE__TEST_CASES);
 	}
 
 	/**
@@ -212,7 +241,10 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 		initEAttribute(getTestCase_Output(), ecorePackage.getEString(), "output", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testSuiteEClass, TestSuite.class, "TestSuite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTestSuite_TestCases(), this.getTestCase(), null, "testCases", null, 0, -1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestSuite_TestCoverages(), this.getTestCoverage(), null, "testCoverages", null, 0, -1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(testCoverageEClass, TestCoverage.class, "TestCoverage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTestCoverage_TestCases(), this.getTestCase(), null, "testCases", null, 0, -1, TestCoverage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

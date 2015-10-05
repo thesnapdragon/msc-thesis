@@ -58,6 +58,7 @@ public class TestingFactoryImpl extends EFactoryImpl implements TestingFactory {
 		switch (eClass.getClassifierID()) {
 			case TestingPackage.TEST_CASE: return createTestCase();
 			case TestingPackage.TEST_SUITE: return createTestSuite();
+			case TestingPackage.TEST_COVERAGE: return createTestCoverage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,6 +82,16 @@ public class TestingFactoryImpl extends EFactoryImpl implements TestingFactory {
 	public TestSuite createTestSuite() {
 		TestSuiteImpl testSuite = new TestSuiteImpl();
 		return testSuite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestCoverage createTestCoverage() {
+		TestCoverageImpl testCoverage = new TestCoverageImpl();
+		return testCoverage;
 	}
 
 	/**

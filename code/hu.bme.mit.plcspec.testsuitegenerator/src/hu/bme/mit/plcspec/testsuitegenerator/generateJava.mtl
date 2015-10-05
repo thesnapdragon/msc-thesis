@@ -3,44 +3,47 @@
 
 [template public generateJava(testSuite : TestSuite)]
 [comment @main/]
-[file ('Test.java', false, 'UTF-8')]
-import org.junit.*;
+[file ('FoobarTest.java', false, 'UTF-8')]
+package foobar;
 
-public class TestFoobar {
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-        // első test metódus előtt végehajtandó kód
-    }
+import org.junit.Before;
+import org.junit.Test;
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        // az utolsó test metódus után végrehajtandó kód
-    }
-    
-    @Test(timeout=1000)    
-    public void testOneThing() {
-        // egy dolog tesztelésére szolgáló kód - időtullépés megadásával
-    }
- 
-    @Test
-    public void testAnotherThing() {
-        // másik dolog tesztelésére szolgáló kód
-    }
+import junit.framework.TestCase;
 
-    @Ignore
-    public void testSomethingElse() {
-        // egyéb másik dolog tesztelésére szolgáló kód - nem fog végrehajtódni
-    }
+public class FoobarTest extends TestCase {
+	protected Foobar foo = null;
+	   
+	@Before 
+	public void setUp() {
+		v = new Foobar();
+	}
 
-    @Before
-    public void setUp() throws Exception {
-        // minden test előtt végrehajtandó metódus
-    }
- 
-    @After
-    public void tearDown() throws Exception {
-        // minden test után végrehajtandó metódus
-    }
+[for (testCoverage : TestCoverage | testSuite.testCoverages)]
+	@Test
+	public void testCoverage[i /]() {
+[for (testCase : TestCase | testCoverage.testCases)]
+		assertEquals(foo.[testCase.input /](), [testCase.output /]);
+[/for]
+	}
+[/for]
+}
+[/file]
+[file ('TestRunner.java', false, 'UTF-8')]
+package foobar;
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class Runner {
+   public static void main(String['[' /][']' /] args) {
+      Result result = JUnitCore.runClasses(FoobarTest.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
 }
 [/file]
 [/template]
