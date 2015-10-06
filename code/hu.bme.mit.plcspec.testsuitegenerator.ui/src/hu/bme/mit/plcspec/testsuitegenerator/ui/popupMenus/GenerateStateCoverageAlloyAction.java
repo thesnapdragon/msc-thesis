@@ -73,7 +73,7 @@ public class GenerateStateCoverageAlloyAction extends ActionDelegate implements 
 							IFile model = (IFile)filesIt.next();
 							URI modelURI = URI.createPlatformResourceURI(model.getFullPath().toString(), true);
 							try {
-								IContainer target = model.getProject().getFolder("src-gen");
+								IContainer target = model.getParent();
 								GenerateAll generator = new GenerateAll(modelURI, target, getArguments());
 								generator.setGenerationType(GenerationType.STATE_COVERAGE);
 								generator.doGenerate(monitor);

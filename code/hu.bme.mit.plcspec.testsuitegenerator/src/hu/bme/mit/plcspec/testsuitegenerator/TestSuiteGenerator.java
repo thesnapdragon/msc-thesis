@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.BasicMonitor;
 
+import ch.cern.en.ice.plcspec.model.plchsm.StatemachineModule;
 import edu.mit.csail.sdg.alloy4.A4Reporter;
 import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.alloy4.ErrorWarning;
@@ -27,10 +28,12 @@ public class TestSuiteGenerator {
 
 	private File targetFolder;
 	private GenerationType generationType;
+	private StatemachineModule model;
 
-	public TestSuiteGenerator(File targetFolder, GenerationType generationType) {
+	public TestSuiteGenerator(File targetFolder, GenerationType generationType, ch.cern.en.ice.plcspec.model.plchsm.System system) {
 		this.targetFolder = targetFolder;
 		this.generationType = generationType;
+		this.model = (StatemachineModule) system.getModules().get(0);
 	}
 
 	public void generate() {
@@ -52,6 +55,7 @@ public class TestSuiteGenerator {
 				TestingPackage.eINSTANCE.eClass();
 				TestingFactory factory = TestingFactory.eINSTANCE;
 				TestSuite testSuite = factory.createTestSuite();
+				testSuite.setSutName(this.model.getName());
 				
 				for (Sig path : paths) {
 					TestCoverage testCoverage = factory.createTestCoverage();
@@ -63,7 +67,7 @@ public class TestSuiteGenerator {
 				}
 				
 				try {
-					GenerateJava generator = new GenerateJava(testSuite, new File("/tmp/"), new ArrayList<String>());
+					GenerateJava generator = new GenerateJava(testSuite, targetFolder, new ArrayList<String>());
 					generator.doGenerate(new BasicMonitor());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

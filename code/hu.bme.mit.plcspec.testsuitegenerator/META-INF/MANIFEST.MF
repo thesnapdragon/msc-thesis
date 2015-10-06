@@ -35,4 +35,5 @@ Eclipse-LazyStart: true
 Bundle-ClassPath: libs/edu.mit.csail.sdg/alloy/4.2_2015-02-22/alloy-4.2_2015-02-22.jar,
  .
 Bundle-Vendor: BME-MIT
+Import-Package: ch.cern.en.ice.plcspec.model.plchsm
 

@@ -122,13 +122,22 @@ public interface TestingPackage extends EPackage {
 	int TEST_SUITE__TEST_COVERAGES = 0;
 
 	/**
+	 * The feature id for the '<em><b>Sut Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_SUITE__SUT_NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Test Suite</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE_FEATURE_COUNT = 1;
+	int TEST_SUITE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Test Suite</em>' class.
@@ -232,6 +241,17 @@ public interface TestingPackage extends EPackage {
 	EReference getTestSuite_TestCoverages();
 
 	/**
+	 * Returns the meta object for the attribute '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getSutName <em>Sut Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sut Name</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getSutName()
+	 * @see #getTestSuite()
+	 * @generated
+	 */
+	EAttribute getTestSuite_SutName();
+
+	/**
 	 * Returns the meta object for class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage <em>Test Coverage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +338,14 @@ public interface TestingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_SUITE__TEST_COVERAGES = eINSTANCE.getTestSuite_TestCoverages();
+
+		/**
+		 * The meta object literal for the '<em><b>Sut Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_SUITE__SUT_NAME = eINSTANCE.getTestSuite_SutName();
 
 		/**
 		 * The meta object literal for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl <em>Test Coverage</em>}' class.

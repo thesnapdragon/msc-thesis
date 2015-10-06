@@ -4,6 +4,7 @@ package hu.bme.mit.plcspec.testsuitegenerator.testing.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,12 +12,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCase;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage;
@@ -30,6 +30,7 @@ import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage;
  * </p>
  * <ul>
  *   <li>{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestSuiteImpl#getTestCoverages <em>Test Coverages</em>}</li>
+ *   <li>{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestSuiteImpl#getSutName <em>Sut Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,6 +45,24 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 	 * @ordered
 	 */
 	protected EList<TestCoverage> testCoverages;
+	/**
+	 * The default value of the '{@link #getSutName() <em>Sut Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSutName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SUT_NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getSutName() <em>Sut Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSutName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sutName = SUT_NAME_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,6 +99,27 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getSutName() {
+		return sutName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSutName(String newSutName) {
+		String oldSutName = sutName;
+		sutName = newSutName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackage.TEST_SUITE__SUT_NAME, oldSutName, sutName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -99,6 +139,8 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 		switch (featureID) {
 			case TestingPackage.TEST_SUITE__TEST_COVERAGES:
 				return getTestCoverages();
+			case TestingPackage.TEST_SUITE__SUT_NAME:
+				return getSutName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,6 +158,9 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 				getTestCoverages().clear();
 				getTestCoverages().addAll((Collection<? extends TestCoverage>)newValue);
 				return;
+			case TestingPackage.TEST_SUITE__SUT_NAME:
+				setSutName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -131,6 +176,9 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 			case TestingPackage.TEST_SUITE__TEST_COVERAGES:
 				getTestCoverages().clear();
 				return;
+			case TestingPackage.TEST_SUITE__SUT_NAME:
+				setSutName(SUT_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -145,8 +193,26 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 		switch (featureID) {
 			case TestingPackage.TEST_SUITE__TEST_COVERAGES:
 				return testCoverages != null && !testCoverages.isEmpty();
+			case TestingPackage.TEST_SUITE__SUT_NAME:
+				return SUT_NAME_EDEFAULT == null ? sutName != null : !SUT_NAME_EDEFAULT.equals(sutName);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (sutName: ");
+		result.append(sutName);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TestSuiteImpl

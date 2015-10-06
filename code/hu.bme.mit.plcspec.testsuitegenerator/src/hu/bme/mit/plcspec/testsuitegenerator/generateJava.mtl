@@ -3,42 +3,42 @@
 
 [template public generateJava(testSuite : TestSuite)]
 [comment @main/]
-[file ('FoobarTest.java', false, 'UTF-8')]
-package foobar;
+[file (testSuite.sutName + 'Test.java', false, 'UTF-8')]
+package [testSuite.sutName.toLower() /];
 
 import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.TestCase;
 
-public class FoobarTest extends TestCase {
-	protected Foobar foo = null;
+public class [testSuite.sutName /]Test extends TestCase {
+	protected [testSuite.sutName /] [testSuite.sutName.toLower() /] = null;
 	   
 	@Before 
 	public void setUp() {
-		v = new Foobar();
+		[testSuite.sutName.toLower() /] = new [testSuite.sutName /]();
 	}
 
 [for (testCoverage : TestCoverage | testSuite.testCoverages)]
 	@Test
 	public void testCoverage[i /]() {
 [for (testCase : TestCase | testCoverage.testCases)]
-		assertEquals(foo.[testCase.input /](), [testCase.output /]);
+		assertEquals([testSuite.sutName.toLower() /].[testCase.input /](), [testCase.output /]);
 [/for]
 	}
 [/for]
 }
 [/file]
 [file ('TestRunner.java', false, 'UTF-8')]
-package foobar;
+package [testSuite.sutName.toLower() /];
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class Runner {
+public class TestRunner {
    public static void main(String['[' /][']' /] args) {
-      Result result = JUnitCore.runClasses(FoobarTest.class);
+      Result result = JUnitCore.runClasses([testSuite.sutName /]Test.class);
       for (Failure failure : result.getFailures()) {
          System.out.println(failure.toString());
       }

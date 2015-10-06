@@ -154,6 +154,15 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTestSuite_SutName() {
+		return (EAttribute)testSuiteEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTestCoverage() {
 		return testCoverageEClass;
 	}
@@ -201,6 +210,7 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 
 		testSuiteEClass = createEClass(TEST_SUITE);
 		createEReference(testSuiteEClass, TEST_SUITE__TEST_COVERAGES);
+		createEAttribute(testSuiteEClass, TEST_SUITE__SUT_NAME);
 
 		testCoverageEClass = createEClass(TEST_COVERAGE);
 		createEReference(testCoverageEClass, TEST_COVERAGE__TEST_CASES);
@@ -242,6 +252,7 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 
 		initEClass(testSuiteEClass, TestSuite.class, "TestSuite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestSuite_TestCoverages(), this.getTestCoverage(), null, "testCoverages", null, 0, -1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestSuite_SutName(), ecorePackage.getEString(), "sutName", null, 0, 1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testCoverageEClass, TestCoverage.class, "TestCoverage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestCoverage_TestCases(), this.getTestCase(), null, "testCases", null, 0, -1, TestCoverage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

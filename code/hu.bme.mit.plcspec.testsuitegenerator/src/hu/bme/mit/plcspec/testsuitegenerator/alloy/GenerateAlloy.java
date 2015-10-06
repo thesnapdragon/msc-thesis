@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import ch.cern.en.ice.plcspec.model.plchsm.StatemachineModule;
 import hu.bme.mit.plcspec.testsuitegenerator.TestSuiteGenerator;
 
 /**
@@ -228,7 +229,7 @@ public class GenerateAlloy extends AbstractAcceleoGenerator {
 
         super.doGenerate(monitor);
 
-        TestSuiteGenerator compiler = new TestSuiteGenerator(targetFolder, generationType);
+        TestSuiteGenerator compiler = new TestSuiteGenerator(targetFolder, generationType, (ch.cern.en.ice.plcspec.model.plchsm.System) this.getModel());
         compiler.generate();
     }
     

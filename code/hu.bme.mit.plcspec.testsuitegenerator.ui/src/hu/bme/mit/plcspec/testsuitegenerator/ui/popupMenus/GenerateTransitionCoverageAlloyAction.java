@@ -73,7 +73,7 @@ public class GenerateTransitionCoverageAlloyAction extends ActionDelegate implem
 							IFile model = (IFile)filesIt.next();
 							URI modelURI = URI.createPlatformResourceURI(model.getFullPath().toString(), true);
 							try {
-								IContainer target = model.getProject().getFolder("src-gen");
+								IContainer target = model.getParent();
 								GenerateAll generator = new GenerateAll(modelURI, target, getArguments());
 								generator.setGenerationType(GenerationType.TRANSITION_COVERAGE);
 								generator.doGenerate(monitor);

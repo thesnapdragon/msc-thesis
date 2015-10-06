@@ -9,6 +9,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TestSuite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testCoverages" upperBound="-1"
         eType="#//TestCoverage" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sutName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestCoverage">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testCases" upperBound="-1"
