@@ -12,7 +12,6 @@ import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.alloy4.ErrorWarning;
 import edu.mit.csail.sdg.alloy4compiler.ast.Command;
 import edu.mit.csail.sdg.alloy4compiler.ast.Module;
-import edu.mit.csail.sdg.alloy4compiler.ast.Sig;
 import edu.mit.csail.sdg.alloy4compiler.parser.CompUtil;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
@@ -43,28 +42,21 @@ public class TestSuiteGenerator {
 			System.err.println("Can not compile the current model!");
 		} else {
 			if (solution.satisfiable()) {
-				ArrayList<Sig> paths = new ArrayList<Sig>();
-				for (Sig sig : solution.getAllReachableSigs()) {
-					System.out.println(sig.label);
-					if (sig.label.matches("this/Path"))
-						paths.add(sig);
-				}
-				System.out.println(paths.get(0).getFields());
+				AlloySolutionParser parser = new AlloySolutionParser();
+				ArrayList<ArrayList<String>> paths = parser.generatePaths(solution.toString());
+				System.out.println(paths);
 
 				// creating model
 				TestingPackage.eINSTANCE.eClass();
 				TestingFactory factory = TestingFactory.eINSTANCE;
 				TestSuite testSuite = factory.createTestSuite();
 				testSuite.setSutName(this.model.getName());
-				
-				for (Sig path : paths) {
-					TestCoverage testCoverage = factory.createTestCoverage();
-					TestCase testCase = factory.createTestCase();
-					testCase.setInput("input");
-					testCase.setOutput("output");
-					testCoverage.getTestCases().add(testCase);
-					testSuite.getTestCoverages().add(testCoverage);
-				}
+				TestCoverage testCoverage = factory.createTestCoverage();
+				TestCase testCase = factory.createTestCase();
+				testCase.setInput("input");
+				testCase.setOutput("output");
+				testCoverage.getTestCases().add(testCase);
+				testSuite.getTestCoverages().add(testCoverage);
 				
 				try {
 					GenerateJava generator = new GenerateJava(testSuite, targetFolder, new ArrayList<String>());
@@ -81,7 +73,7 @@ public class TestSuiteGenerator {
 		}
 	}
 	
-	public A4Solution getAlloySolution() {
+	private A4Solution getAlloySolution() {
 		A4Reporter rep = new A4Reporter() {
 			@Override
 			public void warning(ErrorWarning msg) {
@@ -112,4 +104,5 @@ public class TestSuiteGenerator {
 		}
 		return null;
 	}
+
 }
