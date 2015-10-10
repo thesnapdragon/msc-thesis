@@ -55,7 +55,7 @@ pred inheritSystem(s1, s2: System) {
 one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name /][/for] extends State {}
 
 some sig S extends System {
-[for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
+[for (variable : VariableDeclaration | sm.definedVariables) separator(',')]
 	[variable.name /]: Int
 [/for]
 }
@@ -191,7 +191,7 @@ pred inheritSystem(s1, s2: System) {
 lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED_[i /][/if][/for] extends State {}
 
 some sig S extends System {
-[for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
+[for (variable : VariableDeclaration | sm.definedVariables) separator(',')]
 	[variable.name /]: Int
 [/for]
 }

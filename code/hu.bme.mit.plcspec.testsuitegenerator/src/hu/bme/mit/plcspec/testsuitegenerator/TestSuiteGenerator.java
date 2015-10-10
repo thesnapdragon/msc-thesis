@@ -6,7 +6,12 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.BasicMonitor;
 
+import ch.cern.en.ice.plcspec.model.plchsm.Constant;
+import ch.cern.en.ice.plcspec.model.plchsm.InState;
 import ch.cern.en.ice.plcspec.model.plchsm.StatemachineModule;
+import ch.cern.en.ice.plcspec.model.plchsm.SwitchCaseRow;
+import ch.cern.en.ice.plcspec.model.plchsm.SwitchCaseTable;
+import ch.cern.en.ice.plcspec.model.plchsm.Transition;
 import edu.mit.csail.sdg.alloy4.A4Reporter;
 import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.alloy4.ErrorWarning;
@@ -50,13 +55,14 @@ public class TestSuiteGenerator {
 				TestingFactory factory = TestingFactory.eINSTANCE;
 				TestSuite testSuite = factory.createTestSuite();
 				testSuite.setSutName(this.model.getName());
+				SwitchCaseTable switchCase = (SwitchCaseTable) this.model.getO_outputDefinitions().get(0).getExpression();
 				
 				for (ArrayList<String> path : paths) {
 					TestCoverage testCoverage = factory.createTestCoverage();
 					for (String transition : path) {
 						TestCase testCase = factory.createTestCase();
 						testCase.setInput(transition);
-						testCase.setOutput("output");
+						testCase.setOutput(getOutput(model, switchCase, transition));
 						testCoverage.getTestCases().add(testCase);
 					}
 					testSuite.getTestCoverages().add(testCoverage);
@@ -77,6 +83,29 @@ public class TestSuiteGenerator {
 		}
 	}
 	
+	private String getOutput(StatemachineModule model, SwitchCaseTable switchCase, String transition) {
+		return getOutputInState(switchCase, getStateFromTransition(model, transition));
+	}
+	
+	private String getStateFromTransition(StatemachineModule model, String transitionName) {
+		for (Transition transition : model.getTransitions()) {
+			if (transition.getName().matches(transitionName))
+				return transition.getFrom().getName();
+		}
+		return null;
+	}
+
+	private String getOutputInState(SwitchCaseTable switchCase, String state) {
+		for (SwitchCaseRow row : switchCase.getRows()) {
+			InState inState = (InState) row.getCondition().getArguments().get(0);
+			if (inState.getState().getName().matches(state)) {
+				Constant value = (Constant) row.getValue();
+				return value.getValue();
+			}
+		}
+		return null;
+	}
+
 	private A4Solution getAlloySolution() {
 		A4Reporter rep = new A4Reporter() {
 			@Override
