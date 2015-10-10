@@ -24,12 +24,20 @@ public class AlloySolutionParser {
 			String currentStep = firstStep;
 			ArrayList<String> path = new ArrayList<String>();
 			while(nextStep.containsKey(currentStep)) {
-				path.add(via.get(currentStep));
+				path.add(parseTransitionName(via.get(currentStep)));
 				currentStep = nextStep.get(currentStep);
 			}
+			path.add(parseTransitionName(via.get(currentStep)));
 			paths.add(path);
 		}
 		return paths;
+	}
+	
+	private String parseTransitionName(String transition) {
+		Pattern transitionPattern = Pattern.compile("(.*)\\$.*");
+		Matcher transitionMatcher = transitionPattern.matcher(transition);
+		transitionMatcher.find();
+		return transitionMatcher.group(1);
 	}
 	
 	private void parse(String solution) {

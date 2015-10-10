@@ -44,19 +44,23 @@ public class TestSuiteGenerator {
 			if (solution.satisfiable()) {
 				AlloySolutionParser parser = new AlloySolutionParser();
 				ArrayList<ArrayList<String>> paths = parser.generatePaths(solution.toString());
-				System.out.println(paths);
 
 				// creating model
 				TestingPackage.eINSTANCE.eClass();
 				TestingFactory factory = TestingFactory.eINSTANCE;
 				TestSuite testSuite = factory.createTestSuite();
 				testSuite.setSutName(this.model.getName());
-				TestCoverage testCoverage = factory.createTestCoverage();
-				TestCase testCase = factory.createTestCase();
-				testCase.setInput("input");
-				testCase.setOutput("output");
-				testCoverage.getTestCases().add(testCase);
-				testSuite.getTestCoverages().add(testCoverage);
+				
+				for (ArrayList<String> path : paths) {
+					TestCoverage testCoverage = factory.createTestCoverage();
+					for (String transition : path) {
+						TestCase testCase = factory.createTestCase();
+						testCase.setInput(transition);
+						testCase.setOutput("output");
+						testCoverage.getTestCases().add(testCase);
+					}
+					testSuite.getTestCoverages().add(testCoverage);
+				}
 				
 				try {
 					GenerateJava generator = new GenerateJava(testSuite, targetFolder, new ArrayList<String>());

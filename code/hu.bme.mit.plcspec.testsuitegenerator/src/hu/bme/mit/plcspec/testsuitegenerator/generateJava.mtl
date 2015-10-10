@@ -26,6 +26,7 @@ public class [testSuite.sutName /]Test extends TestCase {
 		assertEquals([testSuite.sutName.toLower() /].[testCase.input /](), [testCase.output /]);
 [/for]
 	}
+
 [/for]
 }
 [/file]
