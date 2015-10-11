@@ -1,0 +1,5 @@
+name;cryptominisat(jni);glucose(jni);minisat(jni);sat4j;lingeling(jni);plingeling(jni);minisatprover(jni)
+transition_0;2847,2;258,9;341,3;1044,1;1655;1163,3;224,6
+transition_20;2116,7;366,7;707,3;2046,1;1406,5;3960,2;196,9
+state_0;12212;116,6;513;240,9;1672,1;1518,5;307,8
+state_20;1972,1;1639;896;1887,2;1718,8;5712,8;363,5
