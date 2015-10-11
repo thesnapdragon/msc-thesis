@@ -22,6 +22,7 @@ import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
 import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
 import hu.bme.mit.plcspec.testsuitegenerator.alloy.GenerationType;
+import hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCase;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite;
@@ -49,33 +50,13 @@ public class TestSuiteGenerator {
 			if (solution.satisfiable()) {
 				AlloySolutionParser parser = new AlloySolutionParser();
 				ArrayList<ArrayList<String>> paths = parser.generatePaths(solution.toString());
-
-				// creating model
-				TestingPackage.eINSTANCE.eClass();
-				TestingFactory factory = TestingFactory.eINSTANCE;
-				TestSuite testSuite = factory.createTestSuite();
-				testSuite.setSutName(this.model.getName());
-				SwitchCaseTable switchCase = (SwitchCaseTable) this.model.getO_outputDefinitions().get(0).getExpression();
-				
-				for (ArrayList<String> path : paths) {
-					TestCoverage testCoverage = factory.createTestCoverage();
-					for (String transition : path) {
-						TestCase testCase = factory.createTestCase();
-						testCase.setInput(transition);
-						testCase.setOutput(getOutput(model, switchCase, transition));
-						testCoverage.getTestCases().add(testCase);
-					}
-					testSuite.getTestCoverages().add(testCoverage);
-				}
-				
 				try {
-					GenerateJava generator = new GenerateJava(testSuite, targetFolder, new ArrayList<String>());
+					GenerateJava generator = new GenerateJava(generateTestSuite(model, paths), targetFolder, new ArrayList<String>());
 					generator.doGenerate(new BasicMonitor());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				// TODO Popup window with the error
 				System.err.println("The current model is unsatisfiable!");
@@ -83,6 +64,33 @@ public class TestSuiteGenerator {
 		}
 	}
 	
+	private TestSuite generateTestSuite(StatemachineModule model2, ArrayList<ArrayList<String>> paths) {
+		TestingPackage.eINSTANCE.eClass();
+		TestingFactory factory = TestingFactory.eINSTANCE;
+		TestSuite testSuite = factory.createTestSuite();
+		testSuite.setSutName(model.getName());
+		Adapter adapter = factory.createAdapter();
+		for (Transition transition : model.getTransitions()) {
+			hu.bme.mit.plcspec.testsuitegenerator.testing.Transition transitionModel = factory.createTransition();
+			transitionModel.setName(transition.getName());
+			adapter.getTransitions().add(transitionModel);
+		}
+		testSuite.setAdapter(adapter);
+		SwitchCaseTable switchCase = (SwitchCaseTable) model.getO_outputDefinitions().get(0).getExpression();
+		
+		for (ArrayList<String> path : paths) {
+			TestCoverage testCoverage = factory.createTestCoverage();
+			for (String transition : path) {
+				TestCase testCase = factory.createTestCase();
+				testCase.setInput(transition);
+				testCase.setOutput(getOutput(model, switchCase, transition));
+				testCoverage.getTestCases().add(testCase);
+			}
+			testSuite.getTestCoverages().add(testCoverage);
+		}
+		return testSuite;
+	}
+
 	private String getOutput(StatemachineModule model, SwitchCaseTable switchCase, String transition) {
 		return getOutputInState(switchCase, getStateFromTransition(model, transition));
 	}
@@ -114,7 +122,7 @@ public class TestSuiteGenerator {
 			}
 		};
 		String fileName = null;
-		if (this.generationType.equals(GenerationType.STATE_COVERAGE)) {
+		if (generationType.equals(GenerationType.STATE_COVERAGE)) {
 			fileName = "statecoverage.als";
 		} else {
 			fileName = "transitioncoverage.als";
@@ -124,7 +132,7 @@ public class TestSuiteGenerator {
 			Module world = CompUtil.parseEverything_fromFile(rep, null, alloyFile.getAbsolutePath());
 			A4Options opt = new A4Options();
 			opt.originalFilename = alloyFile.getAbsolutePath();
-			if (this.generationType.equals(GenerationType.STATE_COVERAGE)) {
+			if (generationType.equals(GenerationType.STATE_COVERAGE)) {
 				opt.solver = A4Options.SatSolver.MiniSatJNI;
 			} else {
 				opt.solver = A4Options.SatSolver.LingelingJNI;

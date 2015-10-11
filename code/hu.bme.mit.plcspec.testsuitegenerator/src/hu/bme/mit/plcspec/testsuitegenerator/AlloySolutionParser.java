@@ -28,7 +28,8 @@ public class AlloySolutionParser {
 				currentStep = nextStep.get(currentStep);
 			}
 			path.add(parseTransitionName(via.get(currentStep)));
-			paths.add(path);
+			if (!paths.contains(path))
+				paths.add(path);
 		}
 		return paths;
 	}

@@ -76,6 +76,14 @@ public class TestingAdapterFactory extends AdapterFactoryImpl {
 				return createTestSuiteAdapter();
 			}
 			@Override
+			public Adapter caseAdapter(hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter object) {
+				return createAdapterAdapter();
+			}
+			@Override
+			public Adapter caseTransition(Transition object) {
+				return createTransitionAdapter();
+			}
+			@Override
 			public Adapter caseTestCoverage(TestCoverage object) {
 				return createTestCoverageAdapter();
 			}
@@ -124,6 +132,34 @@ public class TestingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestSuiteAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter <em>Adapter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter
+	 * @generated
+	 */
+	public Adapter createAdapterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Transition <em>Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Transition
+	 * @generated
+	 */
+	public Adapter createTransitionAdapter() {
 		return null;
 	}
 

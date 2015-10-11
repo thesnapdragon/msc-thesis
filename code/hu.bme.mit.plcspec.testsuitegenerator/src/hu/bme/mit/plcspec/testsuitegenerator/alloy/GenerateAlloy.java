@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import ch.cern.en.ice.plcspec.model.plchsm.StatemachineModule;
 import hu.bme.mit.plcspec.testsuitegenerator.TestSuiteGenerator;
 
 /**

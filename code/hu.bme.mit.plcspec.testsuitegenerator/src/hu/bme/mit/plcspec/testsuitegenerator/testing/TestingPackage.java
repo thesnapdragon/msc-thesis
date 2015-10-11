@@ -131,13 +131,22 @@ public interface TestingPackage extends EPackage {
 	int TEST_SUITE__SUT_NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Adapter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_SUITE__ADAPTER = 2;
+
+	/**
 	 * The number of structural features of the '<em>Test Suite</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE_FEATURE_COUNT = 2;
+	int TEST_SUITE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Test Suite</em>' class.
@@ -150,6 +159,80 @@ public interface TestingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.AdapterImpl <em>Adapter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.AdapterImpl
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getAdapter()
+	 * @generated
+	 */
+	int ADAPTER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER__TRANSITIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Adapter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Adapter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TransitionImpl <em>Transition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TransitionImpl
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getTransition()
+	 * @generated
+	 */
+	int TRANSITION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Transition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Transition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl <em>Test Coverage</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,7 +240,7 @@ public interface TestingPackage extends EPackage {
 	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getTestCoverage()
 	 * @generated
 	 */
-	int TEST_COVERAGE = 2;
+	int TEST_COVERAGE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Test Cases</b></em>' containment reference list.
@@ -250,6 +333,59 @@ public interface TestingPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTestSuite_SutName();
+
+	/**
+	 * Returns the meta object for the reference '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getAdapter <em>Adapter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Adapter</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getAdapter()
+	 * @see #getTestSuite()
+	 * @generated
+	 */
+	EReference getTestSuite_Adapter();
+
+	/**
+	 * Returns the meta object for class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter <em>Adapter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Adapter</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter
+	 * @generated
+	 */
+	EClass getAdapter();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter#getTransitions <em>Transitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Transitions</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter#getTransitions()
+	 * @see #getAdapter()
+	 * @generated
+	 */
+	EReference getAdapter_Transitions();
+
+	/**
+	 * Returns the meta object for class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Transition <em>Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Transition</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Transition
+	 * @generated
+	 */
+	EClass getTransition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Transition#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Transition#getName()
+	 * @see #getTransition()
+	 * @generated
+	 */
+	EAttribute getTransition_Name();
 
 	/**
 	 * Returns the meta object for class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage <em>Test Coverage</em>}'.
@@ -346,6 +482,50 @@ public interface TestingPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEST_SUITE__SUT_NAME = eINSTANCE.getTestSuite_SutName();
+
+		/**
+		 * The meta object literal for the '<em><b>Adapter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_SUITE__ADAPTER = eINSTANCE.getTestSuite_Adapter();
+
+		/**
+		 * The meta object literal for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.AdapterImpl <em>Adapter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.AdapterImpl
+		 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getAdapter()
+		 * @generated
+		 */
+		EClass ADAPTER = eINSTANCE.getAdapter();
+
+		/**
+		 * The meta object literal for the '<em><b>Transitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADAPTER__TRANSITIONS = eINSTANCE.getAdapter_Transitions();
+
+		/**
+		 * The meta object literal for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TransitionImpl <em>Transition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TransitionImpl
+		 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestingPackageImpl#getTransition()
+		 * @generated
+		 */
+		EClass TRANSITION = eINSTANCE.getTransition();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSITION__NAME = eINSTANCE.getTransition_Name();
 
 		/**
 		 * The meta object literal for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl <em>Test Coverage</em>}' class.

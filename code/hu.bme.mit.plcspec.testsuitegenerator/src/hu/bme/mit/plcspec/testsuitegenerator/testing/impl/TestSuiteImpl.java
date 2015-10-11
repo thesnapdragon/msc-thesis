@@ -2,6 +2,7 @@
  */
 package hu.bme.mit.plcspec.testsuitegenerator.testing.impl;
 
+import hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,6 +32,7 @@ import hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage;
  * <ul>
  *   <li>{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestSuiteImpl#getTestCoverages <em>Test Coverages</em>}</li>
  *   <li>{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestSuiteImpl#getSutName <em>Sut Name</em>}</li>
+ *   <li>{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestSuiteImpl#getAdapter <em>Adapter</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +65,15 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 	 * @ordered
 	 */
 	protected String sutName = SUT_NAME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getAdapter() <em>Adapter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAdapter()
+	 * @generated
+	 * @ordered
+	 */
+	protected Adapter adapter;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,6 +131,44 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Adapter getAdapter() {
+		if (adapter != null && adapter.eIsProxy()) {
+			InternalEObject oldAdapter = (InternalEObject)adapter;
+			adapter = (Adapter)eResolveProxy(oldAdapter);
+			if (adapter != oldAdapter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TestingPackage.TEST_SUITE__ADAPTER, oldAdapter, adapter));
+			}
+		}
+		return adapter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter basicGetAdapter() {
+		return adapter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAdapter(Adapter newAdapter) {
+		Adapter oldAdapter = adapter;
+		adapter = newAdapter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackage.TEST_SUITE__ADAPTER, oldAdapter, adapter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -141,6 +190,9 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 				return getTestCoverages();
 			case TestingPackage.TEST_SUITE__SUT_NAME:
 				return getSutName();
+			case TestingPackage.TEST_SUITE__ADAPTER:
+				if (resolve) return getAdapter();
+				return basicGetAdapter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,6 +213,9 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 			case TestingPackage.TEST_SUITE__SUT_NAME:
 				setSutName((String)newValue);
 				return;
+			case TestingPackage.TEST_SUITE__ADAPTER:
+				setAdapter((Adapter)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -179,6 +234,9 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 			case TestingPackage.TEST_SUITE__SUT_NAME:
 				setSutName(SUT_NAME_EDEFAULT);
 				return;
+			case TestingPackage.TEST_SUITE__ADAPTER:
+				setAdapter((Adapter)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -195,6 +253,8 @@ public class TestSuiteImpl extends MinimalEObjectImpl.Container implements TestS
 				return testCoverages != null && !testCoverages.isEmpty();
 			case TestingPackage.TEST_SUITE__SUT_NAME:
 				return SUT_NAME_EDEFAULT == null ? sutName != null : !SUT_NAME_EDEFAULT.equals(sutName);
+			case TestingPackage.TEST_SUITE__ADAPTER:
+				return adapter != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -13,31 +13,33 @@ import junit.framework.TestCase;
 
 public class [testSuite.sutName /]Test extends TestCase {
 	protected [testSuite.sutName /] [testSuite.sutName.toLower() /] = null;
+	protected [testSuite.sutName /]TestAdapter adapter = null;
 	   
 	@Before 
 	public void setUp() {
 		[testSuite.sutName.toLower() /] = new [testSuite.sutName /]();
+		adapter = new [testSuite.sutName /]TestAdapter([testSuite.sutName.toLower() /]);
 	}
 
 [for (testCoverage : TestCoverage | testSuite.testCoverages)]
 	@Test
 	public void testCoverage[i /]() {
 [for (testCase : TestCase | testCoverage.testCases)]
-		assertEquals([testSuite.sutName.toLower() /].[testCase.input /](), [testCase.output /]);
+		assertEquals(adapter.[testCase.input /](), [testCase.output /]);
 [/for]
 	}
 
 [/for]
 }
 [/file]
-[file ('TestRunner.java', false, 'UTF-8')]
+[file (testSuite.sutName + 'TestRunner.java', false, 'UTF-8')]
 package [testSuite.sutName.toLower() /];
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class TestRunner {
+public class [testSuite.sutName /]TestRunner {
    public static void main(String['[' /][']' /] args) {
       Result result = JUnitCore.runClasses([testSuite.sutName /]Test.class);
       for (Failure failure : result.getFailures()) {
@@ -45,6 +47,24 @@ public class TestRunner {
       }
       System.out.println(result.wasSuccessful());
    }
+}
+[/file]
+[file (testSuite.sutName + 'TestAdapter.java', false, 'UTF-8')]
+package [testSuite.sutName.toLower() /];
+
+public class [testSuite.sutName /]TestAdapter {
+	private [testSuite.sutName /] [testSuite.sutName.toLower() /] = null;
+
+	public [testSuite.sutName /]TestAdapter([testSuite.sutName /] [testSuite.sutName.toLower() /]) {
+    	this.[testSuite.sutName.toLower() /] = [testSuite.sutName.toLower() /];
+	}
+
+[for (transition : Transition | testSuite.adapter.transitions)]
+	public int [transition.name /]() {
+		return [testSuite.sutName.toLower() /].[transition.name /]();
+	}
+
+[/for]	
 }
 [/file]
 [/template]

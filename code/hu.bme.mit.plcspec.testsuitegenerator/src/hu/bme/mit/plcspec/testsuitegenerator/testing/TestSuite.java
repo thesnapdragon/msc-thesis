@@ -48,4 +48,30 @@ public interface TestSuite extends EObject {
 	 * @generated
 	 */
 	void setSutName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Adapter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Adapter</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Adapter</em>' reference.
+	 * @see #setAdapter(Adapter)
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage#getTestSuite_Adapter()
+	 * @model
+	 * @generated
+	 */
+	Adapter getAdapter();
+
+	/**
+	 * Sets the value of the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestSuite#getAdapter <em>Adapter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Adapter</em>' reference.
+	 * @see #getAdapter()
+	 * @generated
+	 */
+	void setAdapter(Adapter value);
 }
