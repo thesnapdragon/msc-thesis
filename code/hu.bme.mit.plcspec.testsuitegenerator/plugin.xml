@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated testSuite -->
       <package
-            uri="http:///hu/bme/mit/plcspec/testsuitegenerator/testing/testSuite.ecore"
+            uri="http:///hu/bme/mit/plcspec/alloygenerator/testing.ecore"
             class="hu.bme.mit.plcspec.testsuitegenerator.testing.TestingPackage"
             genModel="src/hu/bme/mit/plcspec/testsuitegenerator/testing/testSuite.genmodel"/>
    </extension>

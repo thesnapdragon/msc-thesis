@@ -224,6 +224,15 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTransition_Type() {
+		return (EAttribute)transitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTestCoverage() {
 		return testCoverageEClass;
 	}
@@ -279,6 +288,7 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 
 		transitionEClass = createEClass(TRANSITION);
 		createEAttribute(transitionEClass, TRANSITION__NAME);
+		createEAttribute(transitionEClass, TRANSITION__TYPE);
 
 		testCoverageEClass = createEClass(TEST_COVERAGE);
 		createEReference(testCoverageEClass, TEST_COVERAGE__TEST_CASES);
@@ -328,6 +338,7 @@ public class TestingPackageImpl extends EPackageImpl implements TestingPackage {
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransition_Type(), ecorePackage.getEString(), "type", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testCoverageEClass, TestCoverage.class, "TestCoverage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestCoverage_TestCases(), this.getTestCase(), null, "testCases", null, 0, -1, TestCoverage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

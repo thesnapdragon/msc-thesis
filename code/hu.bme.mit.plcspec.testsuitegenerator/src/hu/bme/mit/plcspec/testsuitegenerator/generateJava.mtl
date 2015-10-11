@@ -60,7 +60,7 @@ public class [testSuite.sutName /]TestAdapter {
 	}
 
 [for (transition : Transition | testSuite.adapter.transitions)]
-	public int [transition.name /]() {
+	public [transition.type /] [transition.name /]() {
 		return [testSuite.sutName.toLower() /].[transition.name /]();
 	}
 

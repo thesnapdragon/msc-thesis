@@ -215,13 +215,22 @@ public interface TestingPackage extends EPackage {
 	int TRANSITION__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__TYPE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = 1;
+	int TRANSITION_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Transition</em>' class.
@@ -388,6 +397,17 @@ public interface TestingPackage extends EPackage {
 	EAttribute getTransition_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.Transition#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see hu.bme.mit.plcspec.testsuitegenerator.testing.Transition#getType()
+	 * @see #getTransition()
+	 * @generated
+	 */
+	EAttribute getTransition_Type();
+
+	/**
 	 * Returns the meta object for class '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.TestCoverage <em>Test Coverage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -526,6 +546,14 @@ public interface TestingPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRANSITION__NAME = eINSTANCE.getTransition_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSITION__TYPE = eINSTANCE.getTransition_Type();
 
 		/**
 		 * The meta object literal for the '{@link hu.bme.mit.plcspec.testsuitegenerator.testing.impl.TestCoverageImpl <em>Test Coverage</em>}' class.

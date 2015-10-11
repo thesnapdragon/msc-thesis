@@ -12,6 +12,7 @@ import ch.cern.en.ice.plcspec.model.plchsm.StatemachineModule;
 import ch.cern.en.ice.plcspec.model.plchsm.SwitchCaseRow;
 import ch.cern.en.ice.plcspec.model.plchsm.SwitchCaseTable;
 import ch.cern.en.ice.plcspec.model.plchsm.Transition;
+import ch.cern.en.ice.plcspec.model.plchsm.Type;
 import edu.mit.csail.sdg.alloy4.A4Reporter;
 import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.alloy4.ErrorWarning;
@@ -69,21 +70,14 @@ public class TestSuiteGenerator {
 		TestingFactory factory = TestingFactory.eINSTANCE;
 		TestSuite testSuite = factory.createTestSuite();
 		testSuite.setSutName(model.getName());
-		Adapter adapter = factory.createAdapter();
-		for (Transition transition : model.getTransitions()) {
-			hu.bme.mit.plcspec.testsuitegenerator.testing.Transition transitionModel = factory.createTransition();
-			transitionModel.setName(transition.getName());
-			adapter.getTransitions().add(transitionModel);
-		}
-		testSuite.setAdapter(adapter);
 		SwitchCaseTable switchCase = (SwitchCaseTable) model.getO_outputDefinitions().get(0).getExpression();
-		
+		testSuite.setAdapter(createAdapter(factory, switchCase));
 		for (ArrayList<String> path : paths) {
 			TestCoverage testCoverage = factory.createTestCoverage();
 			for (String transition : path) {
 				TestCase testCase = factory.createTestCase();
 				testCase.setInput(transition);
-				testCase.setOutput(getOutput(model, switchCase, transition));
+				testCase.setOutput(getOutput(switchCase, transition));
 				testCoverage.getTestCases().add(testCase);
 			}
 			testSuite.getTestCoverages().add(testCoverage);
@@ -91,11 +85,36 @@ public class TestSuiteGenerator {
 		return testSuite;
 	}
 
-	private String getOutput(StatemachineModule model, SwitchCaseTable switchCase, String transition) {
-		return getOutputInState(switchCase, getStateFromTransition(model, transition));
+	private Adapter createAdapter(TestingFactory factory, SwitchCaseTable switchCase) {
+		Adapter adapter = factory.createAdapter();
+		for (Transition transition : model.getTransitions()) {
+			hu.bme.mit.plcspec.testsuitegenerator.testing.Transition transitionModel = factory.createTransition();
+			transitionModel.setName(transition.getName());
+			switch (getOutputType(switchCase, transition.getName()).toString()) {
+			case "INT16":
+			case "INT32":
+				transitionModel.setType("int");
+				break;
+			case "BOOL":
+				transitionModel.setType("bool");
+			default:
+				transitionModel.setType("void");
+				break;
+			}
+			adapter.getTransitions().add(transitionModel);
+		}
+		return adapter;
+	}
+
+	private String getOutput(SwitchCaseTable switchCase, String transition) {
+		return getOutputInState(switchCase, getStateFromTransition(transition));
 	}
 	
-	private String getStateFromTransition(StatemachineModule model, String transitionName) {
+	private Type getOutputType(SwitchCaseTable switchCase, String transition) {
+		return getOutputTypeInState(switchCase, getStateFromTransition(transition));
+	}
+	
+	private String getStateFromTransition(String transitionName) {
 		for (Transition transition : model.getTransitions()) {
 			if (transition.getName().matches(transitionName))
 				return transition.getFrom().getName();
@@ -109,6 +128,17 @@ public class TestSuiteGenerator {
 			if (inState.getState().getName().matches(state)) {
 				Constant value = (Constant) row.getValue();
 				return value.getValue();
+			}
+		}
+		return null;
+	}
+	
+	private Type getOutputTypeInState(SwitchCaseTable switchCase, String state) {
+		for (SwitchCaseRow row : switchCase.getRows()) {
+			InState inState = (InState) row.getCondition().getArguments().get(0);
+			if (inState.getState().getName().matches(state)) {
+				Constant value = (Constant) row.getValue();
+				return value.getType();
 			}
 		}
 		return null;
