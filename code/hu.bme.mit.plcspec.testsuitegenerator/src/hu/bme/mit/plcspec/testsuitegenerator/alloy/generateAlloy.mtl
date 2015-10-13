@@ -5,131 +5,22 @@
 [comment @main/]
 [file ('statecoverage.als', false, 'UTF-8')]
 module statecoverage
+[generateImports() /]
 
-open util/integer
-
-abstract sig System {}
-abstract sig State {system: one System}
-abstract sig Transition {from, to: one State}
-
-sig Coverage { paths: some Path }
-sig Path { firstStep: Step }
-sig Step {
-	from, to: State,
-	via: Transition,
-	nextStep: lone Step
-} {
-	via.from = from
-	via.to = to
-}
-fun steps (p:Path): set Step {
-	p.firstStep.*nextStep
-}
-fun transitions (p:Path): set Transition {
-	p.firstStep.via + p.firstStep.*nextStep.via
-}
-
-fact {
-	// test generation properties
-	all p:Path | some c:Coverage | p in c.paths // all path belongs to a coverage
-	no p1,p2:Path | p1! = p2 && steps['[' /]p1[']' /] = steps['[' /]p2[']' /] && transitions['[' /]p1[']' /] = transitions['[' /]p2[']' /] // there are no two equivalent paths
-	no s1,s2:Step | s1! = s2 && s1.via = s2.via // there are no two equivalent steps
-	all s:Step | some p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
-
-	// model consistency
-	all p:Path | p.firstStep.from = Initial // all path starts with an Initial state
-	all p:Path | some s:Step | s in steps['[' /]p[']' /] && s.to = End // all path end with End state
-	
-	// state machine properties
-	all t:Transition | one s:Step | s.via = t // all transitions belongs to a step
-	all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
-	all sys:System | some s:State | sys = s.system // all system belongs to a state
-	all s:State | some t:Transition | t.from = s or t.to = s // all state belongs to a transition
-}
-
-pred inheritSystem(s1, s2: System) {
-	s1 = s2
-}
-
+[generateMetamodel() /]
+[generateFunctions() /]
+[generateFacts() /]
+[generateInheritSystem() /]
 /*** GENERATED CODE START ***/
 one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name /][/for] extends State {}
 
-some sig S extends System {
-[for (variable : VariableDeclaration | sm.definedVariables) separator(',')]
-	[variable.name /]: Int
-[/for]
-}
-
-[for (transition : Transition | sm.transitions) separator('\n')]
-sig [transition.name /] extends Transition {}{
-	from = [transition.from.name /]
-	to = [transition.to.name /]
-[if (transition.from.name.matches('Initial'))]
-	initSystem['[' /]from.system[']' /]
-[else]
-	inheritSystem['[' /]from.system, to.system[']' /]
-[/if]
-[if (not transition.trigger.oclIsUndefined())]
-	[transition.trigger.name /]['[' /]from.system, to.system[']' /]
-[/if]
-[if (not transition.guard.oclIsUndefined())]
-	G_[transition.name /]['[' /]from.system[']' /]
-[/if]
-}
-[if (not transition.trigger.oclIsUndefined())]
-pred [transition.trigger.name /](s1, s2: System) {
-[let operation : ArithmeticOperation = transition.trigger.triggerExpression.oclAsType(ArithmeticOperation)]
-[if (operation.operator = BinaryArithmeticOperator::ADD)]
-	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = add['[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][']' /]	
-[elseif (operation.operator = BinaryArithmeticOperator::SUBTRACT)]
-	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = sub['[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][']' /]
-[else]
-[if (operation.operator = BinaryArithmeticOperator::MULTIPLY)]
-	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = mul['[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][']' /]
-[elseif (operation.operator = BinaryArithmeticOperator::DIVIDE)]
-	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = div['[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][']' /]
-[/if]
-[/if]
-[/let]
-}
-[/if]
-[if (not transition.guard.oclIsUndefined())]
-pred G_[transition.name /](s: System) {
-[let operation : Comparison = transition.guard.oclAsType(Comparison)]
-[if (operation.operator = ComparisonOperator::EQUALS)]
-	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = [operation.rightArgument.oclAsType(Constant).value /]
-[elseif (operation.operator = ComparisonOperator::NOT_EQUALS)]
-	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] != [operation.rightArgument.oclAsType(Constant).value /]
-[else]
-[if (operation.operator = ComparisonOperator::LESS_THAN)]
-	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] < [operation.rightArgument.oclAsType(Constant).value /]
-[elseif (operation.operator = ComparisonOperator::GREATER_THAN)]
-	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] > [operation.rightArgument.oclAsType(Constant).value /]
-[else]
-[if (operation.operator = ComparisonOperator::LESS_EQ)]
-	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] <= [operation.rightArgument.oclAsType(Constant).value /]
-[elseif (operation.operator = ComparisonOperator::GREATER_EQ)]
-	s.[operation.leftArgument.oclAsType(VariableRef).variable.name /] >= [operation.rightArgument.oclAsType(Constant).value /]
-[/if]
-[/if]
-[/if]
-[/let]
-}
-[/if]
-[/for]
-
-pred initSystem(s:System) {
-[for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
-	s.[variable.name /] = [variable.defaultValue.value /]
-[/for]
-}
-
+[generateSystem(sm) /]
+[generateTransitions(sm) /]
+[generateInitSystem(sm) /]
 /*** GENERATED CODE END ***/
-
 pred state_coverage() {
 	all s:State | some p:Path | s in steps['[' /]p[']' /].from + steps['[' /]p[']' /].to
 }
-
 run state_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() - 2 /] System
 [/file]
 [/template]
@@ -139,14 +30,38 @@ run state_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates-
 [comment @main/]
 [file ('transitioncoverage.als', false, 'UTF-8')]
 module transitioncoverage
+[generateImports() /]
 
+[generateMetamodel() /]
+one sig Initial, End extends State {}
+[generateFunctions() /]
+[generateFacts() /]
+[generateInheritSystem() /]
+/*** GENERATED CODE START ***/
+lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED_[i /][/if][/for] extends State {}
+
+[generateSystem(sm) /]
+[generateTransitions(sm) /]
+[generateInitSystem(sm) /]
+/*** GENERATED CODE END ***/
+pred transition_coverage() {
+	all t:Transition | some p:Path | t in steps['[' /]p[']' /].via
+}
+run transition_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() - 2 /] System
+[/file]
+[/template]
+
+
+[template public generateImports(traceabilityContext : OclAny)]
 open util/integer
+open util/boolean
+[/template]
 
+
+[template public generateMetamodel(traceabilityContext : OclAny)]
 abstract sig System {}
 abstract sig State {system: one System}
 abstract sig Transition {from, to: one State}
-
-one sig Initial, End extends State {}
 
 sig Coverage { paths: some Path }
 sig Path { firstStep: Step }
@@ -158,13 +73,20 @@ sig Step {
 	via.from = from
 	via.to = to
 }
+[/template]
+
+
+[template public generateFunctions(traceabilityContext : OclAny)]
 fun steps (p:Path): set Step {
 	p.firstStep.*nextStep
 }
 fun transitions (p:Path): set Transition {
 	p.firstStep.via + p.firstStep.*nextStep.via
 }
+[/template]
 
+
+[template public generateFacts(traceabilityContext : OclAny)]
 fact {
 	// test generation properties
 	all p:Path | some c:Coverage | p in c.paths // all path belongs to a coverage
@@ -182,20 +104,30 @@ fact {
 	all sys:System | some s:State | sys = s.system // all system belongs to a state
 	all s:State | some t:Transition | t.from = s or t.to = s // all state belongs to a transition
 }
+[/template]
 
+
+[template public generateInheritSystem(traceabilityContext : OclAny)]
 pred inheritSystem(s1, s2: System) {
 	s1 = s2
 }
+[/template]
 
-/*** GENERATED CODE START ***/
-lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED_[i /][/if][/for] extends State {}
 
+[template public generateSystem(sm : StatemachineModule)]
 some sig S extends System {
 [for (variable : VariableDeclaration | sm.definedVariables) separator(',')]
+[if (variable.type.toString().matches('BOOL'))]
+	[variable.name /]: Bool
+[elseif (variable.type.toString().matches('INT16') or variable.type.toString().matches('INT32'))]
 	[variable.name /]: Int
+[/if]	
 [/for]
 }
+[/template]
 
+
+[template public generateTransitions(sm : StatemachineModule)]
 [for (transition : Transition | sm.transitions) separator('\n')]
 some sig [transition.name /] extends Transition {}{
 	from = [transition.from.name /]
@@ -212,8 +144,16 @@ some sig [transition.name /] extends Transition {}{
 	G_[transition.name /]['[' /]from.system[']' /]
 [/if]
 }
+[generateEvent(transition) /]
+[generateGuard(transition) /]
+[/for]
+[/template]
+
+
+[template public generateEvent(transition : Transition)]
 [if (not transition.trigger.oclIsUndefined())]
 pred [transition.trigger.name /](s1, s2: System) {
+[if (transition.trigger.triggerExpression.oclIsTypeOf(ArithmeticOperation))]
 [let operation : ArithmeticOperation = transition.trigger.triggerExpression.oclAsType(ArithmeticOperation)]
 [if (operation.operator = BinaryArithmeticOperator::ADD)]
 	s2.[operation.leftArgument.oclAsType(VariableRef).variable.name /] = add['[' /]s1.[operation.leftArgument.oclAsType(VariableRef).variable.name /], [operation.rightArgument.oclAsType(Constant).value /][']' /]	
@@ -227,8 +167,24 @@ pred [transition.trigger.name /](s1, s2: System) {
 [/if]
 [/if]
 [/let]
+[elseif (transition.trigger.triggerExpression.oclIsTypeOf(LogicOperation))]
+[let operation : LogicOperation = transition.trigger.triggerExpression.oclAsType(LogicOperation)]
+[if (operation.operator = LogicOperator::AND)]
+	s2.[operation.arguments->at(1).oclAsType(VariableRef).variable.name /] = And['[' /]s1.[operation.arguments->at(1).oclAsType(VariableRef).variable.name /], [operation.arguments->at(2).oclAsType(Constant).value /][']' /]
+[elseif (operation.operator = LogicOperator::OR)]
+	s2.[operation.arguments->at(1).oclAsType(VariableRef).variable.name /] = Or['[' /]s1.[operation.arguments->at(1).oclAsType(VariableRef).variable.name /], [operation.arguments->at(2).oclAsType(Constant).value /][']' /]
+[if (operation.operator = LogicOperator::XOR)]
+	s2.[operation.arguments->at(1).oclAsType(VariableRef).variable.name /] = Xor['[' /]s1.[operation.arguments->at(1).oclAsType(VariableRef).variable.name /], [operation.arguments->at(2).oclAsType(Constant).value /][']' /]
+[/if]
+[/if]
+[/let]
+[/if]
 }
 [/if]
+[/template]
+
+
+[template public generateGuard(transition : Transition)]
 [if (not transition.guard.oclIsUndefined())]
 pred G_[transition.name /](s: System) {
 [let operation : Comparison = transition.guard.oclAsType(Comparison)]
@@ -252,20 +208,13 @@ pred G_[transition.name /](s: System) {
 [/let]
 }
 [/if]
-[/for]
+[/template]
 
+
+[template public generateInitSystem(sm : StatemachineModule)]
 pred initSystem(s:System) {
 [for (variable : VariableDeclaration | sm.definedVariables) separator('\n')]
 	s.[variable.name /] = [variable.defaultValue.value /]
 [/for]
 }
-
-/*** GENERATED CODE END ***/
-
-pred transition_coverage() {
-	all t:Transition | some p:Path | t in steps['[' /]p[']' /].via
-}
-
-run transition_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() - 2 /] System
-[/file]
 [/template]
