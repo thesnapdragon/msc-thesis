@@ -44,9 +44,16 @@ public class TestSuiteGenerator {
 
 	public void generate() {
 		A4Solution solution = getAlloySolution();
-		if (solution.equals(null)) {
+		if (solution == null) {
 			// TODO Popup window with the error
-			System.err.println("Can not compile the current model!");
+			switch (generationType) {
+			case STATE_COVERAGE:
+				System.err.println("Can not generate test suite with full state coverage!");
+				break;
+			case TRANSITION_COVERAGE:
+				System.err.println("Can not generate test suite with full transition coverage!");
+				break;
+			}
 		} else {
 			if (solution.satisfiable()) {
 				AlloySolutionParser parser = new AlloySolutionParser();
