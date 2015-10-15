@@ -15,7 +15,7 @@ module statecoverage
 one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name /][/for] extends State {}
 
 [generateSystem(sm) /]
-[generateTransitions(sm) /]
+[generateTransitions(sm, false) /]
 [generateInitSystem(sm) /]
 /*** GENERATED CODE END ***/
 pred state_coverage() {
@@ -41,7 +41,7 @@ one sig Initial, End extends State {}
 lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED_[i /][/if][/for] extends State {}
 
 [generateSystem(sm) /]
-[generateTransitions(sm) /]
+[generateTransitions(sm, true) /]
 [generateInitSystem(sm) /]
 /*** GENERATED CODE END ***/
 pred transition_coverage() {
@@ -127,9 +127,9 @@ some sig S extends System {
 [/template]
 
 
-[template public generateTransitions(sm : StatemachineModule)]
+[template public generateTransitions(sm : StatemachineModule, isTransitionCoverage : Boolean)]
 [for (transition : Transition | sm.transitions) separator('\n')]
-some sig [transition.name /] extends Transition {}{
+[if (isTransitionCoverage)]some [/if]sig [transition.name /] extends Transition {}{
 	from = [transition.from.name /]
 	to = [transition.to.name /]
 [if (transition.from.name.matches('Initial'))]
