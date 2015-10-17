@@ -23,9 +23,9 @@ public class [testSuite.sutName /]Test extends TestCase {
 
 [for (testCoverage : TestCoverage | testSuite.testCoverages)]
 	@Test
-	public void testCoverage[i /]() {
+	public void testPath[i /]() {
 [for (testCase : TestCase | testCoverage.testCases)]
-		assertEquals(adapter.[testCase.input /](), [testCase.output /]);
+		assertEquals([testCase.output /], adapter.[testCase.input /]());
 [/for]
 	}
 
@@ -40,13 +40,17 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 public class [testSuite.sutName /]TestRunner {
-   public static void main(String['[' /][']' /] args) {
-      Result result = JUnitCore.runClasses([testSuite.sutName /]Test.class);
-      for (Failure failure : result.getFailures()) {
-         System.out.println(failure.toString());
-      }
-      System.out.println(result.wasSuccessful());
-   }
+	public static void main(String['[' /][']' /] args) {
+		Result result = JUnitCore.runClasses([testSuite.sutName /]Test.class);
+  		System.out.println(String.format("Finished in %.4f seconds", (float) result.getRunTime()));
+		System.out.println(String.format("%d examples, %d failures, %d ignored", result.getRunCount(), result.getFailureCount(), result.getIgnoreCount()));
+		if (!result.wasSuccessful()) {
+			System.out.println("\nFailed examples:\n");
+			for (Failure failure : result.getFailures()) {
+				System.out.println(failure.toString());
+			}
+		}
+	}
 }
 [/file]
 [file (testSuite.sutName + 'TestAdapter.java', false, 'UTF-8')]
