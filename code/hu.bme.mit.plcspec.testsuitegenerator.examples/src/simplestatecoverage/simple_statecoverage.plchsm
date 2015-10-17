@@ -2,18 +2,18 @@
 <ch.cern.en.ice.plcspec:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ch.cern.en.ice.plcspec="http://cern.ch/enice/plcspec/1.0" xmi:id="_rUTIAGboEeW0JqNSBbChTg">
   <modules xsi:type="ch.cern.en.ice.plcspec:StatemachineModule" xmi:id="_sPQ7cGboEeW0JqNSBbChTg" name="SimpleStateCoverage">
     <definedVariables xmi:id="_gbEfMGbpEeW0JqNSBbChTg" name="a">
-      <defaultValue xmi:id="_HDz54HS8EeWVgq4VfOEhJA" value="0"/>
+      <defaultValue xmi:id="_7xj5AHT8EeWoPYvR7HPMtA" value="0"/>
       <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_lgfg4GbpEeW0JqNSBbChTg"/>
     </definedVariables>
     <definedVariables xmi:id="_TDveoHNTEeWq85iJzaV_zA" name="output">
-      <defaultValue xmi:id="_HDz54XS8EeWVgq4VfOEhJA" value="0"/>
+      <defaultValue xmi:id="_7xj5AXT8EeWoPYvR7HPMtA" value="0"/>
       <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_U6aFUHNTEeWq85iJzaV_zA"/>
     </definedVariables>
     <O_outputDefinitions xmi:id="_V9y08HNTEeWq85iJzaV_zA">
       <expression xsi:type="ch.cern.en.ice.plcspec:SwitchCaseTable" xmi:id="_Wv6OYHNTEeWq85iJzaV_zA">
         <rows xmi:id="_XL94QHNTEeWq85iJzaV_zA">
           <condition>
-            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" description="" state="_z7UoMGboEeW0JqNSBbChTg"/>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" description="" state="_4P4NoGboEeW0JqNSBbChTg"/>
           </condition>
           <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="1">
             <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_B6s9QHNXEeWpjL2tEZmuUw"/>
@@ -21,7 +21,7 @@
         </rows>
         <rows xmi:id="_nBJoQHNTEeWq85iJzaV_zA">
           <condition>
-            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" description="" state="_4P4NoGboEeW0JqNSBbChTg"/>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" description="" state="_5esKIGboEeW0JqNSBbChTg"/>
           </condition>
           <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="2">
             <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_DuvGsHNXEeWpjL2tEZmuUw"/>
@@ -29,7 +29,7 @@
         </rows>
         <rows xmi:id="_ndjQYHNTEeWq85iJzaV_zA">
           <condition>
-            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" description="" state="_5esKIGboEeW0JqNSBbChTg"/>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" description="" state="_2-LVMGboEeW0JqNSBbChTg"/>
           </condition>
           <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="3">
             <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_EcQ7EHNXEeWpjL2tEZmuUw"/>
@@ -39,23 +39,23 @@
     </O_outputDefinitions>
     <events xmi:id="_7WMeUGboEeW0JqNSBbChTg" description="" name="E0" transitions="_DcMVEGbpEeW0JqNSBbChTg">
       <triggerExpression xsi:type="ch.cern.en.ice.plcspec:ArithmeticOperation">
-        <leftArgument xsi:type="ch.cern.en.ice.plcspec:VariableRef" xmi:id="_HD0g8XS8EeWVgq4VfOEhJA" variable="_gbEfMGbpEeW0JqNSBbChTg"/>
-        <rightArgument xsi:type="ch.cern.en.ice.plcspec:Constant" xmi:id="_HD0g8nS8EeWVgq4VfOEhJA" value="1"/>
+        <leftArgument xsi:type="ch.cern.en.ice.plcspec:VariableRef" xmi:id="_7xj5DHT8EeWoPYvR7HPMtA" variable="_gbEfMGbpEeW0JqNSBbChTg"/>
+        <rightArgument xsi:type="ch.cern.en.ice.plcspec:Constant" xmi:id="_7xj5DXT8EeWoPYvR7HPMtA" value="1"/>
       </triggerExpression>
     </events>
     <rootState xmi:id="_zVwdAGboEeW0JqNSBbChTg">
       <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_z7UoMGboEeW0JqNSBbChTg" name="Initial" outTransitions="_DcMVEGbpEeW0JqNSBbChTg"/>
-      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_2-LVMGboEeW0JqNSBbChTg" name="End" inTransitions="_LJ1WMGbpEeW0JqNSBbChTg"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_2-LVMGboEeW0JqNSBbChTg" name="End" inTransitions="_LJ1WMGbpEeW0JqNSBbChTg _PlY7gGbpEeW0JqNSBbChTg"/>
       <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_4P4NoGboEeW0JqNSBbChTg" name="A" outTransitions="_Hwgp8GbpEeW0JqNSBbChTg _PlY7gGbpEeW0JqNSBbChTg" inTransitions="_DcMVEGbpEeW0JqNSBbChTg"/>
-      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_5esKIGboEeW0JqNSBbChTg" name="B" outTransitions="_LJ1WMGbpEeW0JqNSBbChTg" inTransitions="_Hwgp8GbpEeW0JqNSBbChTg _PlY7gGbpEeW0JqNSBbChTg"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_5esKIGboEeW0JqNSBbChTg" name="B" outTransitions="_LJ1WMGbpEeW0JqNSBbChTg" inTransitions="_Hwgp8GbpEeW0JqNSBbChTg"/>
     </rootState>
     <transitions xmi:id="_DcMVEGbpEeW0JqNSBbChTg" from="_z7UoMGboEeW0JqNSBbChTg" to="_4P4NoGboEeW0JqNSBbChTg" trigger="_7WMeUGboEeW0JqNSBbChTg" name="t0"/>
     <transitions xmi:id="_Hwgp8GbpEeW0JqNSBbChTg" description="" from="_4P4NoGboEeW0JqNSBbChTg" to="_5esKIGboEeW0JqNSBbChTg" name="t1"/>
     <transitions xmi:id="_LJ1WMGbpEeW0JqNSBbChTg" from="_5esKIGboEeW0JqNSBbChTg" to="_2-LVMGboEeW0JqNSBbChTg" name="t2"/>
-    <transitions xmi:id="_PlY7gGbpEeW0JqNSBbChTg" from="_4P4NoGboEeW0JqNSBbChTg" to="_5esKIGboEeW0JqNSBbChTg" name="t3">
+    <transitions xmi:id="_PlY7gGbpEeW0JqNSBbChTg" from="_4P4NoGboEeW0JqNSBbChTg" to="_2-LVMGboEeW0JqNSBbChTg" name="t3">
       <guard xsi:type="ch.cern.en.ice.plcspec:Comparison" operator="LESS_THAN">
-        <leftArgument xsi:type="ch.cern.en.ice.plcspec:VariableRef" xmi:id="_HD0g8XS8EeWVgq4VfOEhJA" variable="_gbEfMGbpEeW0JqNSBbChTg"/>
-        <rightArgument xsi:type="ch.cern.en.ice.plcspec:Constant" value="1"/>
+        <leftArgument xsi:type="ch.cern.en.ice.plcspec:VariableRef" xmi:id="_7xj5DHT8EeWoPYvR7HPMtA" variable="_gbEfMGbpEeW0JqNSBbChTg"/>
+        <rightArgument xsi:type="ch.cern.en.ice.plcspec:Constant" xmi:id="_7xkgEXT8EeWoPYvR7HPMtA" value="1"/>
       </guard>
     </transitions>
   </modules>

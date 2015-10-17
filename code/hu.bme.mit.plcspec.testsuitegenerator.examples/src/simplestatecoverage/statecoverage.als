@@ -43,7 +43,7 @@ pred inheritSystem(s1, s2: System) {
 	s1 = s2
 }
 /*** GENERATED CODE START ***/
-one sig Initial, A, B, End extends State {}
+one sig Initial, B, A, End extends State {}
 
 some sig S extends System {
 	a: Int
@@ -79,7 +79,7 @@ sig t2 extends Transition {}{
 
 sig t3 extends Transition {}{
 	from = A
-	to = B
+	to = End
 	inheritSystem[from.system, to.system]
 	G_t3[from.system]
 }

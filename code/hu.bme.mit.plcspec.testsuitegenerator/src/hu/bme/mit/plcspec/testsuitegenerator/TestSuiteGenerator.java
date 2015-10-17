@@ -124,7 +124,7 @@ public class TestSuiteGenerator {
 	private String getStateFromTransition(String transitionName) {
 		for (Transition transition : model.getTransitions()) {
 			if (transition.getName().matches(transitionName))
-				return transition.getFrom().getName();
+				return transition.getTo().getName();
 		}
 		return null;
 	}

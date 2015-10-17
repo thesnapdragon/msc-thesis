@@ -11,6 +11,6 @@ public class SimpleStateCoverage {
       return 3;
    }
    public int t3() {
-      return 4;
+      return 3;
    }
 }
