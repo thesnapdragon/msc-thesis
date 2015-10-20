@@ -1,0 +1,96 @@
+module psm_statecoverage
+
+open util/integer
+
+abstract sig System {}
+abstract sig State {system: one System}
+abstract sig Transition {from, to: one State}
+
+one sig Initial, End extends State {}
+
+sig Coverage { paths: some Path }
+sig Path { firstStep: one Step }
+sig Step {
+    from, to: one State,
+    via: one Transition,
+    nextStep: lone Step
+} {
+    via.from = from
+    via.to = to
+}
+fun steps (p:Path): set Step {
+    p.firstStep.*nextStep
+}
+
+fact {
+    // test generation properties
+    all p:Path | one c:Coverage | p in c.paths // all path belongs to a coverage
+    all s:Step | one p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
+
+    // model consistency
+    all p:Path | p.firstStep.from = Initial // all path starts with an Initial state
+    all p:Path | one s:Step | s in steps[p] && s.to = End
+
+    // state machine properties
+    all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
+    all sys:System | some s:State | sys = s.system // all system belongs to a state
+}
+
+pred inheritSystem(s1, s2: System) {
+    s1 = s2
+}
+
+/*** GENERATED CODE START ***/
+one sig A, B, C extends State {}
+some sig S extends System {
+    a: Int
+}
+lone sig T0 extends Transition {}{
+    from = Initial
+    to = A
+    initSystem[from.system]
+    E0[from.system, to.system]
+}
+lone sig T1 extends Transition {}{
+    from = A
+    to = B
+    inheritSystem[from.system, to.system]
+}
+lone sig T5 extends Transition {}{
+    from = A
+    to = B
+    inheritSystem[from.system, to.system]
+    G0[from.system]
+}
+lone sig T2 extends Transition {}{
+    from = B
+    to = End
+    inheritSystem[from.system, to.system]
+}
+lone sig T3 extends Transition {}{
+    from = A
+    to = C
+    inheritSystem[from.system, to.system]
+}
+lone sig T4 extends Transition {}{
+    from = C
+    to = End
+    inheritSystem[from.system, to.system]
+}
+
+pred initSystem(s:System) {
+    s.a = 0
+}
+pred E0(s1, s2: System) {
+    s2.a = add[s1.a, 1]
+}
+pred G0(s: System) {
+    s.a > 1
+}
+/*** GENERATED CODE END ***/
+
+pred state_coverage() {
+    all s:State | some p:Path | s in steps[p].from + steps[p].to
+}
+
+run state_coverage for 10 but exactly 1 Coverage, 4 System
