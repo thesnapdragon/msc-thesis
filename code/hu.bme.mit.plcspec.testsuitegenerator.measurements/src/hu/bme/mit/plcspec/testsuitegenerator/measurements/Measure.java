@@ -20,7 +20,7 @@ public class Measure {
                 System.out.flush();
             }
         };
-        String[] files = {"state"};
+        String[] files = {"statecoverage1.als", "statecoverage2.als", "transitioncoverage1.als", "transitioncoverage2.als"};
         int[] symmetries = {0, 20};
         int[] skolemDepths = {0, 4};
         
@@ -30,7 +30,7 @@ public class Measure {
         		System.out.println(skolemDepth);
 	        	for(int symmetry : symmetries) {
 	        		System.out.println(symmetry);
-			        File alloyFile = new File("resources/" + file + "coverage.als");
+			        File alloyFile = new File("resources/" + file);
 					Module world = null;
 					try {
 						world = CompUtil.parseEverything_fromFile(rep, null, alloyFile.getAbsolutePath());
@@ -43,7 +43,7 @@ public class Measure {
 					opt.originalFilename = alloyFile.getAbsolutePath();
 					opt.symmetry = symmetry;
 					opt.skolemDepth = skolemDepth;
-					for(int i = 0; i < 10; i++) {
+					for(int i = 0; i < 1; i++) {
 						HashMap<String, Long> results = new HashMap<String, Long>();
 						for (SatSolver solver : A4Options.SatSolver.values()) {
 							opt.solver = solver;
