@@ -19,16 +19,12 @@ public class StopWatchTest extends TestCase {
 	public void testPath1() {
 		assertEquals(1, adapter.on());
 		assertEquals(2, adapter.start());
-		assertEquals(3, adapter.stop());
-		assertEquals(5, adapter.off());
-	}
-
-	@Test
-	public void testPath2() {
-		assertEquals(1, adapter.on());
-		assertEquals(2, adapter.start());
 		assertEquals(4, adapter.split());
 		assertEquals(2, adapter.unsplit());
+		assertEquals(4, adapter.split());
+		assertEquals(3, adapter.stop2());
+		assertEquals(1, adapter.reset());
+		assertEquals(2, adapter.start());
 		assertEquals(3, adapter.stop());
 		assertEquals(5, adapter.off());
 	}

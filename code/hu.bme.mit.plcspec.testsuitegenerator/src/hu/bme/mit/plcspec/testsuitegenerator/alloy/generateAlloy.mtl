@@ -12,8 +12,7 @@ module statecoverage
 [generateFacts() /]
 [generateInheritSystem() /]
 /*** GENERATED CODE START ***/
-one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name /][/for] extends State {}
-
+[generateStates(sm) /]
 [generateSystem(sm) /]
 [generateTransitions(sm, false) /]
 [generateInitSystem(sm) /]
@@ -33,13 +32,11 @@ module transitioncoverage
 [generateImports() /]
 
 [generateMetamodel() /]
-one sig Initial, End extends State {}
 [generateFunctions() /]
 [generateFacts() /]
 [generateInheritSystem() /]
 /*** GENERATED CODE START ***/
-lone sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][if ((not state.name.matches('Initial')) and (not state.name.matches('End')))][state.name /][else]NOT_USED_[i /][/if][/for] extends State {}
-
+[generateStates(sm) /]
 [generateSystem(sm) /]
 [generateTransitions(sm, true) /]
 [generateInitSystem(sm) /]
@@ -64,10 +61,10 @@ abstract sig State {system: one System}
 abstract sig Transition {from, to: one State}
 
 sig Coverage { paths: some Path }
-sig Path { firstStep: Step }
+sig Path { firstStep: one Step }
 sig Step {
-	from, to: State,
-	via: Transition,
+	from, to: one State,
+	via: one Transition,
 	nextStep: lone Step
 } {
 	via.from = from
@@ -89,20 +86,16 @@ fun transitions (p:Path): set Transition {
 [template public generateFacts(traceabilityContext : OclAny)]
 fact {
 	// test generation properties
-	all p:Path | some c:Coverage | p in c.paths // all path belongs to a coverage
-	no p1,p2:Path | p1! = p2 && steps['[' /]p1[']' /] = steps['[' /]p2[']' /] && transitions['[' /]p1[']' /] = transitions['[' /]p2[']' /] // there are no two equivalent paths
-	no s1,s2:Step | s1! = s2 && s1.via = s2.via // there are no two equivalent steps
-	all s:Step | some p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
+	all p:Path | one c:Coverage | p in c.paths // all path belongs to a coverage
+    all s:Step | one p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
 
 	// model consistency
 	all p:Path | p.firstStep.from = Initial // all path starts with an Initial state
-	all p:Path | some s:Step | s in steps['[' /]p[']' /] && s.to = End // all path end with End state
+    all p:Path | one s:Step | s in steps['[' /]p[']' /] && s.to = End // all path end with End state
 	
 	// state machine properties
-	all t:Transition | one s:Step | s.via = t // all transitions belongs to a step
 	all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are contionueos
-	all sys:System | some s:State | sys = s.system // all system belongs to a state
-	all s:State | some t:Transition | t.from = s or t.to = s // all state belongs to a transition
+    all sys:System | some s:State | sys = s.system // all system belongs to a state
 }
 [/template]
 
@@ -111,6 +104,11 @@ fact {
 pred inheritSystem(s1, s2: System) {
 	s1 = s2
 }
+[/template]
+
+
+[template public generateStates(sm : StatemachineModule)]
+one sig [for (state : AbstractState | sm.rootState.containedStates) separator (', ')][state.name /][/for] extends State {}
 [/template]
 
 
@@ -129,7 +127,7 @@ some sig S extends System {
 
 [template public generateTransitions(sm : StatemachineModule, isTransitionCoverage : Boolean)]
 [for (transition : Transition | sm.transitions) separator('\n')]
-[if (isTransitionCoverage)]some [/if]sig [transition.name /] extends Transition {}{
+[if (isTransitionCoverage)]one [else]lone [/if]sig [transition.name /] extends Transition {}{
 	from = [transition.from.name /]
 	to = [transition.to.name /]
 [if (transition.from.name.matches('Initial'))]
