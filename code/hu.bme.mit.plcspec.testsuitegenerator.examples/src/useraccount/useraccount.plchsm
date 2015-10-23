@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ch.cern.en.ice.plcspec:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ch.cern.en.ice.plcspec="http://cern.ch/enice/plcspec/1.0" xmi:id="_D5gQUHm6EeWKG6ZyLM2bvA">
+  <modules xsi:type="ch.cern.en.ice.plcspec:StatemachineModule" xmi:id="_KrloIHm6EeWKG6ZyLM2bvA" name="UserAccount">
+    <definedVariables xmi:id="_bElP0Hm6EeWKG6ZyLM2bvA" name="output">
+      <defaultValue xmi:id="_1JLDAHnOEeWnKtgWoK3dpQ" value="0"/>
+      <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_cqjvIHm6EeWKG6ZyLM2bvA"/>
+    </definedVariables>
+    <definedVariables xmi:id="_mdOpcHnCEeWKG6ZyLM2bvA" name="isUnique">
+      <defaultValue xmi:id="_1JLDAnnOEeWnKtgWoK3dpQ" value="False"/>
+      <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_mdOpcnnCEeWKG6ZyLM2bvA" type="BOOL"/>
+    </definedVariables>
+    <O_outputDefinitions xmi:id="_d9G8IHm6EeWKG6ZyLM2bvA">
+      <expression xsi:type="ch.cern.en.ice.plcspec:SwitchCaseTable" xmi:id="_g6uj0Hm6EeWKG6ZyLM2bvA">
+        <rows xmi:id="_haPKUHm6EeWKG6ZyLM2bvA">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_PBDMgHm6EeWKG6ZyLM2bvA"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="0">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_ujb1MHm6EeWKG6ZyLM2bvA"/>
+          </value>
+        </rows>
+        <rows xmi:id="_3FLz0Hm6EeWKG6ZyLM2bvA">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_QmI7AHm6EeWKG6ZyLM2bvA"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="1">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_3FLz1Hm6EeWKG6ZyLM2bvA"/>
+          </value>
+        </rows>
+        <rows xmi:id="_6fQG8Hm6EeWKG6ZyLM2bvA">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_RpWEcHm6EeWKG6ZyLM2bvA"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="2">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_6fQG9Hm6EeWKG6ZyLM2bvA"/>
+          </value>
+        </rows>
+        <rows xmi:id="_9ek-0Hm6EeWKG6ZyLM2bvA">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_TBzFIHm6EeWKG6ZyLM2bvA"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="3">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_9ek-1Hm6EeWKG6ZyLM2bvA"/>
+          </value>
+        </rows>
+        <rows xmi:id="_A3bJ8Hm7EeWKG6ZyLM2bvA">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_V82hAHm6EeWKG6ZyLM2bvA"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="4">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_A3bJ9Hm7EeWKG6ZyLM2bvA"/>
+          </value>
+        </rows>
+      </expression>
+    </O_outputDefinitions>
+    <events xmi:id="_kaKlgHnCEeWKG6ZyLM2bvA" name="setIsUnique" transitions="_unjqwHm7EeWKG6ZyLM2bvA">
+      <triggerExpression xsi:type="ch.cern.en.ice.plcspec:LogicOperation" operator="OR">
+        <arguments xsi:type="ch.cern.en.ice.plcspec:VariableRef" xmi:id="_1JLqEnnOEeWnKtgWoK3dpQ" variable="_mdOpcHnCEeWKG6ZyLM2bvA"/>
+        <arguments xsi:type="ch.cern.en.ice.plcspec:Constant" xmi:id="_1JLqE3nOEeWnKtgWoK3dpQ" value="True"/>
+      </triggerExpression>
+    </events>
+    <rootState xmi:id="_NK1RwHm6EeWKG6ZyLM2bvA">
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_PBDMgHm6EeWKG6ZyLM2bvA" name="NEW" outTransitions="_3cMwMHm7EeWKG6ZyLM2bvA _3tIvMHm7EeWKG6ZyLM2bvA _315CkHm7EeWKG6ZyLM2bvA" inTransitions="_unjqwHm7EeWKG6ZyLM2bvA"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_QmI7AHm6EeWKG6ZyLM2bvA" name="ACTIVE" outTransitions="_4JDPIHm7EeWKG6ZyLM2bvA _d6SU0Hm-EeWKG6ZyLM2bvA _NLtCMHm_EeWKG6ZyLM2bvA" inTransitions="_3cMwMHm7EeWKG6ZyLM2bvA _gzjA8Hm-EeWKG6ZyLM2bvA _RW-v0Hm_EeWKG6ZyLM2bvA"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_RpWEcHm6EeWKG6ZyLM2bvA" name="SUSPENDED" outTransitions="_4ZVG0Hm7EeWKG6ZyLM2bvA _gzjA8Hm-EeWKG6ZyLM2bvA _RW-v0Hm_EeWKG6ZyLM2bvA" inTransitions="_3tIvMHm7EeWKG6ZyLM2bvA _d6SU0Hm-EeWKG6ZyLM2bvA _NLtCMHm_EeWKG6ZyLM2bvA"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_TBzFIHm6EeWKG6ZyLM2bvA" name="CLOSED" outTransitions="_NGDNgHm8EeWKG6ZyLM2bvA" inTransitions="_315CkHm7EeWKG6ZyLM2bvA _4JDPIHm7EeWKG6ZyLM2bvA _4ZVG0Hm7EeWKG6ZyLM2bvA"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_U-DWcHm6EeWKG6ZyLM2bvA" name="Initial" outTransitions="_unjqwHm7EeWKG6ZyLM2bvA"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_V82hAHm6EeWKG6ZyLM2bvA" name="End" inTransitions="_NGDNgHm8EeWKG6ZyLM2bvA"/>
+    </rootState>
+    <transitions xmi:id="_unjqwHm7EeWKG6ZyLM2bvA" from="_U-DWcHm6EeWKG6ZyLM2bvA" to="_PBDMgHm6EeWKG6ZyLM2bvA" trigger="_kaKlgHnCEeWKG6ZyLM2bvA" name="create"/>
+    <transitions xmi:id="_3cMwMHm7EeWKG6ZyLM2bvA" from="_PBDMgHm6EeWKG6ZyLM2bvA" to="_QmI7AHm6EeWKG6ZyLM2bvA" name="activate">
+      <guard xsi:type="ch.cern.en.ice.plcspec:Comparison">
+        <leftArgument xsi:type="ch.cern.en.ice.plcspec:VariableRef" xmi:id="_1JLqEnnOEeWnKtgWoK3dpQ" variable="_mdOpcHnCEeWKG6ZyLM2bvA"/>
+        <rightArgument xsi:type="ch.cern.en.ice.plcspec:Constant" xmi:id="_1JMRIHnOEeWnKtgWoK3dpQ" value="True"/>
+      </guard>
+    </transitions>
+    <transitions xmi:id="_3tIvMHm7EeWKG6ZyLM2bvA" from="_PBDMgHm6EeWKG6ZyLM2bvA" to="_RpWEcHm6EeWKG6ZyLM2bvA" name="suspend1"/>
+    <transitions xmi:id="_315CkHm7EeWKG6ZyLM2bvA" from="_PBDMgHm6EeWKG6ZyLM2bvA" to="_TBzFIHm6EeWKG6ZyLM2bvA" name="cancel1"/>
+    <transitions xmi:id="_4JDPIHm7EeWKG6ZyLM2bvA" from="_QmI7AHm6EeWKG6ZyLM2bvA" to="_TBzFIHm6EeWKG6ZyLM2bvA" name="cancel2"/>
+    <transitions xmi:id="_4ZVG0Hm7EeWKG6ZyLM2bvA" description="" from="_RpWEcHm6EeWKG6ZyLM2bvA" to="_TBzFIHm6EeWKG6ZyLM2bvA" name="cancel3"/>
+    <transitions xmi:id="_NGDNgHm8EeWKG6ZyLM2bvA" from="_TBzFIHm6EeWKG6ZyLM2bvA" to="_V82hAHm6EeWKG6ZyLM2bvA" name="delete"/>
+    <transitions xmi:id="_d6SU0Hm-EeWKG6ZyLM2bvA" description="" from="_QmI7AHm6EeWKG6ZyLM2bvA" to="_RpWEcHm6EeWKG6ZyLM2bvA" name="lock"/>
+    <transitions xmi:id="_gzjA8Hm-EeWKG6ZyLM2bvA" from="_RpWEcHm6EeWKG6ZyLM2bvA" to="_QmI7AHm6EeWKG6ZyLM2bvA" name="unlock"/>
+    <transitions xmi:id="_NLtCMHm_EeWKG6ZyLM2bvA" description="" from="_QmI7AHm6EeWKG6ZyLM2bvA" to="_RpWEcHm6EeWKG6ZyLM2bvA" name="suspend2"/>
+    <transitions xmi:id="_RW-v0Hm_EeWKG6ZyLM2bvA" from="_RpWEcHm6EeWKG6ZyLM2bvA" to="_QmI7AHm6EeWKG6ZyLM2bvA" name="resume"/>
+  </modules>
+</ch.cern.en.ice.plcspec:System>
