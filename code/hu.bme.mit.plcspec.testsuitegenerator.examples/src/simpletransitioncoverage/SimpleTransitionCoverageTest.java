@@ -18,15 +18,15 @@ public class SimpleTransitionCoverageTest extends TestCase {
 	@Test
 	public void testPath1() {
 		assertEquals(1, adapter.t0());
-		assertEquals(4, adapter.t3());
-		assertEquals(3, adapter.t4());
+		assertEquals(2, adapter.t1());
+		assertEquals(3, adapter.t2());
 	}
 
 	@Test
 	public void testPath2() {
 		assertEquals(1, adapter.t0());
-		assertEquals(2, adapter.t1());
-		assertEquals(3, adapter.t2());
+		assertEquals(4, adapter.t3());
+		assertEquals(3, adapter.t4());
 	}
 
 }

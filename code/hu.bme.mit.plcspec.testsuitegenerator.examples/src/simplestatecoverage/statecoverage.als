@@ -39,7 +39,7 @@ pred inheritSystem(s1, s2: System) {
 	s1 = s2
 }
 /*** GENERATED CODE START ***/
-one sig Initial, A, End, B extends State {}
+one sig Initial, End, B, A extends State {}
 some sig S extends System {
 	a: Int
 ,	output: Int

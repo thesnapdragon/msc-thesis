@@ -39,7 +39,7 @@ pred inheritSystem(s1, s2: System) {
 	s1 = s2
 }
 /*** GENERATED CODE START ***/
-one sig End, PAUSED, Initial, STOPPED, RUNNING, READY extends State {}
+one sig READY, PAUSED, RUNNING, Initial, STOPPED, End extends State {}
 some sig S extends System {
 	output: Int
 }
@@ -47,6 +47,7 @@ lone sig on extends Transition {}{
 	from = Initial
 	to = READY
 	initSystem[from.system]
+	inheritSystem[from.system, to.system]
 }
 
 

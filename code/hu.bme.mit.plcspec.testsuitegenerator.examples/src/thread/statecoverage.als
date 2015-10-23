@@ -47,6 +47,7 @@ lone sig start extends Transition {}{
 	from = Initial
 	to = RUNNABLE
 	initSystem[from.system]
+	inheritSystem[from.system, to.system]
 }
 
 
