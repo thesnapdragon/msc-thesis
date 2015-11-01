@@ -4,11 +4,11 @@ import networkx as nx
 import random
 
 def sequence(n):
-    a, m, c = [], random.randint(1, int(n / 4)), n
+    a, m, c = [], random.randint(0, n), n
     while n > m > 0:
         a.append(m)
         n -= m
-        m = random.randint(0, int(n / 4))
+        m = random.randint(0, n)
     if n: a += [n]
     return a
 
@@ -20,8 +20,8 @@ def two_sequence(size):
     sequences.append(second_sequence)
     return sequences
 
-def graph(size):
-    sequences = two_sequence(size)
+def generate_graph(factor):
+    sequences = two_sequence(factor)
     ins = [0] + sequences[0] + [1]
     outs = [1] + sequences[1] + [0]
     graph = nx.DiGraph(nx.directed_configuration_model(ins, outs))
@@ -30,7 +30,13 @@ def graph(size):
     graph.remove_edges_from(graph.selfloop_edges())
     return graph
 
-sizes = [10, 100, 200, 400, 800]
+def graph_with_size(size):
+    factor = random.randint(0, 200)
+    graph = generate_graph(factor)
+    while graph.number_of_edges() != size:
+        factor = random.randint(0, 200)
+        graph = generate_graph(factor)
+    return graph
 
-for size in sizes:
-    nx.write_graphml(graph(size), "scalability_test{0}.graphml".format(size))
+for size in range(40, 51):
+    nx.write_graphml(graph_with_size(size), "scalability_test_t{0}.graphml".format(size))
