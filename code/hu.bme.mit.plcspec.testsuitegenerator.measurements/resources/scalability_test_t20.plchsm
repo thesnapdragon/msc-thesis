@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ch.cern.en.ice.plcspec:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ch.cern.en.ice.plcspec="http://cern.ch/enice/plcspec/1.0">
+  <modules xsi:type="ch.cern.en.ice.plcspec:StatemachineModule" name="ScalabilityTest">
+    <definedVariables name="output" definingExpression="//@modules.0/@O_outputDefinitions.0">
+      <defaultValue value="0"/>
+      <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+    </definedVariables>
+    <O_outputDefinitions variable="//@modules.0/@definedVariables.0">
+      <expression xsi:type="ch.cern.en.ice.plcspec:SwitchCaseTable">
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.0"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="0">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.1"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="1">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.2"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="2">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.4"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="3">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.5"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="4">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.6"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="5">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.7"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="6">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+      </expression>
+    </O_outputDefinitions>
+    <rootState>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s3" outTransitions="//@modules.0/@transitions.7 //@modules.0/@transitions.12 //@modules.0/@transitions.14 //@modules.0/@transitions.18 //@modules.0/@transitions.19" inTransitions="//@modules.0/@transitions.1 //@modules.0/@transitions.6 //@modules.0/@transitions.10 //@modules.0/@transitions.13"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s2" outTransitions="//@modules.0/@transitions.15" inTransitions="//@modules.0/@transitions.0 //@modules.0/@transitions.4 //@modules.0/@transitions.5 //@modules.0/@transitions.11 //@modules.0/@transitions.19"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s1" outTransitions="//@modules.0/@transitions.9 //@modules.0/@transitions.10 //@modules.0/@transitions.11 //@modules.0/@transitions.16 //@modules.0/@transitions.17" inTransitions="//@modules.0/@transitions.3 //@modules.0/@transitions.8 //@modules.0/@transitions.14"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="Initial" outTransitions="//@modules.0/@transitions.13"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="End" inTransitions="//@modules.0/@transitions.16"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s6" outTransitions="//@modules.0/@transitions.0" inTransitions="//@modules.0/@transitions.2 //@modules.0/@transitions.7"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s5" outTransitions="//@modules.0/@transitions.1 //@modules.0/@transitions.2 //@modules.0/@transitions.3 //@modules.0/@transitions.4" inTransitions="//@modules.0/@transitions.12 //@modules.0/@transitions.17"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s4" outTransitions="//@modules.0/@transitions.5 //@modules.0/@transitions.6 //@modules.0/@transitions.8" inTransitions="//@modules.0/@transitions.9 //@modules.0/@transitions.15 //@modules.0/@transitions.18"/>
+    </rootState>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.1" name="t19"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.0" name="t17"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.5" name="t18"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.2" name="t15"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.1" name="t16"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.1" name="t13"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.0" name="t14"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.5" name="t11"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.2" name="t12"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.7" name="t3"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.0" name="t2"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.1" name="t1"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.6" name="t10"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.0" name="t0"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.2" name="t7"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.7" name="t6"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.4" name="t5"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.6" name="t4"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.7" name="t9"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.1" name="t8"/>
+  </modules>
+</ch.cern.en.ice.plcspec:System>
