@@ -4,30 +4,33 @@ import networkx as nx
 import random
 
 def sequence(n):
-    a, m, c = [], random.randint(1, int(n/4)), n
+    a, m, c = [], random.randint(1, int(n / 4)), n
     while n > m > 0:
         a.append(m)
         n -= m
-        m = random.randint(0, int(n/4))
+        m = random.randint(0, int(n / 4))
     if n: a += [n]
     return a
 
 def two_sequence(size):
-    s = [sequence(size)]
-    n = sequence(size)
-    while len(n) != len(s[0]):
-        n = sequence(size)
-    s.append(n)
-    return s
+    sequences = [sequence(size)]
+    second_sequence = sequence(size)
+    while len(second_sequence) != len(sequences[0]):
+        second_sequence = sequence(size)
+    sequences.append(second_sequence)
+    return sequences
 
-def graph(n):
-    s = two_sequence(n)
-    ins = [0] + s[0] + [1]
-    outs = [1] + s[1] + [0]
-    d = nx.DiGraph(nx.directed_configuration_model(ins, outs))
-    while not nx.is_connected(nx.Graph(d)):
-        d = nx.DiGraph(nx.directed_configuration_model(ins, outs))
-    d.remove_edges_from(d.selfloop_edges())
-    return d
+def graph(size):
+    sequences = two_sequence(size)
+    ins = [0] + sequences[0] + [1]
+    outs = [1] + sequences[1] + [0]
+    graph = nx.DiGraph(nx.directed_configuration_model(ins, outs))
+    while not nx.is_connected(nx.Graph(graph)):
+        graph = nx.DiGraph(nx.directed_configuration_model(ins, outs))
+    graph.remove_edges_from(graph.selfloop_edges())
+    return graph
 
-nx.write_graphml(graph(10), "scalability_test.graphml")
+sizes = [10, 100, 200, 400, 800]
+
+for size in sizes:
+    nx.write_graphml(graph(size), "scalability_test{0}.graphml".format(size))
