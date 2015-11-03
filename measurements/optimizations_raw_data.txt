@@ -1,0 +1,32 @@
+statecoverage1.als
+0
+0
+{cryptominisat(jni)=14813, glucose(jni)=836, minisat(jni)=782, kodkod=168, cnf=117, sat4j=1549, lingeling(jni)=1908, plingeling(jni)=1432, minisatprover(jni)=568}
+20
+{cryptominisat(jni)=1770, glucose(jni)=361, minisat(jni)=744, kodkod=48, cnf=91, sat4j=5843, lingeling(jni)=1987, plingeling(jni)=4641, minisatprover(jni)=755}
+4
+0
+{cryptominisat(jni)=14609, glucose(jni)=717, minisat(jni)=303, kodkod=39, cnf=74, sat4j=2834, lingeling(jni)=1904, plingeling(jni)=1399, minisatprover(jni)=275}
+20
+{cryptominisat(jni)=3949, glucose(jni)=1066, minisat(jni)=1533, kodkod=16, cnf=66, sat4j=111330, lingeling(jni)=3243, plingeling(jni)=15568, minisatprover(jni)=307}
+statecoverage2.als
+0
+0
+{cryptominisat(jni)=505, glucose(jni)=65, minisat(jni)=130, kodkod=11, cnf=33, sat4j=1459, lingeling(jni)=1119, plingeling(jni)=970, minisatprover(jni)=217}
+20
+{cryptominisat(jni)=788, glucose(jni)=421, minisat(jni)=738, kodkod=11, cnf=34, sat4j=5161, lingeling(jni)=922, plingeling(jni)=960, minisatprover(jni)=187}
+4
+0
+{cryptominisat(jni)=1080, glucose(jni)=858, minisat(jni)=1075, kodkod=9, cnf=29, sat4j=546, lingeling(jni)=1119, plingeling(jni)=661, minisatprover(jni)=165}
+20
+{cryptominisat(jni)=674, glucose(jni)=251, minisat(jni)=643, kodkod=9, cnf=38, sat4j=154, lingeling(jni)=996, plingeling(jni)=1041, minisatprover(jni)=163}
+transitioncoverage1.als
+0
+0
+{cryptominisat(jni)=10678, glucose(jni)=976, minisat(jni)=172, kodkod=13, cnf=81, sat4j=339, lingeling(jni)=2442, plingeling(jni)=1391, minisatprover(jni)=986}
+20
+{cryptominisat(jni)=2608, glucose(jni)=731, minisat(jni)=826, kodkod=13, cnf=75, sat4j=2186, lingeling(jni)=2097, plingeling(jni)=5363, minisatprover(jni)=1129}
+4
+0
+{cryptominisat(jni)=14011, glucose(jni)=521, minisat(jni)=583, kodkod=13, cnf=65, sat4j=565, lingeling(jni)=2345, plingeling(jni)=1868, minisatprover(jni)=4848}
+20
