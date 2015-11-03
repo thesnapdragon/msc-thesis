@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ch.cern.en.ice.plcspec:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ch.cern.en.ice.plcspec="http://cern.ch/enice/plcspec/1.0">
+  <modules xsi:type="ch.cern.en.ice.plcspec:StatemachineModule" name="ScalabilityTest">
+    <definedVariables name="output" definingExpression="//@modules.0/@O_outputDefinitions.0">
+      <defaultValue value="0"/>
+      <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+    </definedVariables>
+    <O_outputDefinitions variable="//@modules.0/@definedVariables.0">
+      <expression xsi:type="ch.cern.en.ice.plcspec:SwitchCaseTable">
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.0"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="0">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.1"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="1">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.2"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="2">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.3"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="3">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.5"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="4">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.6"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="5">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.7"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="6">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.8"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="7">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.9"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="8">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.10"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="9">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.11"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="10">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.12"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="11">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.13"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="12">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+        <rows>
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="//@modules.0/@rootState/@containedStates.14"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="13">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType"/>
+          </value>
+        </rows>
+      </expression>
+    </O_outputDefinitions>
+    <rootState>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s3" outTransitions="//@modules.0/@transitions.26 //@modules.0/@transitions.27 //@modules.0/@transitions.28 //@modules.0/@transitions.29 //@modules.0/@transitions.30 //@modules.0/@transitions.31" inTransitions="//@modules.0/@transitions.7 //@modules.0/@transitions.17 //@modules.0/@transitions.18 //@modules.0/@transitions.23 //@modules.0/@transitions.24 //@modules.0/@transitions.35 //@modules.0/@transitions.39 //@modules.0/@transitions.52 //@modules.0/@transitions.54 //@modules.0/@transitions.64 //@modules.0/@transitions.76 //@modules.0/@transitions.83"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s2" outTransitions="//@modules.0/@transitions.58 //@modules.0/@transitions.60 //@modules.0/@transitions.61 //@modules.0/@transitions.62 //@modules.0/@transitions.63 //@modules.0/@transitions.64 //@modules.0/@transitions.65 //@modules.0/@transitions.67 //@modules.0/@transitions.68 //@modules.0/@transitions.69" inTransitions="//@modules.0/@transitions.9 //@modules.0/@transitions.16 //@modules.0/@transitions.27 //@modules.0/@transitions.33 //@modules.0/@transitions.36 //@modules.0/@transitions.51 //@modules.0/@transitions.55 //@modules.0/@transitions.71 //@modules.0/@transitions.77 //@modules.0/@transitions.85"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s10" outTransitions="//@modules.0/@transitions.1 //@modules.0/@transitions.2 //@modules.0/@transitions.50 //@modules.0/@transitions.51 //@modules.0/@transitions.52 //@modules.0/@transitions.53" inTransitions="//@modules.0/@transitions.31 //@modules.0/@transitions.47 //@modules.0/@transitions.59 //@modules.0/@transitions.69"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s1" outTransitions="//@modules.0/@transitions.34 //@modules.0/@transitions.35 //@modules.0/@transitions.36 //@modules.0/@transitions.38 //@modules.0/@transitions.40 //@modules.0/@transitions.41 //@modules.0/@transitions.43 //@modules.0/@transitions.47 //@modules.0/@transitions.49 //@modules.0/@transitions.66 //@modules.0/@transitions.86" inTransitions="//@modules.0/@transitions.0 //@modules.0/@transitions.8 //@modules.0/@transitions.26 //@modules.0/@transitions.32 //@modules.0/@transitions.37 //@modules.0/@transitions.45 //@modules.0/@transitions.50 //@modules.0/@transitions.56 //@modules.0/@transitions.67 //@modules.0/@transitions.70 //@modules.0/@transitions.82 //@modules.0/@transitions.92"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="Initial" outTransitions="//@modules.0/@transitions.37"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s7" outTransitions="//@modules.0/@transitions.54 //@modules.0/@transitions.55 //@modules.0/@transitions.56 //@modules.0/@transitions.72 //@modules.0/@transitions.73 //@modules.0/@transitions.74 //@modules.0/@transitions.75" inTransitions="//@modules.0/@transitions.5 //@modules.0/@transitions.11 //@modules.0/@transitions.21 //@modules.0/@transitions.40 //@modules.0/@transitions.60 //@modules.0/@transitions.88"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s6" outTransitions="//@modules.0/@transitions.57 //@modules.0/@transitions.59 //@modules.0/@transitions.76 //@modules.0/@transitions.77 //@modules.0/@transitions.82 //@modules.0/@transitions.87 //@modules.0/@transitions.88 //@modules.0/@transitions.89 //@modules.0/@transitions.90 //@modules.0/@transitions.93" inTransitions="//@modules.0/@transitions.12 //@modules.0/@transitions.20 //@modules.0/@transitions.41 //@modules.0/@transitions.42 //@modules.0/@transitions.63"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s5" outTransitions="//@modules.0/@transitions.7 //@modules.0/@transitions.8 //@modules.0/@transitions.9 //@modules.0/@transitions.10 //@modules.0/@transitions.11 //@modules.0/@transitions.12 //@modules.0/@transitions.13 //@modules.0/@transitions.78 //@modules.0/@transitions.80 //@modules.0/@transitions.84" inTransitions="//@modules.0/@transitions.2 //@modules.0/@transitions.15 //@modules.0/@transitions.25 //@modules.0/@transitions.29 //@modules.0/@transitions.43 //@modules.0/@transitions.44 //@modules.0/@transitions.48 //@modules.0/@transitions.62 //@modules.0/@transitions.75 //@modules.0/@transitions.79 //@modules.0/@transitions.87 //@modules.0/@transitions.91"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s4" outTransitions="//@modules.0/@transitions.3 //@modules.0/@transitions.4 //@modules.0/@transitions.5 //@modules.0/@transitions.6 //@modules.0/@transitions.32 //@modules.0/@transitions.33 //@modules.0/@transitions.39 //@modules.0/@transitions.42 //@modules.0/@transitions.44" inTransitions="//@modules.0/@transitions.13 //@modules.0/@transitions.14 //@modules.0/@transitions.19 //@modules.0/@transitions.22 //@modules.0/@transitions.28 //@modules.0/@transitions.34 //@modules.0/@transitions.53 //@modules.0/@transitions.65 //@modules.0/@transitions.74 //@modules.0/@transitions.81 //@modules.0/@transitions.93"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s9" outTransitions="//@modules.0/@transitions.24 //@modules.0/@transitions.45 //@modules.0/@transitions.46 //@modules.0/@transitions.48" inTransitions="//@modules.0/@transitions.1 //@modules.0/@transitions.30 //@modules.0/@transitions.49 //@modules.0/@transitions.58 //@modules.0/@transitions.72 //@modules.0/@transitions.80 //@modules.0/@transitions.90"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s8" outTransitions="//@modules.0/@transitions.22 //@modules.0/@transitions.23 //@modules.0/@transitions.25 //@modules.0/@transitions.70 //@modules.0/@transitions.71" inTransitions="//@modules.0/@transitions.6 //@modules.0/@transitions.10 //@modules.0/@transitions.38 //@modules.0/@transitions.61 //@modules.0/@transitions.89"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s13" outTransitions="//@modules.0/@transitions.79 //@modules.0/@transitions.81 //@modules.0/@transitions.83 //@modules.0/@transitions.85 //@modules.0/@transitions.92" inTransitions="//@modules.0/@transitions.84"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="End" inTransitions="//@modules.0/@transitions.66"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s11" outTransitions="//@modules.0/@transitions.0 //@modules.0/@transitions.14 //@modules.0/@transitions.15 //@modules.0/@transitions.16 //@modules.0/@transitions.17 //@modules.0/@transitions.20 //@modules.0/@transitions.21" inTransitions="//@modules.0/@transitions.3 //@modules.0/@transitions.46 //@modules.0/@transitions.57 //@modules.0/@transitions.68 //@modules.0/@transitions.73 //@modules.0/@transitions.78 //@modules.0/@transitions.86"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" name="s12" outTransitions="//@modules.0/@transitions.18 //@modules.0/@transitions.19 //@modules.0/@transitions.91" inTransitions="//@modules.0/@transitions.4"/>
+    </rootState>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.3" name="t79"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.9" name="t78"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.7" name="t77"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.13" name="t35"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.14" name="t36"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.5" name="t33"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.10" name="t34"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.0" name="t39"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.3" name="t37"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.1" name="t38"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.10" name="t43"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.5" name="t42"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.6" name="t41"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.8" name="t40"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.8" name="t82"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.7" name="t83"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.1" name="t80"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.0" name="t81"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.14" to="//@modules.0/@rootState/@containedStates.0" name="t86"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.14" to="//@modules.0/@rootState/@containedStates.8" name="t87"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.6" name="t84"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.13" to="//@modules.0/@rootState/@containedStates.5" name="t85"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.10" to="//@modules.0/@rootState/@containedStates.8" name="t67"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.10" to="//@modules.0/@rootState/@containedStates.0" name="t66"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.9" to="//@modules.0/@rootState/@containedStates.0" name="t69"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.10" to="//@modules.0/@rootState/@containedStates.7" name="t68"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.3" name="t22"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.1" name="t23"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.8" name="t24"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.7" name="t25"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.9" name="t26"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.0" to="//@modules.0/@rootState/@containedStates.2" name="t27"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.3" name="t28"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.1" name="t29"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.8" name="t3"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.0" name="t2"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.1" name="t1"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.4" to="//@modules.0/@rootState/@containedStates.3" name="t0"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.10" name="t7"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.0" name="t30"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.5" name="t6"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.6" name="t5"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.6" name="t32"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.7" name="t4"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.8" to="//@modules.0/@rootState/@containedStates.7" name="t31"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.9" to="//@modules.0/@rootState/@containedStates.3" name="t70"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.9" to="//@modules.0/@rootState/@containedStates.13" name="t71"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.2" name="t9"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.9" to="//@modules.0/@rootState/@containedStates.7" name="t72"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.9" name="t8"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.3" name="t73"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.1" name="t74"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.0" name="t75"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.2" to="//@modules.0/@rootState/@containedStates.8" name="t76"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.0" name="t59"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.1" name="t58"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.3" name="t57"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.13" name="t56"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.9" name="t19"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.2" name="t55"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.5" name="t17"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.10" name="t18"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.7" name="t15"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.6" name="t16"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.0" name="t13"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.8" name="t14"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.12" name="t11"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.3" name="t12"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.13" name="t21"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.1" to="//@modules.0/@rootState/@containedStates.2" name="t20"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.10" to="//@modules.0/@rootState/@containedStates.3" name="t64"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.10" to="//@modules.0/@rootState/@containedStates.1" name="t65"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.9" name="t62"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.13" name="t63"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.8" name="t60"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.5" to="//@modules.0/@rootState/@containedStates.7" name="t61"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.0" name="t49"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.1" name="t48"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.13" name="t45"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.11" to="//@modules.0/@rootState/@containedStates.7" name="t93"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.9" name="t44"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.11" to="//@modules.0/@rootState/@containedStates.8" name="t92"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.3" name="t47"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.11" to="//@modules.0/@rootState/@containedStates.0" name="t91"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.7" to="//@modules.0/@rootState/@containedStates.11" name="t46"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.11" to="//@modules.0/@rootState/@containedStates.1" name="t90"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.3" to="//@modules.0/@rootState/@containedStates.13" name="t10"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.7" name="t51"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.5" name="t52"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.10" name="t53"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.9" name="t54"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.14" to="//@modules.0/@rootState/@containedStates.7" name="t88"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.11" to="//@modules.0/@rootState/@containedStates.3" name="t89"/>
+    <transitions from="//@modules.0/@rootState/@containedStates.6" to="//@modules.0/@rootState/@containedStates.8" name="t50"/>
+  </modules>
+</ch.cern.en.ice.plcspec:System>

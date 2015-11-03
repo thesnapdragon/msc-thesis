@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ch.cern.en.ice.plcspec:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ch.cern.en.ice.plcspec="http://cern.ch/enice/plcspec/1.0" xmi:id="_8ywk0IDEEeWo3OwRiQ60-Q">
+  <modules xsi:type="ch.cern.en.ice.plcspec:StatemachineModule" xmi:id="_8ywk0YDEEeWo3OwRiQ60-Q" name="ScalabilityTest">
+    <definedVariables xmi:id="_8ywk0oDEEeWo3OwRiQ60-Q" name="output" definingExpression="_8ywk1YDEEeWo3OwRiQ60-Q">
+      <defaultValue xmi:id="_8ywk04DEEeWo3OwRiQ60-Q" value="0"/>
+      <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_8ywk1IDEEeWo3OwRiQ60-Q"/>
+    </definedVariables>
+    <O_outputDefinitions xmi:id="_8ywk1YDEEeWo3OwRiQ60-Q" variable="_8ywk0oDEEeWo3OwRiQ60-Q">
+      <expression xsi:type="ch.cern.en.ice.plcspec:SwitchCaseTable" xmi:id="_8ywk1oDEEeWo3OwRiQ60-Q">
+        <rows xmi:id="_8ywk14DEEeWo3OwRiQ60-Q">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_8ywk54DEEeWo3OwRiQ60-Q"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="0">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_8ywk24DEEeWo3OwRiQ60-Q"/>
+          </value>
+        </rows>
+        <rows xmi:id="_8ywk3IDEEeWo3OwRiQ60-Q">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_8ywk6IDEEeWo3OwRiQ60-Q"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="1">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_8ywk4IDEEeWo3OwRiQ60-Q"/>
+          </value>
+        </rows>
+        <rows xmi:id="_8ywk4YDEEeWo3OwRiQ60-Q">
+          <condition>
+            <arguments xsi:type="ch.cern.en.ice.plcspec:InState" state="_8ywk6YDEEeWo3OwRiQ60-Q"/>
+          </condition>
+          <value xsi:type="ch.cern.en.ice.plcspec:Constant" value="2">
+            <type xsi:type="ch.cern.en.ice.plcspec:PrimitiveType" xmi:id="_8ywk5YDEEeWo3OwRiQ60-Q"/>
+          </value>
+        </rows>
+      </expression>
+    </O_outputDefinitions>
+    <rootState xmi:id="_8ywk5oDEEeWo3OwRiQ60-Q">
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_8ywk54DEEeWo3OwRiQ60-Q" name="End" inTransitions="_8ywk64DEEeWo3OwRiQ60-Q"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_8ywk6IDEEeWo3OwRiQ60-Q" name="s2" outTransitions="_8ywk7IDEEeWo3OwRiQ60-Q" inTransitions="_8ywk7YDEEeWo3OwRiQ60-Q"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_8ywk6YDEEeWo3OwRiQ60-Q" name="s1" outTransitions="_8ywk64DEEeWo3OwRiQ60-Q" inTransitions="_8ywk7IDEEeWo3OwRiQ60-Q"/>
+      <containedStates xsi:type="ch.cern.en.ice.plcspec:BasicState" xmi:id="_8ywk6oDEEeWo3OwRiQ60-Q" name="Initial" outTransitions="_8ywk7YDEEeWo3OwRiQ60-Q"/>
+    </rootState>
+    <transitions xmi:id="_8ywk64DEEeWo3OwRiQ60-Q" from="_8ywk6YDEEeWo3OwRiQ60-Q" to="_8ywk54DEEeWo3OwRiQ60-Q" name="t2"/>
+    <transitions xmi:id="_8ywk7IDEEeWo3OwRiQ60-Q" from="_8ywk6IDEEeWo3OwRiQ60-Q" to="_8ywk6YDEEeWo3OwRiQ60-Q" name="t1"/>
+    <transitions xmi:id="_8ywk7YDEEeWo3OwRiQ60-Q" from="_8ywk6oDEEeWo3OwRiQ60-Q" to="_8ywk6IDEEeWo3OwRiQ60-Q" name="t0"/>
+  </modules>
+</ch.cern.en.ice.plcspec:System>
