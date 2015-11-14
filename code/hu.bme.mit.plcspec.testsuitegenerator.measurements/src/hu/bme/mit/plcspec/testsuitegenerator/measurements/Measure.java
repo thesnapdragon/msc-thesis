@@ -20,16 +20,25 @@ public class Measure {
                 System.out.flush();
             }
         };
-        String[] files = {"statecoverage1.als", "statecoverage2.als", "transitioncoverage1.als", "transitioncoverage2.als"};
-        int[] symmetries = {0, 20};
-        int[] skolemDepths = {0, 4};
+        String[] files = {
+        		"statecoverage_t02.als", "statecoverage_t03.als", "statecoverage_t04.als",
+        		"statecoverage_t05.als", "statecoverage_t06.als", "statecoverage_t07.als",
+        		"statecoverage_t08.als", "statecoverage_t09.als", "statecoverage_t10.als",
+        		"statecoverage_t11.als", "statecoverage_t12.als", "statecoverage_t13.als",
+        		"statecoverage_t14.als", "statecoverage_t15.als", "statecoverage_t16.als",
+        		"statecoverage_t17.als", "statecoverage_t18.als", "statecoverage_t19.als",
+        		"statecoverage_t20.als", "statecoverage_t21.als", "statecoverage_t22.als",
+        		"statecoverage_t23.als", "statecoverage_t24.als", "statecoverage_t25.als"
+        };
+        int[] symmetries = {0};
+        int[] skolemDepths = {4};
         
         for(String file : files) {
         	System.out.println(file);
         	for(int skolemDepth : skolemDepths) {
-        		System.out.println(skolemDepth);
+//        		System.out.println(skolemDepth);
 	        	for(int symmetry : symmetries) {
-	        		System.out.println(symmetry);
+//	        		System.out.println(symmetry);
 			        File alloyFile = new File("resources/" + file);
 					Module world = null;
 					try {
@@ -41,19 +50,19 @@ public class Measure {
 			        Command cmd = world.getAllCommands().get(0);
 					A4Options opt = new A4Options();
 					opt.originalFilename = alloyFile.getAbsolutePath();
-					opt.symmetry = symmetry;
-					opt.skolemDepth = skolemDepth;
-					for(int i = 0; i < 1; i++) {
+//					opt.symmetry = symmetry;
+//					opt.skolemDepth = skolemDepth;
+					for(int i = 0; i < 10; i++) {
 						HashMap<String, Long> results = new HashMap<String, Long>();
-						for (SatSolver solver : A4Options.SatSolver.values()) {
-							opt.solver = solver;
+//						for (SatSolver solver : A4Options.SatSolver.values()) {
+							opt.solver = A4Options.SatSolver.GlucoseJNI;
 							try {
-								results.put(solver.id(), measure(rep, world, cmd, opt));
+								results.put(opt.solver.id(), measure(rep, world, cmd, opt));
 							} catch (Err e) {
 								// TODO Auto-generated catch block
 				//				e.printStackTrace();
 							}
-						}
+//						}
 						System.out.println(results);
 					}
 	        	}
