@@ -1,0 +1,91 @@
+\documentclass[11pt,a4paper,oneside]{report}             % Single-side
+%\documentclass[11pt,a4paper,twoside,openright]{report}  % Duplex
+
+\input{include/packages}
+
+%--------------------------------------------------------------------------------------
+% Language configuration
+%--------------------------------------------------------------------------------------
+\input{include/thesis-en} % Settings for English documents
+
+
+%--------------------------------------------------------------------------------------
+% Main variables
+%--------------------------------------------------------------------------------------
+\newcommand{\vikszerzo}{Unicsovics Milán György} % Szerző neve
+\newcommand{\vikkonzulensA}{Dr. Micskei Zoltán} % Első konzulens neve
+\newcommand{\vikkonzulensB}{} % Második konzulens neve; hagyd üresen, ha egy konzulensed van.
+\newcommand{\vikcim}{Test generation based on state machine models} % Cím
+\newcommand{\viktanszek}{\bmemit} % Tanszék
+\newcommand{\vikdoktipus}{\msc} % Dokumentum típusa
+
+\input{include/preamble.tex}
+
+%--------------------------------------------------------------------------------------
+% Table of contents and the main text
+%--------------------------------------------------------------------------------------
+\begin{document}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\selectlanguage{english}
+	\input{include/titlepage}		% Diploma
+
+% Table of Contents
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\pagenumbering{gobble}
+	\onehalfspacing
+	\tableofcontents\newpage
+
+
+% Declaration and Abstract
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	% Hallgatói nyilatkozat
+	\input{include/declaration}
+	%TODO Összefoglaló
+	\input{content/abstract}
+	\clearpage\pagenumbering{arabic}
+
+
+% The main part of the thesis
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	%TODO Bevezetés
+	\input{content/introduction}
+	%TODO Modell alapú tesztelés
+	\input{content/mbt}
+	%TODO Kapcsolódó munkák
+	\input{content/relatedwork}
+	%TODO Tervezés
+	\input{content/design}
+	%TODO Implementáció
+	\input{content/implementation}
+	%TODO Skálázás és mérések
+	\input{content/measurements}
+	%TODO Értékelés és továbbfejlesztési lehetőségek
+	\input{content/summary}
+
+
+% List of Figures, Tables
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\listoffigures\addcontentsline{toc}{chapter}{\abrakjegyzeke}
+	\pagenumbering{roman}
+	\setcounter{page}{\value{romanPage}}
+	\listoftables\addcontentsline{toc}{chapter}{\tablazatokjegyzeke}
+
+
+% Bibliography
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	\addcontentsline{toc}{chapter}{\irodalomjegyzek}
+	\nocite{*}
+	\bibliographystyle{plain}
+	\bibliography{/home/chef/Egyetem/Onlab1/msc-thesis/doc/dipterv2/bib/unicsovicsmilangyorgy_jzk4.bib}
+
+
+% Appendix
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\input{content/appendices}
+
+\label{page:last}
+\end{document}

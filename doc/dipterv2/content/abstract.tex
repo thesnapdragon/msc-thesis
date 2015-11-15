@@ -1,0 +1,38 @@
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\selectlanguage{magyar}
+\hungarianParagraph
+
+
+%----------------------------------------------------------------------------
+% Abstract in Hungarian
+%----------------------------------------------------------------------------
+\chapter*{Kivonat}\addcontentsline{toc}{chapter}{Kivonat}
+\label{cha:kivonat}
+
+...
+
+\vfill
+\selectlanguage{english}
+\englishParagraph
+
+% chapter kivonat (end)
+
+%----------------------------------------------------------------------------
+% Abstract in English
+%----------------------------------------------------------------------------
+\chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}
+\label{cha:abstract}
+
+...
+
+\vfill
+\dolgozatnyelve
+\defaultParagraph
+
+\newcounter{romanPage}
+\setcounter{romanPage}{\value{page}}
+\stepcounter{romanPage}
+
+% chapter abstract (end)

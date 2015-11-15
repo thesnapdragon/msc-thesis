@@ -1,0 +1,34 @@
+%----------------------------------------------------------------------------
+\chapter*{Introduction}\addcontentsline{toc}{chapter}{Introduction}
+\label{cha:introduction}
+%----------------------------------------------------------------------------
+
+\section*{Problem and thesis statement}
+\label{sec:problem}
+
+Software testing is important part of any software development process, because it is one one of the most popular verification technique. The main goal of software testing is fault detection, where we compare the software's intended and actual behaviour to make sure there are not any difference between those, regarding the requirements.
+
+These methods are usually very time and resource consuming activities. The process is often undocumented, unrepeatable and unstructured, that's why creating tests limited by the ingenuity of the single developer. Furthermore the traditional test cases are static and hard to update, but the software under test is dynamically evolving. One other problem of the handcrafted test is, that they suffer from "pesticide paradox". The test are getting less effective during the testing process, because the tester writes them with the same method for mostly solved problems.
+
+Model-based testing substitutes the traditional ad-hoc software testing methods, which relies on behaviour models that describe the intended behaviour of the system and its environment. The subtasks of model-based testing are automatable, and set of test cases can be generated automatically from models and then executed on the tested software. The most difficult part of this process is the test case generation, which was solved many different ways in the last decade.
+
+My research aims to create a new automated testing framework for software, based on state machine models. To do that, first I have to investigate the available solutions and techniques and related work. After summarising the conclusions, they can be used to design and implement a framework, that is able to generate test cases for softwares, modelled with state machines, which supports the most feasible state machine features regarding the UML semantics.
+
+The tasks of my framework consists of creating the model of a given software, selecting test cases with a specific algorithm and formalising those generated test cases. So the resulted test cases can be used to run on software and verify its behaviour.
+
+% section problem (end)
+
+\section*{Proposed approach}
+\label{sec:proposedapproach}
+
+First of all related work has to be examined. Similar solutions are available in the field of model-based testing, but the number of these solutions are limited. The basic problem has been solved many times, but many of the solutions are not matured enough to be a perfect answer for testing real life softwares and do not support difficult structures.
+
+The experiences from the previous research serve as a good starting point for the design of the framework. The most crucial questions to create this framework are the modelling language that is used to represent the abstract structure of the given software and the test generation algorithm. The model has to have formal, hierarchically structured modular, extensible metamodel, which can be transformed easily to an UML like metamodel. This is important, because we want to support test generation from state machines, which have an UML state machine like semantic. Supporting guards, actions and events natively in the model is also required. The used algorithm defines also the functional and non-functional properties of the resulted framework. 
+
+At the implementation phase that is necessary to choose tools, which are easy to integrate. The best option for such an application is the Java ecosystem and the related tools, more accurately the Eclipse toolchain.
+
+Scaling can be a big problem at test generation, that's why it is important to pay attention to this topic. The usage of variables at the model increases the state space, while the speed decreases. Maybe this could be a bottleneck, so monitoring and other measurements need to be applied to achieve the previously defined goals.
+
+% section proposedapproach (end)
+
+% chapter introduction (end)
