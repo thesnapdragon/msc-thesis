@@ -3,7 +3,7 @@
 \label{cha:measurements}
 %----------------------------------------------------------------------------
 
-After each implementation iteration I measured the performance of the created framework, and continued the development using the results of these measurements. As we saw previously the heart of the framework is the SAT solver, which is also the most time consuming part of the system. So the best way to improve the speed of the execution is to improve the underlying Alloy program.
+After each implementation iteration I measured the performance of the created framework, and continued the development using the results of these measurements. As we previously saw the heart of the framework is the SAT solver, which is also the most time consuming part of the system. So the best way to improve the speed of the execution is to improve the underlying Alloy program.
 
 I created a testing tool to measure the execution of the different Alloy programs. This testing tool can be configured to compare the execution of different Alloy programs, with different execution strategy. The execution strategy can mean different SAT solvers, and other solver configurations as well. As an input for this testing tool I designed an example FSM, that represents a simplified stopwatch behaviour (Figure~\ref{fig:measurements_stopwatch}). This FSM is ideal for testing purposes, because on the test suite of this stopwatch full state and transition coverage can be achieved and therefore both of the implemented algorithms can be tested.
 
@@ -13,6 +13,8 @@ I created a testing tool to measure the execution of the different Alloy program
 \caption{Stopwatch FSM for testing}
 \label{fig:measurements_stopwatch}
 \end{figure}
+
+The tests has been running on the following configuration (see the specification in Table~\ref{tab:hardwarespecification}).
 
 \begin{table}[htb]
 \begin{center}
@@ -28,12 +30,22 @@ I created a testing tool to measure the execution of the different Alloy program
 \caption{\label{tab:hardwarespecification} Measurement architecture}
 \end{table}
 
+\section{Alloy settings}
+\label{sec:alloysettings}
+
+During the first measurement I experimented with the available solvers supported by Alloy and their solver specific configurations. 
+
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.5]{figures/measurements_alloy_settings}
 \caption{Adjusting Alloy settings}
 \label{fig:measurements_alloy_settings}
 \end{figure}
+
+% section alloysettings (end)
+
+\section{Optimalizations}
+\label{sec:optimalizations}
 
 \begin{figure}[htp]
 \centering
@@ -42,11 +54,18 @@ I created a testing tool to measure the execution of the different Alloy program
 \label{fig:measurements_optimalizations}
 \end{figure}
 
+% section optimalizations (end)
+
+\section{Scalability}
+\label{sec:scalability}
+
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.5]{figures/measurements_scalability}
 \caption{Scalability results}
 \label{fig:measurements_scalability}
 \end{figure}
+
+% section scalability (end)
 
 % chapter measurements (end)
