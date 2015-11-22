@@ -41,7 +41,7 @@ Utting, Pretschner and Legeard investigated the currently available MBT solution
 	
 	\item[Model characteristics] The SUT assigns the main characteristics of the model. It depends on the SUT's timing properties (\textit{timed} / \textit{untimed}), determinism (\textit{deterministic} / \textit{non-deterministic}) and dynamics (\textit{discrete} / \textit{continuous} / \textit{hybrid}).
 	
-	\item[Model paradigm] The third dimension is the paradigm that is used to describe the model. \textit{State-based notation} means, that set of variables defines the model, which represents the internal state of the system and there are some operations that modify those variables. Usually these operations given by preconditions and postconditions. By \textit{transition-based notation} the model focuses on the transition between the state of the system. Finite state machines are examples of this paradigm. \textit{History-based notations} model the allowable traces of its behaviour over time. By \textit{functional notation} collection of mathematical functions model the system. \textit{Operational notations} describe the model as a set of executable processes running parallel. \textit{Stochastic notations} describe the model by a probabilistic model, so it is rather suitable to model the environment than the SUT itself. The last paradigm is the \textit{data-flow notation}, where the main concept is the concentration to the data, rather than the control flow.
+	\item[Model paradigm] The third dimension is the paradigm that is used to describe the model. \textit{State-based notation} means, that set of variables defines the model, which represents the internal state of the system and there are some operations that modify those variables. Usually these operations given by preconditions and postconditions. By \textit{transition-based notation} the model focuses on the transition between the state of the system. Finite state machines are examples of this paradigm. \textit{History-based notations} model the allowable traces of its behaviour over time. By \textit{functional notation} collection of mathematical functions model the system. \textit{Operational notations} describe the model as a set of executable processes running parallel. Petri nets are good forms of this notation. \textit{Stochastic notations} describe the model by a probabilistic model, so it is rather suitable to model the environment than the SUT itself. An example can be the Markov chains for this type of model paradigm. The last paradigm is the \textit{data-flow notation}, where the main concept is the concentration to the data, rather than the control flow, example can be the often used Matlab Simulink model.
 	
 	\item[Test selection criteria] Test selection criteria control the test case generation. \textit{Structural model coverage criteria} aim to cover a part of the model, for example nodes and arcs of the transition-based model. The nodes of such a model represent the states of the system, and the arcs represent the transitions respectively. The basic idea of \textit{data coverage criteria} is to split the data space to equivalence classes and choose values from them. \textit{Requirements based coverage criteria} are linked to the informal requirements of the SUT and it applies the coverage to the requirements. \textit{Ad-hoc test case specifications} guides by the test case specifications. \textit{Random and Stochastic criteria} are useful rather to model the environment and applicable to use with a stochastic model. \textit{Fault-based criteria} can be very efficient, because it concentrates to error finding in the SUT.
 	
@@ -60,7 +60,62 @@ Utting, Pretschner and Legeard investigated the currently available MBT solution
 \subsection{Modelling}
 \label{sub:modelling}
 
-The first step of the model based testing process is to create a suitable model, from which a test suite can be generated.
+The first step of the model based testing process is to create a suitable model, from which a test suite can be generated. As we earlier saw by the taxonomy section \cite{sec:taxonomy}, all the identified model paradigms used in model based testing belong to some kind of behaviour modelling notation. This is not a surprise, because a data or functional model can not be utilised so effectively by software testing. Each model paradigm concentrates on a different aspect of the behaviour.
+
+There is a plethora of technologies for modelling behaviour, and one of the most frequently used are the extended finite state machine (EFSM) and all of its variations. These variations mostly use transition based notation, but they can combine it with other modelling paradigms as well.
+
+\subsubsection{Extended finite state machines}
+\label{ssub:efsm}
+
+As EFSMs or at least their variations serve as basic modelling notation for the most available model based testing tools, we have to investigate them properly.
+
+A \textit{finite state machine} is a 6-tuple $\langle S, I, A, R, \Delta, T\rangle$, where
+\begin{align*}
+& S: \text{set of finite states},\\
+& I \subset S: \text{set of initial states},\\
+& A: \text{finite alphabet of input symbols},\\
+& R: \text{set of possible outputs},\\
+& \Delta \subset S \times A: \text{set of possible input relations},\\
+& T: \text{is a transition relation function}\ f: \Delta \rightarrow S \times R
+\end{align*}
+
+The semantic of this model is the following. When $T(s, a) = (s', r)$, the state machine is receiving an input $a \in A$, when in state $s \in S$, assuming $(s,a) \in \Delta$, then the system moves to the new state $s' \in S$, and outputs $r \in R$. A possible $(s'', a') \notin \Delta$ is interpreted as an input symbol, that is not allowed in that state.
+
+An \textit{extended finite state machine} differs from a simple finite state machine in terms of the states defined differently. The states of an extended state machine has the form $S = D_0 \times D_1 \times \dots D_n$, where $D_0$ is the set of control states, and $D_{i=1}^n$ is the domain of state variables $x_i$, that are assigned to each states.
+
+% subsubsection efsm (end)
+
+\subsubsection{UML state machines}
+\label{ssub:umlstatemachine}
+
+UML state machines or UML state charts are improved versions of the mathematical concept of finite state machines expressed with the OMG's Unified Modeling Language. The original state machine model suffer greatly by the state and transition explosion problem, because the complexity of these models tend to grow faster as the modelled system. UML state machines solved this problem by eliminating the common parts of these system and sharing the common behaviour across the states.
+
+The behind idea behind the notation is, that an entity or each of its sub-entities is always in exactly one of the possible states and there are well-defined conditional transitions between these states. There are two kinds of state machine, which can be used to define behaviour of model elements or describe protocol usage.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.6]{figures/statemachine_metamodel}
+\caption{Metamodel of UML state machine}
+\label{fig:statemachine_metamodel}
+\end{figure}
+
+UML state machines are similar to traditional state machines, but they also have differences. For example UML state charts introduce new features over traditional finite machines such as hierarchically nested regions, orthogonal regions, entry/exit actions, internal transitions and transition execution sequences. The main concepts of this notation are discussed separately.
+
+\begin{description}
+	\item[States] are the phases of the system's history. For example if the history can be separated into two phases, then there are two states. 
+	\item[Extended states] represents the complete condition of the system. This interpretation means usually states extended with system variables.
+	\item[Transitions] happens when a state switched to another.
+	\item[Actions] executed when an event dispatched and the system responds by performing them.
+	\item[Events] can be everything, that affects the system, and causes state change.
+	\item[Guards] are boolean expressions described with extended state variables and event parameters. They can affect the system's behaviour by enabling or disabling transitions.
+	\item[Hierarchically nested regions] means that if a system is in a substate then it is also in the same time in all the substate's superstates.
+	\item[Orthogonal regions] are regions, which are in 'OR' relation.
+	\item[Entry/exit actions] are actions which are dispatched upon entry to a state or exit from it.
+	\item[Internal transitions] does not cause state transitions, but only some internal actions to execute and the actual state stays the same.
+	\item[Transition execution sequence] describes an execution sequence of actions to do upon event dispatching. First the guard of the transition evaluates. Then the exit actions of the source state configuration will be executed. Then come the actions associated with the transition. Finally the entry actions of the target state configuration will be executed.
+\end{description}
+
+% subsubsection umlstatemachine (end)
 
 % subsection modelling (end)
 
