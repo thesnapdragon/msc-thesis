@@ -115,7 +115,15 @@ After investigating five widely used MBT tools, we can draw some consequences. F
 \end{table}
 
 \begin{itemize}
-	\item The tools implement different coverage criteria, but even the most useful state and transition coverage are not fully supported by each of the tools. More difficult criteria are avoided, for example transition pair, sneak path, all path and scenario coverage.
+	\item Creators of these tools either try to use an UML like model or FSM (EFSM). FSM models are low level representations of the SUT, so implementing search based algorithms and graph traversal algorithms are relatively easy.
+	
+	When engineers choose to use model with UML with graph intermediate model, they can not support complex UML state chart elements, such as orthogonal regions, because these features are hard to integrate into a graph representation.
+	\item The intermediate model is just always some kind of graph representations, because the test case generation algorithms are the easiest to implement using graph models (search based test case generation, coverage criteria).
+	\item Scaffolding solutions of the tools are incomplete. Fully automatic generation of test adaptors, oracles are seldom supported. These features make the testing tool more useful, because they accelerate the testing process.
+	\item Regression tests are not supported. When an actual error is found, then the SUT should be tested against the generated test suite and this process should be supported by the testing tool.
+	\item Only a few tools have an integrated solution to create models. Handling models correctly is an essential feature of model based testing tools, because an integrated model editor improves the testing process greatly. Testing is an iterative process, so contextual switching between model editor and testing tool results an overhead.
+	\item Input models are not verified. Model based testing the same as other testing methods can only find discrepancies regarding their source. If the test model is not correct, then the tests will be ineffective. That's why that is also important to verify the input model, and to help the testing process it can be built into the testing framework.
+	\item The tools implement different coverage criteria, but even the most general state and transition coverage are not fully supported by each of the tools. More difficult criteria are avoided, for example transition pair, sneak path, all path and scenario coverage.
 	
 	Transition pair coverage may be avoided because the few added value compared to a full transition coverage. Another reason can be, that depending on the actual model and test case generation algorithm this criterion can be hard to implement properly.
 	
@@ -124,14 +132,6 @@ After investigating five widely used MBT tools, we can draw some consequences. F
 	Usage of scenario coverage results reasonable smaller test suite, then the other test selection criteria, but a transition coverage may replace this criterion.
 	\item Script-flow criteria are rarely used techniques. Only a few of them supports guards, but even those do not report on their coverage. Simple criteria as model flow criteria are not so effective at finding faults, whereas complex criteria like script flow criteria help find different kind of faults. On the other hand complex criteria are also significantly expensive in terms of theoretical complexity.
 	\item Requirement traceability are ignored by just all the available tools. This feature make the tools more useful, but does not effect the ability to find more errors. Tracing requirements is rather used by software validation.
-	\item Scaffolding solutions of the tools are incomplete. Fully automatic generation of test adaptors, oracles are seldom supported. These features make the testing tool more useful, because they accelerate the testing process.
-	\item Regression tests are not supported. When an actual error is found, then the SUT should be tested against the generated test suite and this process should be supported by the testing tool.
-	\item Creators of these tools either try to use an UML like model or FSM (EFSM). FSM models are low level representations of the SUT, so implementing search based algorithms and graph traversal algorithms are relatively easy.
-	
-	When engineers choose to use model with UML with graph intermediate model, they can not support complex UML state chart elements, such as orthogonal regions, because these features are hard to integrate into a graph representation.
-	\item The intermediate model is just always some kind of graph representations, because the test case generation algorithms are the easiest to implement using graph models (search based test case generation, coverage criteria).
-	\item Only a few tools have an integrated solution to create models. Handling models correctly is an essential feature of model based testing tools, because an integrated model editor improves the testing process greatly. Testing is an iterative process, so contextual switching between model editor and testing tool results an overhead.
-	\item Input models are not verified. Model based testing the same as other testing methods can only find discrepancies regarding their source. If the test model is not correct, then the tests will be ineffective. That's why that is also important to verify the input model, and to help the testing process it can be built into the testing framework.
 \end{itemize}
 
 % section conclusions (end)
