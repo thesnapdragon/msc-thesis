@@ -145,3 +145,9 @@
 # 2015.11.23.
 
 * Alloy faq: http://alloy.mit.edu/alloy/faq.html
+
+# 2015.11.27.
+
+* http://www.vogella.com/tutorials/EclipseEMF/article.html
+* http://stackoverflow.com/questions/5516906/why-should-i-use-emf
+* https://en.wikipedia.org/wiki/Eclipse_Modeling_Framework
