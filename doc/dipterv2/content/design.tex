@@ -19,8 +19,8 @@ For these issues noted above I think a solution can be the Eclipse Modeling Fram
 
 EMF models are easy to use, extendable models, that have an UML like syntax.  These models are customisable for the actual needs, and suitable meta-model can be built with the help of the EMF platform. PLCspecif is complete solution that has exactly these previously defined features.
 
-\section{PLCspecif}
-\label{sec:plcspecif}
+\subsection{PLCspecif}
+\label{sub:plcspecif}
 
 PLCspecif is a modelling language intended to be a formal, modular, hierarchical behaviour specification method for describing PLC programs. It was created as part of a doctoral programme by Dániel Darvas of the Budapest University of Technology and Economics (BUTE) and the European Organization for Nuclear Research (CERN).
 
@@ -84,7 +84,7 @@ We can see, that PLCspecif has some advantage over traditional UML modelling lan
 	\item UML language has only an informally given semantics, while PLCspecif has a complete formal behaviour specification.
 \end{itemize}
 
-% section plcspecif (end)
+% subsection plcspecif (end)
 
 \item The next step of model based testing is the test planning.
 
@@ -93,18 +93,39 @@ The scope of a generated test suite is always is referred to the corresponding s
 Another important question to discuss is the specification of chosen test selection criteria. We saw at the conclusions of the investigation of related works (Chapter~\cite{cha:relatedwork}), that even the most general and simplest criteria are not fully supported by all the available tools. They either implement complex criteria with a less useful, simple model, or they work with an expressive model and do not support the criteria completely.
 
 At this point I tried to find a golden mean between the different approaches. I chose to implement the basic structural model coverage criteria (full state and transition coverage) on a model with moderate level of expressiveness. Formalisation of this criteria is mostly trivial and left to the implementation chapter (\cite{cha:implementation}).
-\item ... % TODO: test case generation
 
-\section{Alloy}
-\label{sec:alloy}
+\item The third step is the test case generation. After examining the available tools we saw, that generally simple test case generation algorithms work fine on simple SUT representations, but as we increase the level of expressiveness so gets also the execution more slower. To generate test suites from complex models we need something more powerful.
 
-Alloy is a formal modelling language to define structures. Alloy can be utilised with a tool, called Alloy Analyzer to automate the verification process. The tool transforms problems into SAT formulas to solve them. The solver was inspired by model checkers, but it is implemented as a constraint solver, performing verification within a bounded scope.
+Traditional MBT test generation technologies involve model checking, deductive theorem proving and constraint solving. These methods all embed and utilise some powerful mechanism to generate test cases using complex criteria and models. To get the most of these methods usually an intermediate model is used, that maps the original test model to an applicable form and can be executed by e.g. a model checker. That's why our test model should be easily transformable to the intermediate model's notation.
 
-The strength of this tool allows us to define our test generation goals with the Alloy language to generate the test cases. The test cases need to guarantee state-based and transition-based coverages.
+\subsection{Alloy}
+\label{sub:alloy}
 
-% section alloy (end)
+Alloy is a formal modelling language based on first-order logic to define structures, complex structural constraints and behaviour. Alloy can be utilised with a tool, called Alloy Analyzer to automate the verification process.
 
-\item ... % TODO: test execution
+The language has been developed on MIT and the first prototype was finished in 1997 in the form of a limited object modelling language. Later the features, performance and scalability have been improved.
+
+Alloy is a declarative language, so that it describes the behaviour without giving the precise execution mechanism. The language was influenced by the Z notation, which is a formal specification language used describing and modelling computer programs and systems. In contrary of Z, Alloy was designed for automatic analysis.
+
+OCL (Object Constraint Language) with UML are often used by MBT tools for expressing SUT behaviour. UML semantics can be imitated by an Alloy model, but Alloy can do even more. As OCL similar to Alloy, but the latter has a more conventional syntax and simpler semantics. So Alloy can combine the features of the two OMG standards and can serve as the input model of a model based testing tool.
+
+Alloy Analyzer transforms problems into SAT formulas to solve them. The solver was inspired by model checkers, but it is implemented as a constraint solver, performing verification within a bounded scope. In constraint programming relations between variables are noted in the form of constraints, that will be solved by giving a value to each variable so that the solution is consistent. If the constraints are inconsistent, then the problem is said to be unsatisfiable.
+
+Alloy version 4 ships in the form of a self-contained JAR file, which includes a variety of supported SAT solver, the standard Alloy library, tutorial examples and an extensive API, that's why it is easy to incorporate into a custom solution.
+
+To summarise the statements above, Alloy has the following benefits:
+
+\begin{itemize}
+	\item Alloy are largely compatible with the UML notation. Transforming a model given by any state machine notation should not be a problem.
+	\item Alloy is a declarative modelling language, which has the same advantages as any other declarative language. Using a declarative language often results reusable code, and smaller codebase as the imperative versions.
+	\item Alloy Analyzer has a convenient API, which are easy to integrate in a tool written in Java.
+\end{itemize}
+
+% subsection alloy (end)
+
+\item The last step of the testing process is the test execution. The available MBT tools seems to avoid the support of this step. This is somewhat surprising, because the real theoretical and technical difficulties are solved in the previous steps.
+
+Test scripts, adaptors and oracles can be generated from the prepared test suite and the SUT. EMF code generation facility are a perfect tool to help by this step as well, as by the test case generation.
 
 \end{enumerate}
 
