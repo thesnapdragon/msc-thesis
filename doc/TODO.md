@@ -151,3 +151,7 @@
 * http://www.vogella.com/tutorials/EclipseEMF/article.html
 * http://stackoverflow.com/questions/5516906/why-should-i-use-emf
 * https://en.wikipedia.org/wiki/Eclipse_Modeling_Framework
+* https://eclipse.org/modeling/emf/
+* https://eclipse.org/modeling/transformation.php
+* https://wiki.eclipse.org/Eclipse4/RCP/Architectural_Overview
+* http://aosabook.org/en/eclipse.html
