@@ -3,7 +3,9 @@
 \label{cha:design}
 %----------------------------------------------------------------------------
 
-In this chapter I will present the design phase of a new model based testing framework, that tries to take into consideration of the conclusions of the investigated available testing tools. This framework is need to be complete regarding the whole MBT process, and has to help in all phases of the testing. The different phases will be discussed separately as at the model based testing process specification (Section \cite{sec:process}).
+In this chapter I will present the design phase of a new model based testing framework, that tries to take into consideration the conclusions of the investigated available testing tools. This framework is need to be complete regarding the whole MBT process and has to help in all phases of the testing.
+
+First the different testing phases will be discussed separately as at the model based testing process specification (Section \cite{sec:process}). Later I will describe the high level design of the framework and the used technologies.
 
 \begin{enumerate}
 
@@ -15,7 +17,7 @@ Many tools have an UML like notation, but they either can not fully take advanta
 
 It would be ideal if the test model would express the output of the state machine, because determining the expected output would be trivial by the test generation process. However an UML like semantics and syntax would be easy to adopt by the test engineers, because UML state machines are well known in the industry field and most of its features are easy to use and self-describing. Unfortunately the UML modelling language has lot of implementation and they differ in terms of integrability.
 
-For these issues noted above I think a solution can be the Eclipse Modeling Framework. It is a modelling framework that is built especially for creating tools based on structured models. As the most important advantages of using EMF help with the implementation, it will be discussed in more details in Chapter~{cha:implementation}.
+For these issues noted above I think a solution can be the Eclipse Modeling Framework. It is a modelling framework that is built especially for creating tools based on structured models. The EMF platform will be discussed in more details in Section~{sec:softwaredesign}.
 
 EMF models are easy to use, extendable models, that have an UML like syntax.  These models are customisable for the actual needs, and suitable meta-model can be built with the help of the EMF platform. PLCspecif is complete solution that has exactly these previously defined features.
 
@@ -29,7 +31,7 @@ The abstract syntax of the PLCspecif formalism was designed as an EMF metamodel,
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.4]{figures/plchsm_modules}
-\caption{Module structure of PLCspecif}
+\caption{Module structure of PLCspecif \cite{plcspecif}}
 \label{fig:plchsm_modules}
 \end{figure}
 
@@ -49,7 +51,7 @@ From these module types we are interested especially in the state machine notati
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.5]{figures/plchsm_statemachine}
-\caption{Structure of \texttt{StatemachineModule}}
+\caption{Structure of \texttt{StatemachineModule} \cite{plcspecif}}
 \label{fig:plchsm_statemachine}
 \end{figure}
 
@@ -70,7 +72,7 @@ Beside these differences PLCspecif has a bigger difference, which can improve th
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.5]{figures/plchsm_variables}
-\caption{Variables in PLCspecif}
+\caption{Variables in PLCspecif \cite{plcspecif}}
 \label{fig:plchsm_variables}
 \end{figure}
 
@@ -125,8 +127,51 @@ To summarise the statements above, Alloy has the following benefits:
 
 \item The last step of the testing process is the test execution. The available MBT tools seems to avoid the support of this step. This is somewhat surprising, because the real theoretical and technical difficulties are solved in the previous steps.
 
-Test scripts, adaptors and oracles can be generated from the prepared test suite and the SUT. EMF code generation facility are a perfect tool to help by this step as well, as by the test case generation.
+Test scripts, adaptors and oracles can be generated from the prepared test suite and the SUT. EMF code generation facility are a perfect tool to help by this step, as well as by the test case generation.
 
 \end{enumerate}
+
+\section{Software design}
+\label{sec:softwaredesign}
+
+Considering the previously described requirements the testing framework should have the following use cases (see on Figure~\cite{fig:designuc}):
+
+\begin{itemize}
+	\item model creation / editing
+	\item model validation
+	\item test suite generation
+	\item test suite execution
+\end{itemize}
+
+As PLCspecif modelling framework already realised the first two use case, the testing framework can concentrate on the other two use case.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.6]{figures/design_uc.png}
+\caption{Use case diagram of the testing framework}
+\label{fig:designuc}
+\end{figure}
+
+Figure~\cite{fig:designcomponents} shows the main components of the testing framework. PLCspecif is based on the EMF platform, but the testing tool can also benefit from the EMF toolset. The main reason for using EMF is, that it is built especially for this purpose.
+
+\subsection{Eclipse Modelling Framework}
+\label{sub:emf}
+
+Eclipse is an open source integrated development environment, that contains a base workspace and a highly extensible plugin system. The IDE was written mainly in Java, its primary use is for developing Java, C/C++, PHP applications but there are lot of other supported programming language and framework as well.
+
+Eclipse gained its popularity and power at first from its plugin system. In fact everything is a plugin in Eclipse, except a small run time kernel. All feature are developed and integrated in the same way, that's why third party developers are able to join and improve the Eclipse ecosystem. 
+
+Plugins are the base elements of the Eclipse component model. These plugins are in reality equal with OSGi bundles. Essentially OSGi bundles 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{figures/design_components.png}
+\caption{Component diagram of the testing framework}
+\label{fig:designcomponents}
+\end{figure}
+
+% subsection emf (end)
+
+% section softwaredesign (end)
 
 % chapter design (end)
