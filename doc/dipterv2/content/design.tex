@@ -152,16 +152,36 @@ As PLCspecif modelling framework already realised the first two use case, the te
 \label{fig:designuc}
 \end{figure}
 
-Figure~\cite{fig:designcomponents} shows the main components of the testing framework. PLCspecif is based on the EMF platform, but the testing tool can also benefit from the EMF toolset. The main reason for using EMF is, that it is built especially for this purpose.
+Figure~\cite{fig:designcomponents} shows the main components of the testing framework. PLCspecif is based on the EMF platform, but the testing tool can also benefit from the EMF toolset. The required two use case can be realised with two Eclipse plugin. The first plugin will implement the the test suite generation and test execution tooling, the other will be the user interface of the testing tool. Before describing the behaviour and the implementation of the components in depths, the used EMF and the whole Eclipse platform have to be studied.
 
 \subsection{Eclipse Modelling Framework}
 \label{sub:emf}
 
 Eclipse is an open source integrated development environment, that contains a base workspace and a highly extensible plugin system. The IDE was written mainly in Java, its primary use is for developing Java, C/C++, PHP applications but there are lot of other supported programming language and framework as well.
 
-Eclipse gained its popularity and power at first from its plugin system. In fact everything is a plugin in Eclipse, except a small run time kernel. All feature are developed and integrated in the same way, that's why third party developers are able to join and improve the Eclipse ecosystem. 
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{figures/design_eclipse.png}
+\caption{Architecture of the Eclipse platform}
+\label{fig:designeclipse}
+\end{figure}
 
-Plugins are the base elements of the Eclipse component model. These plugins are in reality equal with OSGi bundles. Essentially OSGi bundles 
+The required tools for Java development are provided by the Java Development Tools (JDT), see on Figure~\cite{fig:designeclipse}. JDT includes Java editors, refactoring support, debugger, compiler and an incremental builder, that recompiles only those files, which have changed or their dependencies.
+
+Plug-in Development Environment (PDE) provides tooling to extend the capabilities of Eclipse through plugins. Eclipse gained its popularity and power at first from its plugin system. In fact everything is a plugin in Eclipse, except a small run time kernel. All feature are developed and integrated in the same way as a plugin, that's why third party developers are able to join and improve the Eclipse ecosystem.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{figures/design_osgi.png}
+\caption{Lifecycle of OSGi bundles (Eclipse plugins)}
+\label{fig:designosgi}
+\end{figure}
+
+Plugins are the base elements of the Eclipse component model. These plugins are in reality equal with OSGi bundles. OSGi is a modular system and service platforms, that implements a dynamic component model. The OSGi framework manages the bundles and their class loading, and provides a dynamic, runtime lifecycle management.
+
+OSGi support runtime installation, starting, updating, stopping and uninstallation of the bundles (Figure~\cite{fig:designosgi}). When an application is started, bundles are in installed state. If all dependencies are met, then it changes to resolved state. Once a bundle is resolved, it can be started. Finally it becomes active and is able to interact with other bundles.
+
+Essentially the OSGi bundles are JAR files with a manifest, that describes the dependencies of the bundle. The only difference is between bundles and plugins, that plugins have a \texttt{plugin.xml} file in their root directory, which contains metadata about the plugin. This plugin manifest provides an other way to extend the features of a particular plugin, called extensions and extension points.
 
 \begin{figure}[htp]
 \centering
@@ -169,6 +189,22 @@ Plugins are the base elements of the Eclipse component model. These plugins are 
 \caption{Component diagram of the testing framework}
 \label{fig:designcomponents}
 \end{figure}
+
+Extension points are considered public API, that other developers can use to build their own extension. Figure~\cite{fig:designcomponents} illustrates the components of the testing framework and which extension points they use to communicate with the Eclipse SDK. For example the test suite generator UI uses the \texttt{org.eclipse.ui.popupMenus} extension point to show a new menu item in the generated model editor's context menu.
+
+When Eclipse starts, the platform runtime (Equinox) scans the manifests of the available plugins and builds a plugin registry. These plugins are discovered at the startup, but only activated by the actual usage, this is called \textit{lazy activation}. Lazy activation is enabled by the previously described OSGi platform, which results considerable performance improvements.
+
+Eclipse user interface is built by two other important components of the platform. Eclipse Modeling Framework (EMF) is used to generate a model workbench, that will be rendered into views. Default view renderer uses the Standard Widget Toolkit (SWT) to generate the code of the UI.
+
+EMF is basically a modelling framework and code generation facility for building model based tools. From a created model specification EMF is able to generate model classes, adapters for interacting with the model and a basic model editor.  Models can be specified using annotated Java classes, UML or XMI. XMI (XML Metadata Interchange) is a standard to exchange metadata information and it integrates three OMG standard e.g. UML, XML and MOF (Meta Object Facility, for describing metamodels). EMF consists of three main parts: EMF (Core), EMF.Edit, EMF.Codegen.
+
+EMF is based on a metamodel, called the Ecore metamodel, which can express other models by its components. Ecore is the key to take advantage of the entire EMF ecosystem. Thus Ecore usually used to define a custom metamodel specialised for the actual needs. The core package provides runtime support for models, including change notification, model persistence and an API to manipulate models.
+
+EMF.Edit provides generic reusable classes for building editors for the previously created models.
+
+EMF.Codegen can generate all part of a complete model editor. The first level of code generation is the model generation. This consists of Java interfaces, implementation classes and factories. On second level resides the adapter classes, which adapt the model classes for editing and display. The highest level is the editor, where a basic model editor is generated to start with.
+
+EMF have tools for model transformation as well. There are frameworks, that allows the engineers to use model-to-model and model-to-text transformations. For example ATL supports model-to-model, Acceleo provides ways to transform models into text representations.
 
 % subsection emf (end)
 
