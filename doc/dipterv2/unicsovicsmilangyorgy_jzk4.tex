@@ -71,8 +71,16 @@
 	\listoffigures\addcontentsline{toc}{chapter}{\abrakjegyzeke}
 	\pagenumbering{roman}
 	\setcounter{page}{\value{romanPage}}
-	\listoftables\addcontentsline{toc}{chapter}{\tablazatokjegyzeke}
-	\lstlistoflistings\addcontentsline{toc}{chapter}{\kodreszletekjegyzeke}\cleardoublepage
+	\begin{minipage}[b]{1\linewidth}
+    		\listoftables\addcontentsline{toc}{chapter}{\tablazatokjegyzeke}
+	\end{minipage}
+	\begin{minipage}[b]{1\linewidth}
+    		\lstlistoflistings\addcontentsline{toc}{chapter}{\kodreszletekjegyzeke}
+	\end{minipage}
+	\begin{minipage}[b]{1\linewidth}
+    		\listofalgorithms\addcontentsline{toc}{chapter}{\algoritmusokjegyzeke}
+	\end{minipage}
+	\cleardoublepage
 
 
 % Bibliography
