@@ -144,7 +144,7 @@ When the model is satisfiable and a possible coverage is generated, the solution
 
 Similarly to PLCspecif, this internal notation uses a customised Ecore metamodel to describe its behaviour. Instead of starting with a default Ecore model editor, this metamodel is constructed using annotated Java interfaces. Based on them an Ecore model and a generator model is constructed, which will generate the remaining code.
 
-The Alloy solution parser is based on the \textit{Builder} pattern and uses some model \textit{Factory} classes from EMF.Edit to create the internal model. After building the test suite model, Acceleo transforms automatically this model to text representation including a complete JUnit test suite (see on Listing~\ref{lst:testsuite}) with pure POJO helper classes.
+The Alloy solution parser is based on the \textit{Builder} pattern and uses model \textit{Factory} classes from EMF.Edit to create the internal model. After building the test suite model, Acceleo transforms automatically this model to text representation including a complete JUnit test suite (see on Listing~\ref{lst:testsuite}) with pure POJO helper classes.
 
 \begin{lstlisting}[label={lst:testsuite}, caption=Generated JUnit test suite,breaklines=true]
 package trivialsm;
@@ -171,7 +171,38 @@ public class TrivialSMTest extends TestCase {
 }
 \end{lstlisting}
 
+	\item[4. Test execution] Output of the test generation process consists of three scaffolded helper class (showed on Figure~\ref{fig:implementation_testhelpers}).
+	
+\begin{description}
+	\item[Test suite] is generated as a standard JUnit test fixture (in our example \texttt{TrivialSMTest}). The different test paths are separated into annotated test methods, and a \texttt{setUp} method can be used to initialise the test adapter. Test oracles are generated dynamically in the form of single assertions.
+	\item[Test adapter] scaffolded as a simple POJO class (\texttt{TrivialSMTestAdapter}). This class maps the model transitions to concrete method calls, and also initialisation of the SUT can be done in the adapter's constructor. Method calls wired automatically to concrete SUT's method, using a simple heuristic. If the mapping is not trivial, the adapter's code may not be perfect and needs some adjustment. Here the SUT, named \texttt{TrivialSM} is quite simple, and the adapter does not need any further modification.
+	
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{figures/implementation_testhelpers}
+\caption{Class diagram of the scaffolded test helpers}
+\label{fig:implementation_testhelpers}
+\end{figure}
 
-	\item[4. Test execution]
+	\item[Test script] is a simple JUnit test runner (\texttt{TrivialSMTestRunner}) that reports the result of the testing. It works like the default JUnit test runner, so it reports out the result of the complete test suite execution (Listing~\ref{lst:successfultestsuite}).
+
+\begin{lstlisting}[label={lst:successfultestsuite}, caption=Successful test suite execution output,breaklines=true]
+Finished in 0.005 seconds
+1 examples, 0 failures, 0 ignored
+\end{lstlisting}
+	
+	The test reporter tells the difference between the expected and the actual test outcome, moreover if some discrepancy is found it shows the stack trace of the actual exception (Listing~\ref{lst:failedtestsuite}).
+
+\begin{lstlisting}[label={lst:failedtestsuite}, caption=Failed test suite execution output,breaklines=true]
+Finished in 0.007 seconds
+1 examples, 1 failures, 0 ignored
+Failed examples:
+testPath1(trivialsm.TrivialSMTest)
+junit.framework.AssertionFailedError: expected:<1> but was:<2>
+...
+\end{lstlisting}
+	
+\end{description}
+	
 \end{description}
 % chapter implementation (end)
