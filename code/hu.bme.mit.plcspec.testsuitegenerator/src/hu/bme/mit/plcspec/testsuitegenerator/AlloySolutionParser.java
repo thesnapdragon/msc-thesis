@@ -64,9 +64,11 @@ public class AlloySolutionParser {
 	
 	private HashMap<String, String> parseAssignments(String input, HashMap<String, String> result) {
 		String[] assignments = input.split(", ");
-		for (String assignment : assignments) {
-			String[] splittedAssignment = assignment.split("->");
-			result.put(splittedAssignment[0], splittedAssignment[1]);
+		if (!input.isEmpty()) {
+			for (String assignment : assignments) {
+				String[] splittedAssignment = assignment.split("->");
+				result.put(splittedAssignment[0], splittedAssignment[1]);
+			}
 		}
 		return result;
 	}

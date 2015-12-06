@@ -20,7 +20,7 @@ module statecoverage
 pred state_coverage() {
 	all s:State | some p:Path | s in steps['[' /]p[']' /].from + steps['[' /]p[']' /].to
 }
-run state_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() - 2 /] System
+run state_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() /] System
 [/file]
 [/template]
 
@@ -44,7 +44,7 @@ module transitioncoverage
 pred transition_coverage() {
 	all t:Transition | some p:Path | t in steps['[' /]p[']' /].via
 }
-run transition_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() - 2 /] System
+run transition_coverage for 10 but exactly 1 Coverage, [sm.rootState.containedStates->size() /] System
 [/file]
 [/template]
 
