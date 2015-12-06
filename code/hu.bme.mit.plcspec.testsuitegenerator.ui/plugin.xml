@@ -7,7 +7,7 @@
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.*"
             id="hu.bme.mit.plcspec.testsuitegenerator.ui.popupMenus.contribution.IFile">
-         <menu id="org.eclipse.acceleo.module.menu" label="Acceleo Model to Text" path="additionsAcceleo">
+         <menu id="org.eclipse.acceleo.module.menu" label="Generate test suite" path="additionsAcceleo">
                <groupMarker name="acceleo"/> 
          </menu>
          <action
@@ -15,14 +15,14 @@
                enablesFor="+"
                id="hu.bme.mit.plcspec.testsuitegenerator.ui.popupMenus.generateStateCoverageAlloyAction"
                icon="icons/default.gif"
-               label="Generate Test Suite with State Coverage"
+               label="with state coverage"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
        	 <action
                class="hu.bme.mit.plcspec.testsuitegenerator.ui.popupMenus.GenerateTransitionCoverageAlloyAction"
                enablesFor="+"
                id="hu.bme.mit.plcspec.testsuitegenerator.ui.popupMenus.generateTransitionCoverageAlloyAction"
                icon="icons/default.gif"
-               label="Generate Test Suite with Transition Coverage"
+               label="with transition coverage"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
       </objectContribution>
    </extension>
