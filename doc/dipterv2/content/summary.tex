@@ -3,6 +3,92 @@
 \label{cha:summary}
 %----------------------------------------------------------------------------
 
-...
+In this chapter first I would like to position and categorise the created model based testing software in a way presented in Chapter~\ref{cha:modelbasedtesting} and in Chapter~\ref{cha:relatedwork}. Utting, Pretschner and Legeard \cite{taxonomy} defined a taxonomy for categorising tools based on their test model and the used test generation algorithms, while Shafique and Labiche identified the key features of MBT tools and classified them according to these criteria. Showing what the finished tool is capable of can be presented easier using these classifications.
+
+Summarising the work continued with the possibilities for further development and improvements. These statements are proven with the results of the measurements or defined by the need for new features that the available tools lack of.
+
+Finally I will end this thesis with the final results and personal experiences.
+
+\section{Positioning of the thesis}
+\label{sec:positioning}
+
+The taxonomy and the tools review protocol describe the most important aspects of a model based testing tool. We can use the same methods to evaluate the developed testing tool and see how it differs from other tools.
+
+Table~\ref{tab:toolevaluation} shows the results of this evaluation. On one hand the created tool is very similar to the available testing tools. Most of them use some FSM or UML like modelling notation. This is not so surprising, because one of the main goal of this thesis was to generate test suites for state based models, which implicated to use untimed, deterministic, discrete transition based models. Preferring structural model coverage criteria, moreover concentrating on model-flow criteria is a similarity as well. Nevertheless implementing such a criteria is the easiest, that's why chose just all the tools to support them, when using state based models.
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
+\hline
+	\textbf{Property} & \textbf{Value} & \textbf{Notes} \\\hline
+	Subject of testing & SUT & The test model represent the SUT, not its environment. \\\hline
+	Test model separation & Separated & Different model is used for testing and development.\\\hline
+	Model characteristics & Deterministic, untimed, discrete & Possibility to support timed transitions. \\\hline
+	Model paradigm & Transition based & PLCspecif state machine notation.\\\hline
+	Test selection criteria & Structural model coverage & Full state and transition coverage are supported.\\\hline
+	Test generation technology & Constraint solving & Generating test cases using Alloy. \\\hline
+	Test execution & Offline & - \\\hline
+	Model-flow criteria & \multicolumn{2}{p{11cm}|}{\textit{Transition} and \textit{state coverage} are supported; transition-pair, all-path coverage are not. Sneak-path and scenario coverage are not applicable, because the model is always considered complete and modifying the search for test cases is impossible, because the test generation technology.} \\\hline
+	Script-flow criteria & \multicolumn{2}{p{11cm}|}{\textit{Interface}, \textit{statement}, \textit{decision} coverage are supported implicitly, others are not applicable, because the test generation technology.} \\\hline
+	Data and requirements criteria & \multicolumn{2}{p{11cm}|}{Not supported.} \\\hline
+	Test scaffolding criteria & \multicolumn{2}{p{11cm}|}{\textit{Adapter creation}, \textit{oracle automation} are supported. \textit{Stub creation are not supported.}} \\\hline
+	Related activities criteria & \multicolumn{2}{p{11cm}|}{\textit{Model creation}, \textit{model verification}, \textit{test case debugging}, \textit{test case debugging}, \textit{regression testing} are fully supported. Requirements traceability is not supported.} \\
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{tab:toolevaluation} Applied techniques and supported features of the created tool}
+\end{table}
+
+On the other hand this new testing tool is unique. Constraint solving as test generation technology is a rare choice. Though it is a useful method by test generation as we saw earlier. Other strengths of this tool are the full support of test scaffolding and related activities criteria. From the reviewed tools no other tool can support all these features in one integrated framework. 
+
+% setion positioning (end)
+
+\section{Possibilities for further development}
+\label{sec:furtherdevelopment}
+
+\begin{description}
+	\item[Better scalability] After some development iteration the created framework is able to solve real world problems, but as the number of state increases in the SUT model, the tool's execution speed enlarges exponentially.
+	
+	On the one hand it can be problem if the goal is to generate test suite for a complex SUT, but on the other using complex state machine features in a big SUT model is certainly not recommended. When developers use a state machine like model usually the used state machine are not so complicated. Following the \textit{Single Responsibilty Principle} rule or the \textit{Clean Code} big classes with more than 10 method usually indicate a code smell and have to get broken up into multiple smaller classes.
+	
+	Either way the execution speed can be improved. The improvement can be achieved with more option:
+	
+	\begin{itemize}
+		\item The most time consuming part of the system is the Alloy test generation, which can be improved by generating less runtime objects while solving a SAT formula. Alloy model have to be simplified to do this.
+		\item Input model can be simplified before transforming to Alloy too. Solving easier parts of the models separately can also reduce the state space, therefore the constraint solving part will be faster. The easy parts of the system can be solved with other test generation methods e.g. with graph algorithms.
+	\end{itemize}
+	\item[Support more PLCspecif features] Currently the testing tool supports most of the elements from the PLCspecif feature set. However some basic UML like element are not supported for example composite states and pseudo states as deep history states.
+	
+	Guards and events also can not be defined arbitrary. These elements may benefit from the usage of the whole expression model. Expressions have an extensive metamodel and currently only the binary operations are supported. Supporting the other operations may improve the usability of the testing framework.
+	\item[Requirements traceability] Requirements traceability can be defined as documenting the life of a requirement and in the field of software testing also means the reporting of the requirements coverage.
+	
+	Possible scenarios to support this feature can be the following:
+	
+	\begin{itemize}
+		\item Creating a traceability matrix may help to check if the current requirements are being met or can help in the creation of a requirements specification. On test models should be noted when a requirements is accomplished. Regarding these informations traceability matrices can be filled during the test case generation.
+		\item Third party requirement management tool integration can also help in a similar way as traceability matrices.
+	\end{itemize}
+\end{description}
+
+% setion furtherdevelopment (end)
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+Regarding the previously defined requirements, I successfully created a model based testing framework based on state machine models.
+
+\begin{itemize}
+	\item I presented the main goals of model based testing and the general testing process.
+	\item I investigated the related work that use state machine models for generating tests.
+	\item I chose a state machine modelling notation and designed a framework that is able to generate complete test suites with previously defined test selection criteria.
+	\item I implemented the testing framework and described its internal behaviour.
+	\item Finally I evaluated the finished solution and sketched some possible future work.
+\end{itemize}
+
+After the testing and measurements phases I have concluded that the resulted testing framework is able to complete the tasks, and to satisfy the requirements that were defined at the start of the work. The software can maybe fill a gap, because it was designed to offer solutions to problems, that the other tools can not solve.
+
+During the development of this software I continuously learned new technologies and algorithms.  That was a wonderful experience to design and develop a complete and useful solution for such a complex and hard problem.
+
+% setion conclusions (end)
 
 % chapter summary (end)
