@@ -1,5 +1,5 @@
 %----------------------------------------------------------------------------
-\chapter{Scaling and measurements}
+\chapter{Measurements and scaling}
 \label{cha:measurements}
 %----------------------------------------------------------------------------
 
@@ -11,13 +11,13 @@ Execution of each testing configuration was measured 10 times and the results in
 
 \begin{table}[htb]
 \begin{center}
-\begin{tabular}{|l|}
-\hline
-	\textbf{Hardware specification}\\\hline
-	\textbf{CPU}: 2.7GHz dual-core Intel Core i5 processor with 3MB shared L3 cache\\
-	\textbf{RAM}: 8GB 1866MHz LPDDR3 RAM\\
-	\textbf{Storage}: 128GB PCIe-based flash storage\\
-\hline
+\begin{tabular}{p{2cm}p{12cm}}
+\toprule
+	\multicolumn{2}{c}{\textbf{Hardware specification}}\\\midrule
+	\textbf{CPU} & 2.7GHz dual-core Intel Core i5 processor with 3MB shared L3 cache\\
+	\textbf{RAM} & 8GB 1866MHz LPDDR3 RAM\\
+	\textbf{Storage} & 128GB PCIe-based flash storage\\
+\bottomrule
 \end{tabular}
 \end{center}
 \caption{\label{tab:hardwarespecification} Measurement architecture}
@@ -28,7 +28,7 @@ Execution of each testing configuration was measured 10 times and the results in
 
 During the first measurement I experimented with the available solvers supported by Alloy and their solver specific configurations. Alloy Analyzer supports huge variety of SAT solvers and they have a decent number of tuning possibility.
 
-I was able to integrate seven different SAT solvers into the system, namely CryptoMiniSat, Glucose, MiniSat, MiniSat with core extraction, Sat4j, Lingeling and its parallel version Plingeling. The another dimension of the measurement was the SAT solver configuration. Settings of two configuration was not obvious, that's why I chose to measure these parameters.
+I was able to integrate seven different SAT solvers into the system, namely CryptoMiniSat \cite{cryptominisat}, Glucose \cite{glucose}, MiniSat \cite{minisat}, MiniSat with core extraction, Sat4j \cite{sat4j}, Lingeling \cite{lingeling} and its parallel version Plingeling. The another dimension of the measurement was the SAT solver configuration. Settings of two configuration was not obvious, that's why I chose to measure these parameters.
 
 The first investigated option was Skolem-depth that controls the maximum depth of alternating universal and existential quantifier when generating a Skolem function. Minimum value is 0, which means it will only generate Skolem constants, and will not generate Skolem functions, maximum value is 4, where Skolem functions are generated in depth of 4.
 
@@ -71,14 +71,14 @@ In the first development iteration, the test generation algorithm could not gene
 
 The first problem was that the model was overconstrained and that's why the SAT solver generated to much variables, while parsing the given constraints. The other problem was that, the solver generated different objects in a scenario for the same purpose, that's why state space increased exponentially.
 
+Solution for these problems are the same: the Alloy model needs to be simplified. This has been done in two steps,  Figure~\ref{fig:measurements_optimalizations} shows the effects of the optimisations. After deleting the unneeded constraints from the model, each SAT solver could solve the stopwatch problem. The execution time at this time displayed with the label "Original" on Figure~\ref{fig:measurements_optimalizations}. Later I modified the model to reuse the previously generated model objects to reduce the state explosion.
+
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.55]{figures/measurements_optimalizations}
 \caption{Optimisations results}
 \label{fig:measurements_optimalizations}
 \end{figure}
-
-Solution for these problems are the same: the Alloy model needs to be simplified. This has been done in two steps,  Figure~\ref{fig:measurements_optimalizations} shows the effects of the optimisations. After deleting the unneeded constraints from the model, each SAT solver could solve the stopwatch problem. The execution time at this time displayed with the label "Original" on Figure~\ref{fig:measurements_optimalizations}. Later I modified the model to reuse the previously generated model objects to reduce the state explosion.
 
 The speed of the execution increased radically during these optimisations. In the first step, the increase can not be calculated, as the speed was unacceptable in the first version. Considering the speed of the chosen SAT solver, Glucose, the execution became twice as faster, than preciously between the second and the third version of the test generation algorithm.
 
@@ -145,7 +145,7 @@ Figure~\ref{fig:measurements_scalability} shows the results of the scalability m
 \label{fig:measurements_scalability}
 \end{figure}
 
-The created model based testing framework performs well, while generating test suites for medium sized models. Practically that means SUT with 5-10 states and 15-20 transitions are solvable by this tool. In this range the execution speed varies under 35 seconds, which is an acceptable speed.
+The created model-based testing framework performs well, while generating test suites for medium sized models. Practically that means SUT with 5-10 states and 15-20 transitions are solvable by this tool. In this range the execution speed varies under 35 seconds, which is an acceptable speed.
 
 Used input models were randomly generated test models, that's why the complexity of solving these problems does not perfectly follows the increase of the concerned testing objects. Besides that we can see a trend line, that the execution speed increases linear or polynomial at first, but later it will grow exponentially regarding the number of states or transitions.
 

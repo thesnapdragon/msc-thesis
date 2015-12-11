@@ -3,7 +3,7 @@
 \label{cha:summary}
 %----------------------------------------------------------------------------
 
-In this chapter first I would like to position and categorise the created model based testing software in a way presented in Chapter~\ref{cha:modelbasedtesting} and in Chapter~\ref{cha:relatedwork}. Utting, Pretschner and Legeard \cite{taxonomy} defined a taxonomy for categorising tools based on their test model and the used test generation algorithms, while Shafique and Labiche identified the key features of MBT tools and classified them according to these criteria. Showing what the finished tool is capable of can be presented easier using these classifications.
+In this chapter first I would like to position and categorise the created model-based testing software in a way presented in Chapter~\ref{cha:modelbasedtesting} and in Chapter~\ref{cha:relatedwork}. Utting, Pretschner and Legeard \cite{taxonomy} defined a taxonomy for categorising tools based on their test model and the used test generation algorithms, while Shafique and Labiche \cite{toolsreview} identified the key features of MBT tools and classified them according to these criteria. Showing what the finished tool is capable of can be presented easier using these classifications.
 
 Summarising the work continued with the possibilities for further development and improvements. These statements are proven with the results of the measurements or defined by the need for new features that the available tools lack of.
 
@@ -12,28 +12,28 @@ Finally I will end this thesis with the final results and personal experiences.
 \section{Positioning of the thesis}
 \label{sec:positioning}
 
-The taxonomy and the tools review protocol describe the most important aspects of a model based testing tool. We can use the same methods to evaluate the developed testing tool and see how it differs from other tools.
+The taxonomy and the tools review protocol describe the most important aspects of a model-based testing tool. We can use the same methods to evaluate the developed testing tool and see how it differs from other tools.
 
 Table~\ref{tab:toolevaluation} shows the results of this evaluation. On one hand the created tool is very similar to the available testing tools. Most of them use some FSM or UML like modelling notation. This is not so surprising, because one of the main goal of this thesis was to generate test suites for state based models, which implicated to use untimed, deterministic, discrete transition based models. Preferring structural model coverage criteria, moreover concentrating on model-flow criteria is a similarity as well. Nevertheless implementing such a criteria is the easiest, that's why chose just all the tools to support them, when using state based models.
 
 \begin{table}[htb]
 \begin{center}
-\begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
-\hline
-	\textbf{Property} & \textbf{Value} & \textbf{Notes} \\\hline
-	Subject of testing & SUT & The test model represent the SUT, not its environment. \\\hline
-	Test model separation & Separated & Different model is used for testing and development.\\\hline
-	Model characteristics & Deterministic, untimed, discrete & Possibility to support timed transitions. \\\hline
-	Model paradigm & Transition based & PLCspecif state machine notation.\\\hline
-	Test selection criteria & Structural model coverage & Full state and transition coverage are supported.\\\hline
-	Test generation technology & Constraint solving & Generating test cases using Alloy. \\\hline
-	Test execution & Offline & - \\\hline
-	Model-flow criteria & \multicolumn{2}{p{11cm}|}{\textit{Transition} and \textit{state coverage} are supported; transition-pair, all-path coverage are not. Sneak-path and scenario coverage are not applicable, because the model is always considered complete and modifying the search for test cases is impossible, because the test generation technology.} \\\hline
-	Script-flow criteria & \multicolumn{2}{p{11cm}|}{\textit{Interface}, \textit{statement}, \textit{decision} coverage are supported implicitly, others are not applicable, because the test generation technology.} \\\hline
-	Data and requirements criteria & \multicolumn{2}{p{11cm}|}{Not supported.} \\\hline
-	Test scaffolding criteria & \multicolumn{2}{p{11cm}|}{\textit{Adapter creation}, \textit{oracle automation} are supported. \textit{Stub creation are not supported.}} \\\hline
-	Related activities criteria & \multicolumn{2}{p{11cm}|}{\textit{Model creation}, \textit{model verification}, \textit{test case debugging}, \textit{test case debugging}, \textit{regression testing} are fully supported. Requirements traceability is not supported.} \\
-\hline
+\begin{tabular}{p{4cm}p{3.5cm}p{6.5cm}}
+\toprule
+	\textbf{Property} & \textbf{Value} & \textbf{Notes} \\\midrule
+	Subject of testing & \textit{SUT} & The test model represent the SUT, not its environment. \\
+	Test model separation & \textit{Separated} & Different model is used for testing and development.\\
+	Model characteristics & \textit{Deterministic}, \textit{untimed}, \textit{discrete} & Possibility to support timed transitions. \\
+	Model paradigm & \textit{Transition based} & PLCspecif state machine notation.\\
+	Test selection criteria & \textit{Structural model coverage} & Full state and transition coverage are supported.\\
+	Test generation technology & \textit{Constraint solving} & Generating test cases using Alloy. \\
+	Test execution & \textit{Offline} & - \\
+	Model-flow criteria & \multicolumn{2}{p{10.5cm}}{\textit{Transition} and \textit{state coverage} are supported; transition-pair, all-path coverage are not. Sneak-path and scenario coverage are not applicable, because the model is always considered complete and modifying the search for test cases is impossible, because the test generation technology.} \\
+	Script-flow criteria & \multicolumn{2}{p{10.5cm}}{\textit{Interface}, \textit{statement}, \textit{decision} coverage are supported implicitly, others are not applicable, because the test generation technology.} \\
+	Data and requirements criteria & \multicolumn{2}{p{10.5cm}}{Not supported.} \\
+	Test scaffolding criteria & \multicolumn{2}{p{10.5cm}}{\textit{Adapter creation}, \textit{oracle automation} are supported. \textit{Stub creation are not supported.}} \\
+	Related activities criteria & \multicolumn{2}{p{10.5cm}}{\textit{Model creation}, \textit{model verification}, \textit{test case debugging}, \textit{test case debugging}, \textit{regression testing} are fully supported. Requirements traceability is not supported.} \\
+\bottomrule
 \end{tabular}
 \end{center}
 \caption{\label{tab:toolevaluation} Applied techniques and supported features of the created tool}
@@ -75,10 +75,10 @@ On the other hand this new testing tool is unique. Constraint solving as test ge
 \section{Conclusions}
 \label{sec:conclusions}
 
-Regarding the previously defined requirements, I successfully created a model based testing framework based on state machine models.
+Regarding the previously defined requirements, I successfully created a model-based testing framework based on state machine models.
 
 \begin{itemize}
-	\item I presented the main goals of model based testing and the general testing process.
+	\item I presented the main goals of model-based testing and the general testing process.
 	\item I investigated the related work that use state machine models for generating tests.
 	\item I chose a state machine modelling notation and designed a framework that is able to generate complete test suites with previously defined test selection criteria.
 	\item I implemented the testing framework and described its internal behaviour.

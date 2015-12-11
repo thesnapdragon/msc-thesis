@@ -3,7 +3,7 @@
 \label{cha:implementation}
 %----------------------------------------------------------------------------
 
-At the end of the design step it is clearly visible, what advantages the investigated technologies and tools have. The implementation of the created testing framework represented following the model based testing process phases as earlier.
+At the end of the design step it is clearly visible, what advantages the investigated technologies and tools have. The implementation of the created testing framework represented following the model-based testing process phases as earlier.
 
 \begin{figure}[htp]
 \centering
@@ -155,7 +155,7 @@ When the model is satisfiable and a possible coverage is generated, the solution
 
 Similarly to PLCspecif, this internal notation uses a customised Ecore metamodel to describe its behaviour. Instead of starting with a default Ecore model editor, this metamodel is constructed using annotated Java interfaces. Based on them an Ecore model and a generator model is constructed, which will generate the remaining code.
 
-The Alloy solution parser is based on the \textit{Builder} pattern and uses model \textit{Factory} classes from EMF.Edit to create the internal model. After building the test suite model, Acceleo transforms automatically this model to text representation including a complete JUnit test suite (see on Listing~\ref{lst:testsuite}) with pure POJO helper classes.
+The Alloy solution parser is based on the \textit{Builder} pattern \cite{designpatterns} and uses model \textit{Factory} classes from EMF.Edit to create the internal model. After building the test suite model, Acceleo transforms automatically this model to text representation including a complete JUnit test suite (see on Listing~\ref{lst:testsuite}) with pure POJO helper classes.
 
 \begin{lstlisting}[label={lst:testsuite}, caption=Generated JUnit test suite,breaklines=true]
 package trivialsm;
