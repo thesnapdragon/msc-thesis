@@ -32,13 +32,6 @@ PLCspecif \cite{plcspecif} is a modelling language intended to be a formal, modu
 
 The abstract syntax of the PLCspecif formalism was designed as an EMF metamodel, therefore the figures are following the original EMF denotation. Here I will describe only the concerned parts of the modelling language as the complete feature set goes far beyond this thesis.
 
-\begin{figure}[htp]
-\centering
-\includegraphics[scale=0.45]{figures/plchsm_modules}
-\caption{Module structure of PLCspecif \cite{plcspecif}}
-\label{fig:plchsm_modules}
-\end{figure}
-
 The specification organised into modules (Figure~\ref{fig:plchsm_modules}), which are either represent a behaviour of concrete module (\texttt{LeafModule}) or they are composite modules containing a set of submodules (\texttt{CompositeModule}).
 
 \texttt{System} is a top-level container that can contain \texttt{modules} from which one module represents the \texttt{topLevelModule}. There are four different module type:
@@ -50,14 +43,14 @@ The specification organised into modules (Figure~\ref{fig:plchsm_modules}), whic
 	\item \texttt{EmptyModule} is a module without any state machine or IO connection.
 \end{itemize}
 
-From these module types we are interested especially in the state machine notation. As shown on Figure~\ref{fig:plchsm_statemachine} the metamodel is similar to UML state machine's metamodel described previously (Subsection~\ref{sub:umlstatemachine}).
-
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.5]{figures/plchsm_statemachine}
-\caption{Structure of \texttt{StatemachineModule} \cite{plcspecif}}
-\label{fig:plchsm_statemachine}
+\includegraphics[scale=0.45]{figures/plchsm_modules}
+\caption{Module structure of PLCspecif \cite{plcspecif}}
+\label{fig:plchsm_modules}
 \end{figure}
+
+From these module types we are interested especially in the state machine notation. As shown on Figure~\ref{fig:plchsm_statemachine} the metamodel is similar to UML state machine's metamodel described previously (Subsection~\ref{sub:umlstatemachine}).
 
 On the other hand PLCspecif state machines have some differences from the UML notation:
 
@@ -70,6 +63,13 @@ On the other hand PLCspecif state machines have some differences from the UML no
 	\item Initial state can not be defined for composite states.
 	\item At every moment, exactly one atomic state can be active. 
 \end{itemize}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{figures/plchsm_statemachine}
+\caption{Structure of \texttt{StatemachineModule} \cite{plcspecif}}
+\label{fig:plchsm_statemachine}
+\end{figure}
 
 Beside these differences PLCspecif has a bigger difference, which can improve the usability of a test model. Modules can handle input and output variables and can define their outputs using \texttt{VariableDefinitionExpression} objects (Figure~\ref{fig:plchsm_variables}). PLCspecif offers a wide range of possibilities to define an \texttt{Expression}, e.g. \texttt{SwitchCaseTable}, \texttt{DnfExpression}, \texttt{Contant}, \texttt{UnaryOperation}, \texttt{BinaryOperation}, \texttt{NaryOperation}. In our case the output definition of a single state machine can be a switch case table, where conditions checks whether the state machine is in a particular state, and the values are the possible values given by a variable or constant.
 
@@ -121,19 +121,39 @@ Alloy \cite{alloy}\cite{alloyfirst}\cite{psm2alloy} is a formal modelling langua
 
 The language has been developed on MIT and the first prototype was finished in 1997 in the form of a limited object modelling language. Later the features, performance and scalability have been improved.
 
-Alloy is a declarative language, so that it describes the behaviour without giving the precise execution mechanism. The language was influenced by the Z notation, which is a formal specification language used describing and modelling computer programs and systems. In contrary of Z, Alloy was designed for automatic analysis.
+Alloy is a declarative language, so that it describes the behaviour without giving the precise execution mechanism. The language was influenced by the Z notation, which is a formal specification language used to describe and modell computer programs and systems. In contrary of Z, Alloy was designed for automatic analysis.
 
-OCL (Object Constraint Language) with UML are often used by MBT tools for expressing SUT behaviour. UML semantics can be imitated by an Alloy model, but Alloy can do even more. As OCL similar to Alloy, but the latter has a more conventional syntax and simpler semantics. So Alloy can combine the features of the two OMG standards and can serve as the input model of a model-based testing tool.
+OCL (Object Constraint Language) with UML are often used by MBT tools for expressing SUT 's behaviour. UML semantics can be imitated by an Alloy model, but Alloy can do even more. OCL is similar to Alloy, but the latter has a more conventional syntax and simpler semantics. So Alloy can combine the features of the two OMG standards and can serve as the input model of a model-based testing tool.
 
-Alloy Analyzer transforms problems into SAT formulas to solve them. The solver was inspired by model checkers, but it is implemented as a constraint solver, performing verification within a bounded scope. In constraint programming relations between variables are noted in the form of constraints, that will be solved by giving a value to each variable so that the solution is consistent. If the constraints are inconsistent, then the problem is said to be unsatisfiable.
+Alloy Analyzer transforms problems into SAT formulas to solve them. The solver was inspired by model checkers, but it is implemented as a constraint solver, performing verification within a bounded scope. In constraint programming relations between variables are noted in the form of constraints that will be solved by giving a value to each variable so that the solution is consistent. If the constraints are inconsistent, then the problem is said to be unsatisfiable.
 
 Alloy version 4 ships in the form of a self-contained JAR file, which includes a variety of supported SAT solver, the standard Alloy library, tutorial examples and an extensive API, that's why it is easy to incorporate into a custom solution.
+
+Basic elements of the Alloy language will be presented with some code examples (Listing~\ref{lst:alloyexample}). Signatures (noted with \texttt{sig}) are the basic modelling elements of the language. From line 1 to 4 the relation of the signatures are defined. \texttt{A} represents an abstract signature, which can not present in the model without being also either a \texttt{B} or a \texttt{C}. However \texttt{B} and \texttt{C} are mandatory signatures enforced by using the \texttt{one} keyword. Signature \texttt{D} consists of some \texttt{A} and \texttt{E} is associated with one \texttt{D}.
+
+\begin{lstlisting}[label={lst:alloyexample}, caption=Example Alloy code,breaklines=true]
+abstract sig A {}
+one sig B, C extends A {}
+sig D { a: some A }
+sig E { d: one D }
+
+fact { no e1, e2: E | e1.d.a != e2.d.a }
+
+fun count[e: E]: Int { #{aa: A | aa in e.d.a } }
+pred two[e: E] { count[e] = 2 }
+
+run { some e: E | two[e] } for 2
+\end{lstlisting}
+
+On line 6 there is a \texttt{fact} statement, which is an explicit constraint on the model. This constraint is used to ensure, there are not two signatures \texttt{E} having the same set of signatures \texttt{A}. 
+
+On line 7 there is a function statement, defined by \texttt{fun}, which is a parametrised expression that gets simply inlined at every invocation. Here function \texttt{count} is used to get the number of \texttt{A} signatures in a signature \texttt{E} . On line 8 there is a predicate, noted with \texttt{pred} that represents a formula, which can be evaluated to a boolean expression. Predicates can be executed for example with a \texttt{run} statement that instructs Alloy to search for a model that satisfies the given predicate. The presented statement checks whether there are models, where signatures \texttt{E} have two different signatures \texttt{A}.
 
 \textbf{Conclusion}: To summarise the statements above, Alloy has the following benefits:
 
 \begin{itemize}
 	\item Alloy are largely compatible with the UML notation. Transforming a model given by any state machine notation should not be a problem.
-	\item Alloy is a declarative modelling language, which has the same advantages as any other declarative language. Using a declarative language often results reusable code, and smaller codebase as the imperative versions.
+	\item Alloy is a declarative modelling language, which has the same advantages as any other declarative language. Using a declarative language often results reusable code and smaller codebase as the imperative versions.
 	\item Alloy Analyzer has a convenient API, which is easy to integrate into a tool written in Java.
 \end{itemize}
 
@@ -188,6 +208,8 @@ Considering the previously described requirements the testing framework should h
 			\-\hspace{0,5cm}\textbf{Alternate:} Test suite execution is failed, because the SUT may contain some error.
 \end{description}
 
+As the PLCspecif modelling framework already realised the first two use case, the testing framework can concentrate on the other two use case.
+
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.6]{figures/design_uc.png}
@@ -195,9 +217,9 @@ Considering the previously described requirements the testing framework should h
 \label{fig:designuc}
 \end{figure}
 
-As the PLCspecif modelling framework already realised the first two use case, the testing framework can concentrate on the other two use case.
-
 Figure~\ref{fig:designcomponents} shows the main components of the testing framework. PLCspecif is based on the EMF platform \cite{emf}\cite{emfbook}, but the testing tool can also benefit from the EMF toolset. The required two use case can be realised with two Eclipse plugin. The first plugin will implement the the test suite generation and test execution tooling, the other will be the user interface of the testing tool. Before describing the behaviour and the implementation of the components in depths, the used EMF and the whole Eclipse platform have to be studied.
+
+\newpage
 
 \subsection{Eclipse Modelling Framework}
 \label{sub:emf}
@@ -228,14 +250,14 @@ OSGi supports runtime installation, starting, updating, stopping and uninstallat
 
 Essentially the OSGi bundles are JAR files with a manifest, that describes the dependencies of the bundle. The only difference is between bundles and plugins, that plugins have a \texttt{plugin.xml} file in their root directory, which contains metadata about the plugin. This plugin manifest provides an other way to extend the features of a particular plugin, called extensions and extension points.
 
+Extension points are considered public API, that other developers can use to build their own extension. Figure~\ref{fig:designcomponents} illustrates the components of the testing framework and which extension points they use to communicate with the Eclipse SDK. For example the test suite generator UI uses the \texttt{org.eclipse.ui.popupMenus} extension point to show a new menu item in the generated model editor's context menu.
+
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.5]{figures/design_components.png}
 \caption{Component diagram of the testing framework}
 \label{fig:designcomponents}
 \end{figure}
-
-Extension points are considered public API, that other developers can use to build their own extension. Figure~\ref{fig:designcomponents} illustrates the components of the testing framework and which extension points they use to communicate with the Eclipse SDK. For example the test suite generator UI uses the \texttt{org.eclipse.ui.popupMenus} extension point to show a new menu item in the generated model editor's context menu.
 
 When Eclipse starts, the platform runtime (Equinox) scans the manifests of the available plugins and builds a plugin registry. These plugins are discovered at the startup, but only activated by the actual usage, this is called \textit{lazy activation}. Lazy activation is enabled by the previously described OSGi platform, which results considerable performance improvements.
 

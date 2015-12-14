@@ -13,19 +13,19 @@
 
 A modell alapú tesztelés a szoftvertesztelés egy változata, ahol a szoftver viselkedésének verifikációja történik meg egy korábban definiált viselkedés modell alapján. A tesztelés ezen formája megoldásként tud szolgálni a tradícionális szoftvertesztelés régóta ismert és égető problémáira. Habár a modell alapú tesztelés alapgondolata a 70-es évekből ered és a szakirodalom mennyisége számottevő, jelentések azt mutatják, hogy az elérhető megoldások nem teljeskörűek és gyakran csak az eredeti probléma egyes részeire szolgálnak megoldással.
 
-Diplomám célja, hogy bemutassam egy általánosan használható és teljeskörű modell alapú tesztelő keretrendszer fejlesztésének teljes életciklusát. Az elkészített keretrendszernek a tesztelési folyamat minden fázisát támogatnia kell, hogy a rendszer képes legyen az adott szoftver egy teljes tesztkészletének generálására állapotgép alapú modellek alapján.
+Diplomám célja, hogy bemutassam egy modell alapú tesztelő keretrendszer fejlesztésének teljes életciklusát. Az elkészített keretrendszernek a tesztelési folyamat minden fázisát támogatnia kell, hogy a rendszer képes legyen az adott szoftver egy teljes tesztkészletének generálására állapotgép alapú modellek alapján.
 
-A tesztelési folyamat támogatásához meg kell ismerni a modell alapú tesztelés elméleti hátterét. A kutatás fő célja, hogy a különböző tesztfázisok teendői azonosítva legyenek és hogy minden információ készen álljon a rendszer elkészítéséhez.
+A tesztelési folyamat támogatásához megismertem a modell alapú tesztelés elméleti hátterét. Kutatásom fő célja volt, hogy a különböző tesztfázisok teendői azonosítva legyenek és hogy minden információ készen álljon a rendszer elkészítéséhez.
 
-Az összegyűjtött tapasztalatok alapján a publikusan elérhető modell alapú tesztelő keretrendszerek megismerése jó alapként szolgálhat a készülő megoldás fejlesztéséhez, ezért ezen eszközök előnyeit és hátrányait mindenképp szükséges összegezni.
+Az összegyűjtött tapasztalatok alapján a publikusan elérhető modell alapú tesztelő keretrendszerek megismerése jó alapként szolgálhat a készülő megoldás fejlesztéséhez, ezért összegeztem ezen eszközök előnyeit és hátrányait.
 
-Ha minden szükséges információ elérhető, akkor a legfontosabb tervezői döntések meghozhatók és elkezdődhet a fejlesztés. A főbb architektúrális kérdések, a szükséges technológiák és eszközök meghatározása szintén a tervezési folyamat része.
+Ezután összegyűjtöttem a szükséges információkat és meghoztam a legfontosabb tervezői döntéseket, így elkezdődhetett a fejlesztés. A főbb architektúrális kérdések, a szükséges technológiák és eszközök meghatározása szintén a tervezési folyamat része volt.
 
-Az implementációs fázisról szóló fejezetben részletes bemutatásra kerülnek az elkészített tesztelő keretrendszer képességei, illetve a belső működés. A tesztelés különböző lépései egy egyszerű példán keresztül lettek bemutatva. A rendszer belső állapota és az átmenetileg elkészült eredmények bemutatása is ennek a példának a felhasználásával történtek meg.
+Az implementációs fázisról szóló fejezetben részletesen bemutattam az elkészített rendszer képességeit, illetve annak belső működését. A tesztelés különböző lépései egy egyszerű példán keresztül ismertettem. A rendszer belső állapota és az átmenetileg elkészült eredmények bemutatása is ennek a példának a felhasználásával történtek meg.
 
-Az elkészült keretrendszer képességei mérési eredményekkel is alá lettek támasztva. A szoftver teljesítménye a fejlesztés alatt folyamatosan mérve lett, így a különböző iterációk eredménye összehasonlíthatóak.
+Az elkészült keretrendszer képességeit mérési eredményekkel is alá támasztottam. A szoftver teljesítményét a fejlesztés alatt folyamatosan mértem, így a különböző iterációk eredményei összehasonlíthatóak.
 
-Végül a mérési eredmények alapján kiértékelhető az elvégzett munka, és továbbfejlesztési lehetőségek is meghatározhatóak.
+Végül a mérési eredmények alapján kiértékeltem az elvégzett munkát és továbbfejlesztési lehetőségeket is meghatároztam.
 
 \vfill
 \selectlanguage{english}
@@ -39,19 +39,19 @@ Végül a mérési eredmények alapján kiértékelhető az elvégzett munka, é
 \chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}
 \label{cha:abstract}
 
-Model-based testing (MBT) is a variant of software testing where the software's behaviour is verified against a previously defined behaviour model. The way of verifying softwares using this method can solve the most crucial parts of traditional software testing and may also offer some other benefits. However MBT is a mature idea and the field is well studied, reports show that available solutions are not fully complete and often targeted to solve only subparts of the original problem.
+Model-based testing (MBT) is a variant of software testing, where the software's behaviour is verified against a previously defined behaviour model. Verifying softwares using this method can solve the most crucial parts of traditional software testing and may also offer some other benefits. Although MBT is a mature idea and the field is well studied, reports show that available solutions are not fully complete and often targeted to solve only subparts of the original problem.
 
-This thesis aims to present the full development lifecycle of a generally usable, complete model-based testing framework that can help in all phases of the testing and is able to generate test suites based on state machine like modelling notations.
+This thesis aims to present the full development lifecycle of a model-based testing framework that can help in all phases of the testing and is able to generate test suites based on state machine like modelling notations.
 
-To fully support the whole testing process the background of model-based testing needs to be investigated thoroughly. Main goal of this research was to identify the main tasks of the different testing phases and collect all the possible informations that is needed to create such a testing tool.
+To fully support the whole testing process I investigated thoroughly the background of model-based testing. Main goal of this research was to identify the primary tasks of the different testing phases and to collect all the possible informations that is needed to create such a testing tool.
 
-Using this knowledge related work have to be examined. Comparison of available MBT tools can serve as a good starting point to develop a comprehensive solution, therefore summarising the experiences about these tools also important.
+Using this knowledge I examined the related work. Comparison of available MBT tools can serve as a good starting point to develop a comprehensive solution, therefore summarising the experiences about these tools also important.
 
-After gathering all the required informations some design choices can be made to start the development. Main architecture and the necessary technologies and tools have to be selected at the design phase as well.
+After gathering all the required informations I made some design choices to start the development. Main architecture, the necessary technologies and tools have to be selected at the design phase as well.
 
-Implementation chapter demonstrates the features of the testing framework and describes the internal behaviour in details. The different steps of the testing exemplified by generating a test suite for a trivial software. States of the internal structures and intermediate results showed also regarding this trivial example.
+The implementation chapter demonstrates the features of the testing framework and describes the internal behaviour in details. The different steps of the testing are exemplified by generating a test suite for a trivial software. States of the internal structures and intermediate results are showed also regarding this trivial example.
 
-Results of the finished implementation represented by measurements. Performance of the framework was measured during the development, thus the improvement after each iteration was measurable. According to these measurements the resulted software can be evaluated, proposing new features and room for future improvements.
+Results of the finished implementation is represented by measurements. I measured the performance of the framework during the development, thus the improvement after each iteration was quantifiable. According to these measurements the resulted software can be evaluated, proposing new features and room for future improvements.
 
 \vfill
 \dolgozatnyelve

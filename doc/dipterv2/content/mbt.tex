@@ -31,7 +31,7 @@ Utting, Pretschner and Legeard investigated the currently available MBT solution
 The first step of the model based testing process is to create a suitable model, from which a test suite can be generated.  Model specifications has three dimension considering the different MBT approaches.
 
 \begin{description}
-	\item[Model scope] The scope of the modelling is a binary decision. The model either specify \textit{just the test input} or \textit{the input-output pairs} for the SUT. The first case is less useful, because the test script can not check the SUT's output and that's why it is impossible to create an oracle that way.
+	\item[Model scope] The scope of the modelling is a binary decision. The model either specify \textit{just the test input} or \textit{the input-output pairs} for the SUT. Usually the first case is less useful, because the test script can not check the SUT's output and that's why it is difficult to create an oracle that way.
 	
 	\item[Model characteristics] The SUT assigns the main characteristics of the model. It depends on the SUT's timing properties (\textit{timed} / \textit{untimed}), determinism (\textit{deterministic} / \textit{non-deterministic}) and dynamics (\textit{discrete} / \textit{continuous} / \textit{hybrid}).
 	
@@ -64,7 +64,7 @@ A \textit{finite state machine} is a 6-tuple $\langle S, I, A, R, \Delta, T\rang
 & T: \text{is a transition relation function}\ f: \Delta \rightarrow S \times R
 \end{align*}
 
-The semantic of this model is the following. When $T(s, a) = (s', r)$, the state machine is receiving an input $a \in A$, when in state $s \in S$, assuming $(s,a) \in \Delta$, then the system moves to the new state $s' \in S$, and outputs $r \in R$. A possible $(s'', a') \notin \Delta$ is interpreted as an input symbol, that is not allowed in that state.
+The semantic of this model is the following. When $T(s, a) = (s', r)$, the state machine is receiving an input $a \in A$ in state $s \in S$, assuming $(s,a) \in \Delta$, then the system moves to the new state $s' \in S$ and outputs $r \in R$. A possible $(s'', a') \notin \Delta$ is interpreted as an input symbol that is not allowed in that state.
 
 An \textit{extended finite state machine} differs from a simple finite state machine in terms of the states defined differently. The states of an extended state machine has the form $S = D_0 \times D_1 \times \dots D_n$, where $D_0$ is the set of control states, and $D_{i=1}^n$ is the domain of state variables $x_i$, that are assigned to each states.
 
