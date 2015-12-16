@@ -68,9 +68,9 @@ When the user selects a test selection criterion on the user interface the test 
 	
 The generated Alloy code has two main parts, the first one consists of statically generated code parts, the other includes highly dynamical, customised structures.
 	
-Listing~\ref{lst:alloystatic} shows the static parts of the generated Alloy code. Basic structural metamodel of state machines are implemented with signatures (line number  \ref{lst:static1start}-\ref{lst:static1end}). \texttt{System} represents the internal state of the state machine by its state variables. \texttt{State}, \texttt{Transition} objects refer to the traditional EFSM elements. Each state knows its internal state through the \texttt{System} object, and each transitions connects two states.
+Listing~\ref{lst:alloystatic} shows the static parts of the generated Alloy code. Basic structural metamodel of state machines are implemented with signatures (line number  \ref{lst:static1start}-\ref{lst:static1end}). \texttt{System} represents the internal state of the state machine by its state variables. \texttt{State}, \texttt{Transition} objects refer to the traditional EFSM elements. Each state knows its internal state through the \texttt{System} object and each transition connects two states.
 	
-From lines \ref{lst:static2start}-\ref{lst:static2end} metamodel of basic testing object are described. \texttt{Coverage} can refer to a state or transition coverage and so it can be transformed to a test suite. \texttt{Path} is set of method calls within the software, generally more path serve as a \texttt{Coverage}. \texttt{Step} is a method call in the context of software behaviour, but it also connects testing objects to state machine objects.
+From lines \ref{lst:static2start}-\ref{lst:static2end} the metamodel of basic testing objects are described. \texttt{Coverage} can refer to a state or transition coverage and so it can be transformed to a test suite. \texttt{Path} is set of method calls within the software, generally more paths serve as a \texttt{Coverage}. \texttt{Step} is a method call in the context of software behaviour, but it also connects testing objects to state machine objects.
 	
 The helper function \texttt{steps} returns a relation containing all steps from a given path. From line number \ref{lst:static3start}-\ref{lst:static3end} are the basic rules of the system. Most of the rules describe the semantics of either the behaviour of state machines or the testing objects. Testing specific model consistency is also verified.
 
@@ -94,16 +94,16 @@ sig Step {
 fun steps (p:Path): set Step { p.firstStep.*nextStep }
 fact {(*@\label{lst:static3start}@*)
   // test generation properties
-  all p:Path | one c:Coverage | p in c.paths // all path belongs to a coverage
-  all s:Step | one p:Path | s in p.firstStep.*nextStep // all steps belongs to a path
+  all p:Path | one c:Coverage | p in c.paths // all paths belong to a coverage
+  all s:Step | one p:Path | s in p.firstStep.*nextStep // all steps belong to a path
 
   // model consistency
-  all p:Path | p.firstStep.from = Initial // all path starts with an Initial state
-  all p:Path | one s:Step | s in steps[p] && s.to = End // all path ends with End state
+  all p:Path | p.firstStep.from = Initial // all paths start with an Initial state
+  all p:Path | one s:Step | s in steps[p] && s.to = End // all paths end with End state
 	
   // state machine properties
   all curr:Step, next:curr.nextStep | next.from = curr.to // all steps are continuous
-  all sys:System | some s:State | sys = s.system // all system belongs to a state
+  all sys:System | some s:State | sys = s.system // all systems belong to a state
 }(*@\label{lst:static3end}@*)
 pred inheritSystem(s1, s2: System) { s1 = s2 }
 \end{lstlisting}
@@ -135,9 +135,7 @@ pred initSystem(s:System) {
 }
 \end{lstlisting}
 
-Finally Listing~\ref{lst:alloycriteria} show the test criteria formalisation by Alloy predicates. A possible test suite guarantees state coverage if all state present in the union of start and end states of all step in the coverage. Transition coverage is defined in a similar way: a test suite guarantees transition coverage if all transition can be mapped to a step in the coverage.
-
-These criteria are applicable using Alloy's \texttt{run} statements. The constraint solving is executed in a bounded scope, that's why the scope of the search for examples need to be calculated dynamically.
+Finally Listing~\ref{lst:alloycriteria} show the test criteria formalisation by Alloy predicates. A possible test suite guarantees state coverage if all states are part of at least one step in the coverage. Transition coverage is defined in a similar way: a test suite guarantees transition coverage if all transitions can be mapped to a step in the coverage.
 
 \begin{lstlisting}[label={lst:alloycriteria}, caption=Formalising criteria with Alloy,breaklines=true]
 pred state_coverage() {
@@ -149,20 +147,19 @@ pred transition_coverage() {
 run state_coverage for 10 but exactly 1 Coverage, 2 System
 \end{lstlisting}
 
+These criteria are applicable using Alloy's \texttt{run} statements. The constraint solving is executed in a bounded scope, that's why the scope of the search for examples need to be calculated dynamically.
+
 The above described generated Alloy code are executed automatically using the Alloy Analyzer API. Operational parameters and other options were fine tuned to get the best possible performance from the integrated SAT solvers. The process of this research will be detailed in Chapter~\ref{cha:measurements}.
 
 When the model is satisfiable and a possible coverage is generated, the solution is parsed into an internal model representation. This internal model is closely related to the testing level and is rather the metamodel of a JUnit test suite.
 
-Similarly to PLCspecif, this internal notation uses a customised Ecore metamodel to describe its behaviour. Instead of starting with a default Ecore model editor, this metamodel is constructed using annotated Java interfaces. Based on them an Ecore model and a generator model is constructed, which will generate the remaining code.
-
-The Alloy solution parser is based on the \textit{Builder} pattern \cite{designpatterns} and uses model \textit{Factory} classes from EMF.Edit to create the internal model. After building the test suite model, Acceleo transforms automatically this model to text representation including a complete JUnit test suite (see on Listing~\ref{lst:testsuite}) with pure POJO helper classes.
+Similarly to PLCspecif, this internal notation uses a customised Ecore metamodel to describe its behaviour. Instead of starting with a default Ecore model editor, the metamodel is constructed dynamically using annotated Java interfaces. Based on them, an Ecore model and a generator model is constructed, which will generate the remaining code.
 
 \begin{lstlisting}[label={lst:testsuite}, caption=Generated JUnit test suite,breaklines=true]
 package trivialsm;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import junit.framework.TestCase;
 
 public class TrivialSMTest extends TestCase {
@@ -182,6 +179,40 @@ public class TrivialSMTest extends TestCase {
 }
 \end{lstlisting}
 
+The Alloy solution parser is based on the \textit{Builder} pattern \cite{designpatterns} and uses model \textit{Factory} classes from EMF.Edit to create the internal model. After building the test suite model, Acceleo transforms automatically this model to text representation including a complete JUnit test suite (see on Listing~\ref{lst:testsuite}) with pure POJO helper classes.
+
+Listing~\ref{lst:testsuitecomplex} shows a more complicated example. The generated test suite guarantees full state coverage for a software that represents a simplified stopwatch (Figure~\ref{fig:measurements_stopwatch}). In this example the test suite consists of two different test path that are needed to guarantee the selected test criterion.
+
+\begin{lstlisting}[label={lst:testsuitecomplex}, caption=Test suite for a stopwatch (Figure~\ref{fig:measurements_stopwatch}),breaklines=true]
+public class StopWatchTest extends TestCase {
+	protected StopWatch stopwatch = null;
+	protected StopWatchTestAdapter adapter = null;
+	   
+	@Before 
+	public void setUp() {
+		stopwatch = new StopWatch();
+		adapter = new StopWatchTestAdapter(stopwatch);
+	}
+
+	@Test
+	public void testPath1() {
+		assertEquals(1, adapter.on());
+		assertEquals(2, adapter.start());
+		assertEquals(3, adapter.stop());
+		assertEquals(5, adapter.off());
+	}
+
+	@Test
+	public void testPath2() {
+		assertEquals(1, adapter.on());
+		assertEquals(2, adapter.start());
+		assertEquals(4, adapter.split());
+		assertEquals(3, adapter.stop2());
+		assertEquals(5, adapter.off());
+	}
+}
+\end{lstlisting}
+
 % section testgenerationimplementation (end)
 
 \section{Test execution}
@@ -195,11 +226,11 @@ Output of the test generation process consists of three scaffolded helper classe
 	The generated test suite can contain more test paths, which include usually more test cases. A single path starts from the initial state of the SUT and ends in the end state. Set of the paths offer full state or transition coverage within the SUT.
 	
 	When the user re-generates a test suite for the SUT it can differ from the previously generated test suite, although the generated test suite will have the same structural properties as earlier. This anomaly is, because the execution of the included SAT solver is undetermined.
-	\item[Test adapter] scaffolded as a simple POJO class (\texttt{TrivialSMTestAdapter}). This class maps the model transitions to concrete method calls, and also initialisation of the SUT can be done in the adapter's constructor. Method calls wired automatically to concrete SUT's method, using a simple heuristic. If the mapping is not trivial, the adapter's code may not be perfect and needs some adjustment. Here the SUT, named \texttt{TrivialSM} is quite simple, and the adapter does not need any further modification.
+	\item[Test adapter] scaffolded as a simple POJO class (\texttt{TrivialSMTestAdapter}). This class maps the model transitions to concrete method calls. Initialisation of the SUT can be done in the adapter's constructor as well. Method calls wired automatically to concrete SUT's method, using a simple heuristic. If the mapping is not trivial, the adapter's code may not be perfect and needs some adjustment. Here the SUT, named \texttt{TrivialSM} is quite simple, and the adapter does not need any further modification.
 	
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.45]{figures/implementation_testhelpers}
+\includegraphics[scale=0.32]{figures/implementation_testhelpers}
 \caption{Class diagram of the scaffolded test helpers}
 \label{fig:implementation_testhelpers}
 \end{figure}
@@ -225,5 +256,54 @@ junit.framework.AssertionFailedError: expected:<1> but was:<2>
 \end{description}
 	
 % section testexecutionimplementation (end)
+
+\newpage
+
+\section{Overview of the implementation}
+\label{sec:implementationoverview}
+
+
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{p{3cm}p{4.5cm}p{6.5cm}}
+\toprule
+	\textbf{Project*} & \textbf{Package} & \textbf{Features}\\\midrule
+	\texttt{core} & \texttt{-} & JUnit test suite generation.\\
+	\texttt{core} & \texttt{alloy} & Alloy generation and solution parsing.\\
+	\texttt{core} & \texttt{common} & Eclipse plugin specific classes.\\
+	\texttt{core} & \texttt{testing} & Test adapter model interfaces.\\
+	\texttt{core} & \texttt{testing.impl} & Test adapter model implementations.\\
+	\texttt{core} & \texttt{testing.util} & Test adapter model utility classes.\\
+	\texttt{ui} & \texttt{-} & UI wiring to business logic.\\
+	\texttt{ui} & \texttt{common} & Eclipse plugin specific classes.\\
+	\texttt{ui} & \texttt{popupMenus} & Popup menu actions on UI.\\
+	\texttt{measurements} & \texttt{-} & Utility classes for measurements.\\
+	\texttt{examples} & \texttt{scalabilitytest} & Scalability testing models.\\
+	\texttt{examples} & \texttt{statecoverage} & State coverage testing model.\\
+	\texttt{examples} & \texttt{trainsitioncoverage} & Transition coverage testing model.\\
+	\texttt{examples} & \texttt{stopwatch} & Simplified stopwatch model.\\
+	\texttt{examples} & \texttt{thread} & Java Thread class model.\\
+	\texttt{examples} & \texttt{trivialsm} & Trivial state machine model.\\
+	\texttt{examples} & \texttt{useraccount} & User account model.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{flushright}
+\tiny{*Each project lives in the namespace \texttt{hu.bme.mit.plcspec.testsuitegenerator}}
+\end{flushright}
+\caption{\label{tab:hardwarespecification} Created projects and packages}
+\end{table}
+
+List of used technologies and their versions:
+
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+	\item PLCspecif (1.0)
+	\item Alloy (4.2)
+	\item Eclipse Modeling Tools (4.5.0)
+	\item Acceleo (2.0)
+\end{itemize}
+
+% section implementationoverview (end)
 
 % chapter implementation (end)
