@@ -51,7 +51,16 @@ Symmetry breaking with a value of 0 was also a clear choice, since the documenta
 
 Changing the Skolem-depth did not impact the speed very much, only a small amount of difference could be measured. Glucose was faster with an option 0, which was also the default value, so I did not change that.
 
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{figures/measurements_stopwatch}
+\caption{Stopwatch FSM for testing}
+\label{fig:measurements_stopwatch}
+\end{figure}
+
 Later, as I improved the test generation algorithms, I checked whether these options still held. The framework was still the fastest with this configuration, which was also not surprising, because Alloy documentation recommends this configuration regardless of the model complexity.
+
+As an input for the first two measurements I used an example FSM that represents a simplified stopwatch behaviour (Figure~\ref{fig:measurements_stopwatch}). 
 
 % section alloysettings (end)
 
@@ -60,14 +69,7 @@ Later, as I improved the test generation algorithms, I checked whether these opt
 
 After the first measurements the performance of the test generation seemed to be adequate to work with, but as I increased the complexity of the problems to solve, so increased the execution time of the test generation. 
 
-\begin{figure}[htp]
-\centering
-\includegraphics[scale=0.5]{figures/measurements_stopwatch}
-\caption{Stopwatch FSM for testing}
-\label{fig:measurements_stopwatch}
-\end{figure}
-
-As an input for the testing tool I designed an example FSM that represents a simplified stopwatch behaviour (Figure~\ref{fig:measurements_stopwatch}). This FSM is ideal for testing purposes, because on the test suite of this stopwatch full state and transition coverage can be achieved and therefore both of the implemented algorithms can be tested.
+The input model, as I mentioned earlier was the stopwatch FSM (Figure~\ref{fig:measurements_stopwatch}) that is ideal for testing purposes, because on the test suite of this stopwatch full state and transition coverage can be achieved and therefore both of the implemented algorithms can be tested.
 
 In the first development iteration, the test generation algorithm could not generate test cases for this FSM within a tolerable time. This was a huge problem, as it could jeopardise the success of using constraint solving methods for test generation. After examining the test generation process and the results with Alloy Analyzer, I identified the main issues.
 
