@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Test suite generator
-Bundle-SymbolicName: hu.bme.mit.plcspec.testsuitegenerator;singleton:=true
+Bundle-SymbolicName: hu.bme.mit.plcspec.testsuitegenerator.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: hu.bme.mit.plcspec.testsuitegenerator.common.Activator
 Bundle-Localization: plugin

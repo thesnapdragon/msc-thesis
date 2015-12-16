@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package hu.bme.mit.plcspec.testsuitegenerator.ui;
+package hu.bme.mit.plcspec.testsuitegenerator.ui.common;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

@@ -22,6 +22,7 @@ import edu.mit.csail.sdg.alloy4compiler.parser.CompUtil;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
 import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
+import hu.bme.mit.plcspec.testsuitegenerator.alloy.AlloySolutionParser;
 import hu.bme.mit.plcspec.testsuitegenerator.alloy.GenerationType;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.Adapter;
 import hu.bme.mit.plcspec.testsuitegenerator.testing.TestCase;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package hu.bme.mit.plcspec.testsuitegenerator.ui.common;
+package hu.bme.mit.plcspec.testsuitegenerator.ui;
 
 import java.io.IOException;
 import java.net.URL;

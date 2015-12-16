@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="generateJava" name="hu.bme.mit.plcspec.testsuitegenerator">
+<project default="generateJava" name="hu.bme.mit.plcspec.testsuitegenerator.core">
     <property name="ECLIPSE_HOME" value="../../../../../../../../../eclipse/modeling-latest-released/Eclipse.app/Contents/MacOS"/>
     <property name="ECLIPSE_WORKSPACE" value="../../../../../../../../../Documents/workspace"/>
 
     <!-- The classpath with only the dependencies used by the project -->
-    <path id="hu.bme.mit.plcspec.testsuitegenerator.libraryclasspath">
-        <pathelement location="${ECLIPSE_WORKSPACE}/hu.bme.mit.plcspec.testsuitegenerator/bin"/>
+    <path id="hu.bme.mit.plcspec.testsuitegenerator.core.libraryclasspath">
+        <pathelement location="${ECLIPSE_WORKSPACE}/hu.bme.mit.plcspec.testsuitegenerator.core/bin"/>
     </path>
 
-    <path id="hu.bme.mit.plcspec.testsuitegenerator.classpath">
-        <path refid="hu.bme.mit.plcspec.testsuitegenerator.libraryclasspath"/>
+    <path id="hu.bme.mit.plcspec.testsuitegenerator.core.classpath">
+        <path refid="hu.bme.mit.plcspec.testsuitegenerator.core.libraryclasspath"/>
     </path>
 
     <!-- The classpath with only the jars available in the plugin folder of Eclipse -->
-    <path id="hu.bme.mit.plcspec.testsuitegenerator.libraryclasspath.alljars">
-        <pathelement location="../hu.bme.mit.plcspec.testsuitegenerator/bin"/>
+    <path id="hu.bme.mit.plcspec.testsuitegenerator.core.libraryclasspath.alljars">
+        <pathelement location="../hu.bme.mit.plcspec.testsuitegenerator.core/bin"/>
         <fileset dir="${ECLIPSE_HOME}/plugins/" includes="*.jar"/>
     </path>
 
-    <path id="hu.bme.mit.plcspec.testsuitegenerator.classpath.alljars">
-        <path refid="hu.bme.mit.plcspec.testsuitegenerator.libraryclasspath.alljars"/>
+    <path id="hu.bme.mit.plcspec.testsuitegenerator.core.classpath.alljars">
+        <path refid="hu.bme.mit.plcspec.testsuitegenerator.core.libraryclasspath.alljars"/>
     </path>
 
     <!-- The default task with the jars used by this project -->
     <target name="generateJava">
-        <java classname="hu.bme.mit.plcspec.testsuitegenerator.GenerateJava" classpathref="hu.bme.mit.plcspec.testsuitegenerator.classpath">
+        <java classname="hu.bme.mit.plcspec.testsuitegenerator.GenerateJava" classpathref="hu.bme.mit.plcspec.testsuitegenerator.core.classpath">
             <arg value="${model}"/>
             <arg value="${target}"/>
         </java>
@@ -35,7 +35,7 @@
         Keep in mind that having two versions of the same jar can create problems
     -->
     <target name="generateJava.alljars">
-        <java classname="hu.bme.mit.plcspec.testsuitegenerator.GenerateJava" classpathref="hu.bme.mit.plcspec.testsuitegenerator.classpath">
+        <java classname="hu.bme.mit.plcspec.testsuitegenerator.GenerateJava" classpathref="hu.bme.mit.plcspec.testsuitegenerator.core.classpath">
             <arg value="${model}"/>
             <arg value="${target}"/>
         </java>

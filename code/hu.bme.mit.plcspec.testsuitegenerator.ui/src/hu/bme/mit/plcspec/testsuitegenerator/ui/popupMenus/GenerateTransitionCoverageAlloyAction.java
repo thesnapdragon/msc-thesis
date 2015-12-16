@@ -33,8 +33,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
 
 import hu.bme.mit.plcspec.testsuitegenerator.alloy.GenerationType;
-import hu.bme.mit.plcspec.testsuitegenerator.ui.Activator;
-import hu.bme.mit.plcspec.testsuitegenerator.ui.common.GenerateAll;
+import hu.bme.mit.plcspec.testsuitegenerator.ui.GenerateAll;
+import hu.bme.mit.plcspec.testsuitegenerator.ui.common.Activator;
 
 /**
  * Sample code generation.

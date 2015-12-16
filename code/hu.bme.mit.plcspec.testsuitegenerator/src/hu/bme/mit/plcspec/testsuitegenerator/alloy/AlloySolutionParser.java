@@ -1,4 +1,4 @@
-package hu.bme.mit.plcspec.testsuitegenerator;
+package hu.bme.mit.plcspec.testsuitegenerator.alloy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
