@@ -5,7 +5,7 @@
 
 In this chapter first I position and categorise the created model-based testing software in a way presented in Chapter~\ref{cha:modelbasedtesting} and in Chapter~\ref{cha:relatedwork}. Utting, Pretschner and Legeard \cite{taxonomy} defined a taxonomy for categorising tools based on their test model and the used test generation algorithms, while Shafique and Labiche \cite{toolsreview} identified the key features of MBT tools and classified them according to these criteria. Showing what the finished tool is capable of can be presented easier using these classifications.
 
-Summarising the work is followed by the possibilities of further development and improvements. These statements are proven with the results of the measurements or defined by the need for new features that the available tools lack of.
+Summarising the work is followed by the possibilities of further development and improvements. These statements are either proven with the results of the measurements or defined by the need for new features that the available tools lack of.
 
 Finally I will end this thesis with the final results and personal experiences.
 
@@ -14,7 +14,7 @@ Finally I will end this thesis with the final results and personal experiences.
 
 The taxonomy and the tools review protocol describe the most important aspects of a model-based testing tool. We can use the same methods to evaluate the developed testing tool and see how it differs from other tools.
 
-Table~\ref{tab:toolevaluation} shows the results of this evaluation. On one hand the created tool is very similar to the available testing tools. Most of them use some FSM or UML like modelling notation. This is not so surprising, because one of the main goal of this thesis was to generate test suites for state based models, which implicated to use untimed, deterministic, discrete transition based models. Preferring structural model coverage criteria, moreover concentrating on model-flow criteria is a similarity as well. Nevertheless implementing such a criteria is the easiest, that's why support the most of the available testing tools them, when using state based models.
+Table~\ref{tab:toolevaluation} shows the results of this evaluation. On one hand the created tool is very similar to the available testing tools. Most of them use some FSM or UML like modelling notation. This is not so surprising, because one of the main goal of this thesis was to generate test suites for state-based models, which implicated to use untimed, deterministic, discrete transition based models. Preferring structural model coverage criteria, moreover concentrating on model-flow criteria is a similarity as well. Nevertheless implementing such a criteria is the easiest, that's why support most of the available testing tools them, when using state based models.
 
 \begin{table}[htb]
 \begin{center}
@@ -49,18 +49,18 @@ On the other hand this new testing tool is unique. Constraint solving as test ge
 \begin{description}
 	\item[Better scalability] After some development iteration the created framework is able to solve real world problems, but as the number of state increases in the SUT model, the tool's execution speed enlarges exponentially.
 	
-	On the one hand it can be problem if the goal is to generate test suite for a complex SUT, but on the other using complex state machine features in a big SUT model is certainly not recommended. When developers use a state machine like model usually the used state machine are not so complicated.
+	On the one hand it can be problem if the goal is to generate test suite for a complex SUT, but on the other using complex state machine features in a big SUT model is certainly not recommended. When developers use a state machine like model, usually the used state machine are not so complicated.
 	
 	Either way the execution speed can be improved. The improvement can be achieved with more option:
 	
 	\begin{itemize}
-		\item The most time consuming part of the system is the Alloy test generation, which can be improved by generating less runtime objects while solving a SAT formula. Alloy model have to be simplified to do this.
+		\item The most time consuming part of the system is the Alloy test generation, which can be improved by generating less runtime objects, while solving a SAT formula. Alloy model has to be simplified to do this.
 		\item Input model can be simplified before transforming to Alloy too. Solving easier parts of the models separately can also reduce the state space, therefore the constraint solving part will be faster. The easy parts of the system can be solved with other test generation methods e.g. with graph algorithms.
 	\end{itemize}
-	\item[Support more PLCspecif features] Currently the testing tool supports most of the elements from the PLCspecif feature set. However some basic UML like element are not supported for example composite states and pseudo states as deep history states.
+	\item[Support more PLCspecif features] Currently the testing tool supports most of the elements from the PLCspecif feature set. However some basic UML like element are not supported, for example composite states and pseudo states as deep history states.
 	
 	Guards and events also can not be defined arbitrary. These elements may benefit from the usage of the whole expression model. Expressions have an extensive metamodel and currently only the binary operations are supported. Supporting the other operations may improve the usability of the testing framework.
-	\item[Requirements traceability] Requirements traceability can be defined as documenting the life of a requirement and in the field of software testing also means the reporting of the requirements coverage.
+	\item[Requirements traceability] Requirements traceability can be defined as documenting the life of a requirement. In the field of software testing it also means the reporting of the requirements coverage.
 	
 	Possible scenarios to support this feature can be the following:
 	
@@ -85,9 +85,9 @@ Regarding the previously defined requirements, I successfully created a model-ba
 	\item Finally I evaluated the finished solution and sketched some possible future work.
 \end{itemize}
 
-After the testing and measurements phases I have concluded that the resulted testing framework is able to complete the tasks, and to satisfy the requirements that were defined at the start of the work. The software can maybe fill a gap, because it was designed to offer solutions to problems, that the other tools can not solve.
+After the testing and measurements phases I have concluded that the resulted testing framework is able to complete the tasks and to satisfy the requirements that were defined at the start of the work. The software can maybe fill a gap, because it was designed to offer solutions to problems, that the other tools can not solve.
 
-During the development of this software I continuously learned new technologies and algorithms.  That was a wonderful experience to design and develop a complete and useful solution for such a complex and hard problem.
+During the development of this software I continuously learned new technologies and algorithms. Finally I can say that it was a wonderful experience to design and develop a complete and useful solution for such a complex and hard problem.
 
 % setion conclusions (end)
 

@@ -13,29 +13,29 @@ The idea of model-based testing originates from the 70's and now it has an exten
 \end{figure}
 
 \begin{description}
-    \item[1. Modelling] From informal requirements or previously defined specifications a model can be built. The model is an abstract representation of the \textit{system under test (SUT)}. It uses encapsulation for information reduction, because it has to be more simple, than the original system to achieve an easier modifying and maintaining \cite{mbttestcasegeneration}. During model-based software development the model can be used for many other tasks too, as it serves analysing, synthesising and documenting the SUT as well.
+    \item[1. Modelling] From informal requirements or previously defined specifications a model can be built. The model is an abstract representation of the \textit{system under test (SUT)}. It uses encapsulation for information reduction, because it should be more simple, than the original system to achieve an easier modifying and maintaining \cite{mbttestcasegeneration}. During model-based software development the model can be used for many other tasks too, as it serves analysing, synthesising and documenting the SUT as well.
      \item[2. Test planning] \textit{Test selection criteria} decide how the test cases are chosen, which point of view is important by testing. Later these selected criteria will control the whole test generation process. Criteria are transformed into \textit{test case specifications}, which are the formalised versions of the criteria. These two steps are often treated separately, but they form a cohesive step of test planning, thus they will be discussed together in this thesis.
-     \item[3. Test generation] After creating the model and the test case specifications set of \textit{test cases} is generated automatically from the model regarding all the specifications. One of the biggest challenges is to create the test cases. A simple test case consists of a pair of input parameters and expected outputs. Finite set of test cases forms a \textit{test suite}. The difficulty comes from the need to satisfy the test case specifications and create a minimised set of test cases.
+     \item[3. Test generation] After creating the model and the test case specifications, set of \textit{test cases} is generated automatically from the model regarding all the specifications. One of the biggest challenges is to create the test cases. A simple test case consists of a pair of input parameters and expected outputs. Finite set of test cases forms a \textit{test suite}. The difficulty comes from the need to satisfy the test case specifications and to create a minimised set of test cases.
      \item[4. Test execution] A successfully generated test suite can be executed on the SUT. For the execution a \textit{test script} can be used, which executes the test cases.
      
-     The generated test cases are strongly linked to the abstract test model, therefore an \textit{adaptor} component is needed, which is often part of the test script. The adaptor adapts the test inputs to the SUT. For example if the input of a method is an XML document containing an integer value, the adaptor has to transform the test case's test inputs to XML.
+     The generated test cases are strongly linked to the abstract test model, therefore an \textit{adapter} component is needed, which is often part of the test script. The adapter adapts the test inputs to the SUT. For example if the input of a method is an XML document containing an integer value, the adapter has to transform the test case's test inputs to XML.
      
-     The test script also contains usually a \textit{test oracle}, that checks the test output difference from the expected output.
+     The test script usually contains a \textit{test oracle} that checks the difference between the test output and the expected output.
 \end{description}
 
-Utting, Pretschner and Legeard investigated the currently available MBT solutions and defined a taxonomy (see Figure~\ref{fig:mbttaxonomy}) which concentrates to three major properties of model-based testing. The three dimensions of their taxonomy are the modelling specification, test generation and test execution, which will be followed and expanded by the presentation of each stages of the testing process.
+Utting, Pretschner and Legeard investigated the currently available MBT solutions and defined a taxonomy (see Figure~\ref{fig:mbttaxonomy}), which concentrates to three major properties of model-based testing. The three dimensions of their taxonomy are the modelling specification, test generation and test execution, which will be followed and expanded by the presentation of each stages of the testing process.
 
 \section{Modelling}
 \label{sec:modelling}
 
-The first step of the model based testing process is to create a suitable model, from which a test suite can be generated.  Model specifications has three dimension considering the different MBT approaches.
+The first step of the model-based testing process is to create a suitable model, from which a test suite can be generated.  Model specifications has three dimensions considering the different MBT approaches.
 
 \begin{description}
-	\item[Model scope] The scope of the modelling is a binary decision. The model either specify \textit{just the test input} or \textit{the input-output pairs} for the SUT. Usually the first case is less useful, because the test script can not check the SUT's output and that's why it is difficult to create an oracle that way.
+	\item[Model scope] The scope of the modelling is a binary decision. The model either specifies \textit{just the test input} or \textit{the input-output pairs} for the SUT. Usually the first case is less useful, because the test script can not check the SUT's output and that's why it is difficult to create an oracle that way.
 	
-	\item[Model characteristics] The SUT assigns the main characteristics of the model. It depends on the SUT's timing properties (\textit{timed} / \textit{untimed}), determinism (\textit{deterministic} / \textit{non-deterministic}) and dynamics (\textit{discrete} / \textit{continuous} / \textit{hybrid}).
+	\item[Model characteristics] The SUT determines the main characteristics of the model. It depends on the SUT's timing properties (\textit{timed} / \textit{untimed}), determinism (\textit{deterministic} / \textit{non-deterministic}) and dynamics (\textit{discrete} / \textit{continuous} / \textit{hybrid}).
 	
-	\item[Model paradigm] The third dimension is the paradigm that is used to describe the model. \textit{State-based notation} means, that set of variables defines the model, which represents the internal state of the system and there are some operations that modify those variables. Usually these operations given by preconditions and postconditions. By \textit{transition-based notation} the model focuses on the transition between the state of the system. Finite state machines are examples of this paradigm. \textit{History-based notations} model the allowable traces of its behaviour over time. By \textit{functional notation} collection of mathematical functions model the system. \textit{Operational notations} describe the model as a set of executable processes running parallel. Petri nets are good forms of this notation. \textit{Stochastic notations} describe the model by a probabilistic model, so it is rather suitable to model the environment than the SUT itself. An example can be the Markov chains for this type of model paradigm. The last paradigm is the \textit{data-flow notation}, where the main concept is the concentration to the data, rather than the control flow, example can be the often used Matlab Simulink model.
+	\item[Model paradigm] The third dimension is the paradigm that is used to describe the model. \textit{State-based notation} means, that set of variables defines the model, which represents the internal state of the system and there are some operations that modify those variables. Usually these operations are given by preconditions and postconditions. By \textit{transition-based notation} the model focuses on the transitions between the states of the system. Finite state machines are examples of this paradigm. \textit{History-based notations} model the allowable traces of its behaviour over time. By \textit{functional notation} collection of mathematical functions model the system. \textit{Operational notations} describe the model as a set of executable processes running parallel. Petri nets are good forms of this notation. \textit{Stochastic notations} describe the model by a probabilistic model, so it is rather suitable to model the environment than the SUT itself. An example can be the Markov chains for this type of model paradigm. The last paradigm is the \textit{data-flow notation}, where the main concept is the concentration to the data, rather than the control flow. Example can be the often used Matlab Simulink model.
 \end{description}
 
 \begin{figure}[htp]
@@ -47,9 +47,9 @@ The first step of the model based testing process is to create a suitable model,
 
 As we saw by the taxonomy, all the identified model paradigms used in model-based testing belong to some kind of behaviour modelling notation. This is not a surprise, because a data or functional model can not be utilised so effectively by software testing. Each model paradigm concentrates to a different aspect of the behaviour.
 
-There is a plethora of technologies for modelling behaviour and one of the most frequently used are the extended finite state machine (EFSM) and all of its variations. These variations mostly use transition based notation, but they can combine it with other modelling paradigms as well. The second most popular modelling language according to Shafique and Labiche \cite{toolsreview} is the UML state machine language, which is an enhanced version of EFSMs. Other modelling languages are used in the field of MBT too, but mostly these tools made for a specific purpose.
+There is a plethora of technologies for modelling behaviour and one of the most frequently used are the extended finite state machine (EFSM) and all of its variations. These variations mostly use transition based notation, but they can combine it with other modelling paradigms as well. The second most popular modelling language according to Shafique and Labiche \cite{toolsreview} is the UML state machine language, which is an enhanced version of EFSMs. Other modelling languages are used in the field of MBT too, but mostly these tools are made for specific purposes.
 
-As EFSMs or at least their variations serve as basic modelling notation for the most available model based testing tools, that's why we have to investigate them properly. The basic parts of the UML language will be described here as well.
+As EFSMs or at least their variations serve as basic modelling notation for the most available model-based testing tools, that's why we have to investigate them properly. The basic parts of the UML language will be described here as well.
 
 \subsection{Extended finite state machines}
 \label{sub:efsm}
@@ -66,16 +66,16 @@ A \textit{finite state machine} is a 6-tuple $\langle S, I, A, R, \Delta, T\rang
 
 The semantic of this model is the following. When $T(s, a) = (s', r)$, the state machine is receiving an input $a \in A$ in state $s \in S$, assuming $(s,a) \in \Delta$, then the system moves to the new state $s' \in S$ and outputs $r \in R$. A possible $(s'', a') \notin \Delta$ is interpreted as an input symbol that is not allowed in that state.
 
-An \textit{extended finite state machine} differs from a simple finite state machine in terms of the states defined differently. The states of an extended state machine has the form $S = D_0 \times D_1 \times \dots D_n$, where $D_0$ is the set of control states, and $D_{i=1}^n$ is the domain of state variables $x_i$, that are assigned to each states.
+An \textit{extended finite state machine} differs from a simple finite state machine in terms of the states defined differently. The states of an extended state machine have the form $S = D_0 \times D_1 \times \dots D_n$, where $D_0$ is the set of control states and $D_{i=1}^n$ is the domain of state variables $x_i$ that are assigned to each states.
 
 % subsection efsm (end)
 
 \subsection{UML state machines}
 \label{sub:umlstatemachine}
 
-UML state machines or UML state charts are improved versions of the mathematical concept of finite state machines expressed with the OMG's Unified Modeling Language \cite{omguml}. The original FSM notations suffers greatly by the state and transition explosion problem, because the complexity of these models tend to grow faster as the modelled system. UML state machines solved this problem by extracting the common parts of these system and sharing the common behaviour across the states.
+UML state machines or UML state charts are improved versions of the mathematical concept of finite state machines expressed with the OMG's Unified Modeling Language \cite{omguml}. The original FSM notations suffer greatly by the state and transition explosion problem, because the complexity of these models tend to grow faster as the modelled system. UML state machines solved this problem by extracting the common parts of these system and sharing the common behaviour across the states.
 
-The idea behind the notation is that an entity or each of its sub-entities is always in exactly one of the possible states and there are well-defined conditional transitions between these states. There are two kinds of state machine, which can be used to define behaviour of model elements or to describe protocol usage.
+The idea behind the notation is that an entity or each of its sub-entities is always in exactly one of the possible states and there are well-defined conditional transitions between these states. There are two kinds of state machine, which can define the behaviour of model elements or describe protocol usage.
 
 \begin{figure}[htp]
 \centering
@@ -88,10 +88,10 @@ UML state machines are similar to FSMs, but they also have differences. For exam
 
 \begin{description}
 	\item[States] are the phases of the system's history. For example if the history can be separated into two phases, then there are two states. 
-	\item[Extended states] represents the complete condition of the system. This interpretation means usually states extended with system variables.
-	\item[Transitions] happens when a state switched to another.
-	\item[Actions] executed when an event dispatched and the system responds by performing them.
-	\item[Events] can be everything, that affects the system, and causes state change.
+	\item[Extended states] represent the complete condition of the system. Usually this is implemented with states that are extended with system variables.
+	\item[Transitions] happen when a state switched to another.
+	\item[Actions] are executed when an event is dispatched and the system responds by performing them.
+	\item[Events] can be everything that affects the system and causes state change.
 	
 \begin{figure}[htp]
 \centering
@@ -101,9 +101,9 @@ UML state machines are similar to FSMs, but they also have differences. For exam
 \end{figure}
 	
 	\item[Guards] are boolean expressions described with extended state variables and event parameters. They can affect the system's behaviour by enabling or disabling transitions.
-	\item[Hierarchically nested regions] means that if a system is in a substate then it is also in the same time in all the substate's superstates.
+	\item[Hierarchically nested regions] mean that if a system is in a substate then it is also at the same time in all the substate's superstates.
 	\item[Orthogonal regions] are regions, which are either in 'OR'  or 'AND' relation.
-	\item[Entry/exit actions] are actions which are dispatched upon entry to a state or exit from it.
+	\item[Entry/exit actions] are actions, which are dispatched upon entry to a state or exit from it.
 	\item[Internal transitions] do not cause state transitions, but only some internal actions to execute and the actual state stays the same.
 	\item[Transition execution sequence] describes an execution sequence of actions to do upon event dispatching. First the guard of the transition evaluates. Then the exit actions of the source state configuration will be executed. Then come the actions associated with the transition. Finally the entry actions of the target state configuration will be executed.
 \end{description}
@@ -115,11 +115,11 @@ UML state machines are similar to FSMs, but they also have differences. For exam
 \section{Test planning}
 \label{sec:testplanning}
 
-Planning tests involves two steps considering the model based test generation process. At first the test selection criteria are chosen, which will be formalised into a test case specification later on.
+Planning tests involves two steps considering the model-based test generation process. At first, the test selection criteria are chosen, which will be formalised into a test case specification later on.
 
-Test selection criteria control the test case generation. MBT taxonomy includes the following identified criteria. \textit{Structural model coverage criteria} aim to cover a part of the model, for example nodes and arcs of the transition-based model. The nodes of such a model represent the states of the system, and the arcs represent the transitions respectively. The basic idea of \textit{data coverage criteria} is to split the data space to equivalence classes and choose values from them. \textit{Requirements based coverage criteria} are linked to the informal requirements of the SUT and it applies the coverage to the requirements. \textit{Ad-hoc test case specifications} guides by the test case specifications. \textit{Random and stochastic criteria} are useful rather to model the environment and applicable to use with a stochastic model. \textit{Fault-based criteria} can be very efficient, because it concentrates to error finding in the SUT.
+Test selection criteria control the test case generation. MBT taxonomy includes the following identified criteria. \textit{Structural model coverage criteria} aim to cover a part of the model, for example nodes and arcs of the transition-based model. The nodes of such a model represent the states of the system and the arcs represent the transitions respectively. The basic idea of \textit{data coverage criteria} is to split the data space to equivalence classes and choose values from them. \textit{Requirements based coverage criteria} are linked to the informal requirements of the SUT and it applies the coverage to the requirements. \textit{Ad-hoc test case specifications} are guided by the test case specifications. \textit{Random and stochastic criteria} are useful rather to model the environment and applicable to use with a stochastic model. \textit{Fault-based criteria} can be very efficient, because it concentrates to error finding in the SUT.
 
-The main goal of the test selection criteria is to guide the automatic test selection by the test case generation. A good criteria fulfils the previously defined testing policy and testing strategy, that were specified for the system \cite{istqb}. Testing policies give rules for testing, while strategies are high-level guidelines.
+The main goal of the test selection criteria is to guide the automatic test selection by the test case generation. A good criteria fulfils the previously defined testing policy and testing strategy that were specified for the system \cite{istqb}. Testing policies give rules for testing, while strategies are high-level guidelines.
 
 Major tasks of test planning consist of
 
@@ -132,23 +132,23 @@ Major tasks of test planning consist of
 	\item determining exit criteria such as coverage criteria
 \end{itemize}
 
-The required output of the test selection criteria formalisation is the test case specification. This specification have to be fully formalised, so that a test generator is capable of generating test cases based on this formalisation and the software model.
+The required output of the test selection criteria formalisation is the test case specification. This specification has to be fully formalised, so that a test generator is capable of generating test cases based on this formalisation and the software model.
 
 % section testplanning (end)
 
 \section{Test generation}
 \label{sec:testgeneration}
 
-One of the most important thing that defines the test case generation is the chosen technology, because it has a strong impact on the effectiveness of software testing \cite{testcasegen} \cite{mbttestcasegeneration}. That's why this topic is under activate research and resulted different approaches.
+One of the most important thing that defines the test case generation is the chosen technology, because it has a strong impact on the effectiveness of software testing \cite{testcasegen} \cite{mbttestcasegeneration}. That's why this topic is under active research and resulted different approaches.
 
-Model-based testing taxonomy consists of the following popular test generation methods. The easiest one to implement is the \textit{random generation}, more difficult are the \textit{search-based algorithms} where graph algorithms and other search algorithms are used to perform a walk on the model. \textit{Model checking} can also be used for test case generation, where the model checker searches for a counter-example, which becomes a test case. \textit{Symbolic execution} means analysing the software to determine what inputs cause each part of a program to execute. This method guided by test case specification to reach a goal, and test inputs become inputs which produce different outputs. \textit{Deductive theorem proving} is similar to model checking, but the model checker is replaced with a theorem prover. \textit{Constraint solving} is useful for selecting data values from complex data domains.
+Model-based testing taxonomy consists of the following popular test generation methods. The easiest one to implement is the \textit{random generation}, more difficult are the \textit{search-based algorithms}, where graph algorithms and other search algorithms are used to perform a walk on the model. \textit{Model checking} can also be used for test case generation, where the model checker searches for a counterexample, which becomes a test case. \textit{Symbolic execution} means analysing the software to determine, what inputs cause each part of a program to execute. This method is guided by test case specification to reach a specific goal. \textit{Deductive theorem proving} is similar to model checking, but the model checker is replaced with a theorem prover. \textit{Constraint solving} is useful for selecting data values from complex data domains.
 
-We can see that there are lot of possibility to choose from, when generating test cases for a given SUT. These methods all have advantages and disadvantages and we need to investigate them thoroughly to choose a suitable one for our needs.
+We can see, that there are lot of possibility to choose from, when generating test cases for a given SUT. These methods all have advantages and disadvantages and we need to investigate them thoroughly to choose a suitable one for our needs.
 
 \subsection{Adaptive random testing (ART)}
 \label{sub:randomtesting}
 
-Random testing is based on the idea, that the inputs have to spread across the domain of the input parameters to find failure causing inputs. There are five method in the field of ART:
+Random testing is based on the idea that the inputs have to spread across the domain of the input parameters to find failure causing inputs. There are five method in the field of ART:
 
 \begin{itemize}
 	\item From a randomly generated input set, next candidate is chosen by a selected criterion.
@@ -165,13 +165,13 @@ Random testing is based on the idea, that the inputs have to spread across the d
 
 In the last few decades there has been an exhausting research in the field of using graph theory at model-based testing. These techniques belong to search-based test generation algorithms.
 
-One of the most used algorithms refers to the \textit{Chinese Postman Problem} \cite{graphtheorymbt}. Given that it is impossible to cross each edge once in an undirected graph during a graph walk, in other words it does not have an Eulerian tour. What is the minimal amount of re-crossing we need to create a walk that uses each edge? The solution is to duplicate the shortest edges between the vertices having odd degree. This process is called "Eulerising" the graph.
+One of the most used algorithms refers to the \textit{Chinese Postman Problem} \cite{graphtheorymbt}. Given that, it is impossible to cross each edge once in an undirected graph during a graph walk; in other words it does not have an Eulerian tour. What is the minimal amount of re-crossing we need to create a walk that uses each edge? The solution is to duplicate the shortest edges between the vertices having odd degree. This process is called "Eulerising" the graph.
 
-The \textit{New York Street Sweeper Problem} is a variant of the previous graph theory problem. It applies to directed graphs, and arcs need to duplicate to reach, that each nodes have out-degree minus in-degree equal zero. In model-based testing one can use this idea, by creating a transition-based model, which can be represented as a graph. The vertices are the states of the SUT and the edges are the callable methods. A generated Eulerian tour gives a full transition-based structural model coverage.
+The \textit{New York Street Sweeper Problem} is a variant of the previous graph theory problem. It applies to directed graphs. Arcs need to duplicate to reach that each nodes have out-degree minus in-degree equal zero. In model-based testing one can use this idea, by creating a transition-based model, which can be represented as a graph. The vertices are the states of the SUT and the edges are the callable methods. A generated Eulerian tour gives a full transition-based structural model coverage.
 
-The previous algorithms give full transition-based coverage, but not pair-wise coverage. The following algorithm named \textit{de Bruijn sequences} creates every combination of the methods. First create a dual graph of the original graph, then eulerise the dual graph (by duplicating arcs to balance node polarities). Create an Eulerian tour, noting the names of the passed nodes.
+The previous algorithms give full transition-based coverage, but not pair-wise coverage. The following algorithm, named \textit{de Bruijn sequences}, creates every combination of the methods. First create a dual graph of the original graph, then eulerise the dual graph (by duplicating arcs to balance node polarities). Create an Eulerian tour, noting the names of the passed nodes.
 
-Dill, Ho, Horowitz and Yang worked on the \textit{limited sub-tour problem} where the test case sequences can not be longer, than a specified upper limit. There is no optimal solution for that problem, but there are some heuristics. For example if an upper limit was set, the current sub-tour has to end and a new sub-tour has to start from that node.
+Dill, Ho, Horowitz and Yang worked on the \textit{limited sub-tour problem}, where the test case sequences can not be longer, than a specified upper limit. There is no optimal solution for that problem, but there are some heuristics. For example if an upper limit was set, the current sub-tour has to end and a new sub-tour has to start from that node.
 
 Other approaches are using a fitness function to find input parameters that maximises the achievement of test goals, while minimising testing costs.
 
@@ -180,10 +180,10 @@ Other approaches are using a fitness function to find input parameters that maxi
 \subsection{Traditional MBT techniques}
 \label{sub:modelchecking}
 
-These types of test generation technologies includes three similar solution especially for model based testing purposes.
+These test generation technologies include three similar solution especially for model-based testing purposes.
 
 \begin{description}
-	\item[Model checking] is a traditional model based testing test case generation technique, where a model checker is used to generate test cases. Input of the model checker are the model of the SUT and the formalised versions of test criteria to check. During the procedure of proofing, if test criteria are valid in the model, witness traces and counterexamples are generated. A witness trace is a path, which consists of states where the criterion is satisfied, while counterexamples represent a path where the criterion is violated. The resulted paths can be used as set of test cases.
+	\item[Model checking] is a traditional MBT test case generation technique, where a model checker is used to generate test cases. Input of the model checker are the model of the SUT and the formalised versions of test criteria to check. During the procedure of proofing, if test criteria are valid in the model, witness traces and counterexamples are generated. A witness trace is a path, which consists of states, where the criterion is satisfied, while counterexamples represent a path, where the criterion is violated. The resulted paths can be used as set of test cases.
 
 There are two main approaches in this topic, which are influenced by the chosen modelling notation (Section~\ref{sec:modelling}):
 
@@ -192,9 +192,9 @@ There are two main approaches in this topic, which are influenced by the chosen 
 	\item \textbf{Labelled transition system approaches} This is a common formalism for describing operational semantics of process algebra. There are two common techniques generating test cases (input/output conformance and interface automata), which describe the conformance of the SUT. These techniques do not define test selection strategies, they have to be combined with coverage criteria as seen by FSMs.
 \end{itemize}
 
-	\item[Theorem proving] is used traditionally to validate logical formulas. However model-based testing can also benefit from the power of these methods.
+	\item[Theorem proving] is used traditionally to validate logical formulas. However model-based testing can also benefit from the power of this method.
 	
-	Axiomatic foundations of MBT are based on some form of logic calculus. The models of the SUT is specified with logical expressions that are partitioned into equivalence classes. Each resulted class defines a specific features of the SUT, therefore represents a particular test case.
+	Axiomatic foundations of MBT are based on some form of logic calculus. The models of the SUT is specified with logical expressions that are partitioned into equivalence classes. Each resulted class defines a specific feature of the SUT, therefore it represents a particular test case.
 	
 	A possible partitioning can be, where the logic formula is transformed into disjunctive normal form (DNF) and solved with a higher-order logical theorem prover. Another way can be to transform the problem into solving finite state machines.
 
@@ -209,14 +209,14 @@ There are two main approaches in this topic, which are influenced by the chosen 
 
 Symbolic execution is a program analysis technique that analyses a program’s code to automatically generate test cases from it. It belongs to white box testing, because the inner structure of the SUT is known during the test.
 
-Symbolic execution uses symbolic values, instead of concrete values, as program inputs. During the symbolic execution the state of the program is represented with \textit{symbolic values} of program variables at that point, a \textit{path constraint} created by symbolic values, and a \textit{program counter}. The path constraint is a Boolean formula, that has to be satisfied to reach that point on the path. At each branch point the path constraint is updated with constraints of the inputs. If the path constraint becomes unsatisfiable, the path can not be continued. If the the path constraint stays satisfiable, then all solution for the Boolean formula can be an input for a given test case.
+Symbolic execution uses symbolic values, instead of concrete values, as program inputs. During the symbolic execution the state of the program is represented with \textit{symbolic values} of program variables at that point, a \textit{path constraint} is created by symbolic values and a \textit{program counter}. The path constraint is a Boolean formula that has to be satisfied to reach that point on the path. At each branch point the path constraint is updated with constraints of the inputs. If the path constraint becomes unsatisfiable, the path can not be continued. If the path constraint stays satisfiable, then all solution for the Boolean formula can be an input for a given test case.
 
-There are numerous tools which proves the usefulness of this technique, but there are three main problem that limits the effectiveness of this method by real world programs.
+There are numerous tools, which prove the usefulness of this technique, but there are three main problem that limits the effectiveness of this method by real world programs.
 
 \begin{itemize}
-	\item \textbf{Path explosion} The most real world program have a huge number of computational path. The execution of each path can be mean an unacceptable overhead. Solutions for this problem can be using the specification of the parts that affect the symbolic execution or avoiding some branch, which are irrelevant to the test data criteria.
-	\item \textbf{Path divergence} Programs usually implemented in a mixture of different programming languages. The symbolic execution of such a complex infrastructure is almost impossible. The unavailability of these paths leads to path divergence, and some paths may not be found during the symbolic execution. Possible solution can be to replace these paths with a model during the test generation.
-	\item \textbf{Complex constraints} Solving Boolean formulas involves using constraint solvers during the symbolic execution. There are some formula that, which can not be solved with the today available tools. These formulas can be simplified by replacing solvable sub formulas with concrete values.
+	\item \textbf{Path explosion} The most real world program have a huge number of computational path. The execution of each path can mean an unacceptable overhead. Solutions for this problem can be using the specification of the parts that affect the symbolic execution or avoiding some branch, which are irrelevant to the test data criteria.
+	\item \textbf{Path divergence} Programs usually implemented in a mixture of different programming languages. The symbolic execution of such a complex infrastructure is almost impossible. The unavailability of these paths leads to path divergence and some paths may not be found during the symbolic execution. Possible solution can be to replace these paths with a model during the test generation.
+	\item \textbf{Complex constraints} Solving Boolean formulas involves using constraint solvers during the symbolic execution. There are some formula, which can not be solved with the today available tools. These formulas can be simplified by replacing solvable subformulas with concrete values.
 \end{itemize}
 
 % subsection symbolicexecution (end)
@@ -224,7 +224,7 @@ There are numerous tools which proves the usefulness of this technique, but ther
 \subsection{Combinatorial testing}
 \label{sub:combinatorialtesting}
 
-In combinatorial testing samples of input parameters have to be chosen that cover a prescribed subset of combinations of the elements to be tested. Samples usually consist all t-way combination of possible input parameters, this method is called \textit{combinatorial interaction testing} (CIT). The inputs can be described with a covering array:
+In combinatorial testing, samples of input parameters have to be chosen that cover a prescribed subset of combinations of the elements to be tested. Samples usually consist all t-way combination of possible input parameters. This method is called \textit{combinatorial interaction testing} (CIT). The inputs can be described with a covering array:
 \begin{displaymath}
 CA=\langle N, t, k, v\rangle
 \end{displaymath}
@@ -240,13 +240,13 @@ Combinatorial testing can be used if the domains of the input parameters are kno
 \section{Test execution}
 \label{sec:testexecution}
 
-Test execution includes several steps, because the abstraction level of the generated test cases differ from the SUT. Therefore a previously mentioned adapter component is needed that bridges between the two component. The concrete execution is done by a component named test script, which includes a test oracle that determines, if the test were run successfully or not.
+Test execution includes several steps, because the abstraction level of the generated test cases differs from the SUT. Therefore a previously mentioned adapter component is needed that bridges between the two component. The concrete execution is done by a component, named test script, which includes a test oracle that determines, if the test were run successfully or not.
 
-The tasks of the execution are the followings:
+The tasks of the execution are the following:
 
 \begin{itemize}
 	\item Execute the complete test suite or individual test cases with test scripts.
-	\item Log the outcome of the execution and report the identities and versions of the SUT and the testing tools.
+	\item Log the outcome of the execution and report the identities, versions of the SUT and the testing tools.
 	\item Compare the results with the expectations using oracles.
 	\item Report the differences between the actual and the expected results.
 	\item Repeat the execution with the same configuration to prove the correctness of a previously failed test case. When we just re-execute a test case that called \textit{confirmation testing}, but we have to check that a fix does not introduce new defects (\textit{regression testing}).
@@ -254,7 +254,7 @@ The tasks of the execution are the followings:
 
 The tests can run either \textit{online} or \textit{offline} on the SUT. During an online test, the test generator can respond to the SUT's actual output for example with an different test case sequence. By an offline test generation test cases are generated strictly before the execution.
 	
-The testing can be started by an automatic execution or manually, that triggers the user directly.
+The testing can be started by an automatic execution or manually that triggers the user directly.
 
 % section testexecution (end)
 

@@ -3,7 +3,7 @@
 \label{cha:design}
 %----------------------------------------------------------------------------
 
-In this chapter I will present the design phase of a new model-based testing framework, that tries to take into consideration the conclusions of the investigated available testing tools. This framework is need to be complete regarding the whole MBT process and has to help in all phases of the testing.
+In this chapter I will present the design phase of a new model-based testing framework that tries to take into consideration the conclusions of the investigated testing tools. This framework is need to be complete regarding the whole MBT process and has to help in all phases of the testing.
 
 First the different testing phases will be discussed separately as at the model-based testing process specification (Section \ref{cha:modelbasedtesting}). Later I will describe the high level design of the framework and the used technologies.
 
@@ -13,34 +13,34 @@ First the different testing phases will be discussed separately as at the model-
 \subsection{Modelling}
 \label{sub:designmodelling}
 
-The first step is the creation of the model. There are many possibility to choose from and we want to have a transition based notation that represents some kind of state machine. State machine notations have different level of expression and come with different amount of features. Generally the more feature a modelling language has, the more hard is to generate a good quality test suite from it. That's why we need to find a notation that has a suitable level of expressiveness and it is easy to integrate into a complete testing process.
+The first step is the creation of the model. There are many possibility to choose from and we want to have a transition-based notation that represents some kind of state machine. State machine notations have different level of expression and come with different amount of features. Generally the more feature a modelling language has, the more hard is to generate a good quality test suite from it. That's why we need to find a notation that has a suitable level of expressiveness and it is easy to integrate into a complete testing process.
 
-Earlier we saw that the lowest level of state machine notation is some kind of FSM like notation. However FSMs lacks many features and a real world software is hard to model with it. Actions, guards, events are not even parts of the improved EFSM notation, so we need to find something more expressive.
+Earlier we saw that the lowest level of state machine notation is some kind of FSM like notation. However FSMs lack many features and a real world software is hard to model with it. Actions, guards, events are not even parts of the improved EFSM notation, so we need to find something more expressive.
 
-Many tools have an UML like notation, but they either can not fully take advantage of the many features of this modelling language or simply avoid their usage. That is not surprising because UML was not designed for testing purposes. UML has just all the features, that are needed to describe the behaviour of a real life software, but some of its feature are hard to utilise during the test generation process. Moreover it lacks some important feature, that a test model has to bear with.
+Many tools have an UML like notation, but they either can not fully take advantage of the many features of this modelling language or simply avoid their usage. That is not surprising because UML was not designed for testing purposes. UML has just all the features that are needed to describe the behaviour of a real life software, but some of its feature are hard to utilise, during the test generation process. Moreover, it lacks some important feature that a test model has to bear with.
 
 It would be ideal if the test model would express the output of the state machine, because determining the expected output would be trivial by the test generation process. However an UML like semantics and syntax would be easy to adopt by the test engineers, because UML state machines are well known in the industry field and most of its features are easy to use and self-describing. Unfortunately the UML modelling language has lot of implementation and they differ in terms of integrability.
 
-For these issues noted above I think a solution can be the Eclipse Modeling Framework. It is a modelling framework that is built especially for creating tools based on structured models. The EMF platform will be discussed in more details in Section~\ref{sec:softwaredesign}.
+For these issues noted above, I think, a solution can be the Eclipse Modeling Framework. It is a modelling framework that is built especially for creating tools based on structured models. The EMF platform will be discussed in more details in Section~\ref{sec:softwaredesign}.
 
-EMF models are easy to use, extendable models, that have an UML like syntax.  These models are customisable for the actual needs, and suitable meta-model can be built with the help of the EMF platform. PLCspecif is complete solution that has exactly these previously defined features.
+EMF models are easy to use, extendable models that have an UML like syntax.  These models are customisable for the actual needs and suitable meta-model can be built with the help of the EMF platform. PLCspecif is complete solution that has exactly these previously defined features.
 
 \subsubsection{PLCspecif}
 \label{ssub:plcspecif}
 
 PLCspecif \cite{plcspecif} is a modelling language intended to be a formal, modular, hierarchical behaviour specification method for describing PLC programs. It was created as part of a doctoral programme by Dániel Darvas of the Budapest University of Technology and Economics (BME) and the European Organization for Nuclear Research (CERN).
 
-The abstract syntax of the PLCspecif formalism was designed as an EMF metamodel, therefore the figures are following the original EMF denotation. Here I will describe only the concerned parts of the modelling language as the complete feature set goes far beyond this thesis.
+The abstract syntax of the PLCspecif formalism was designed as an EMF metamodel, therefore the figures are following the original EMF denotation. Here I will describe only the concerned parts of the modelling language, as the complete feature set goes far beyond this thesis.
 
-The specification organised into modules (Figure~\ref{fig:plchsm_modules}), which are either represent a behaviour of concrete module (\texttt{LeafModule}) or they are composite modules containing a set of submodules (\texttt{CompositeModule}).
+The specification organised into modules (Figure~\ref{fig:plchsm_modules}), which are either represent a behaviour of concrete module (\texttt{LeafModule}), or they are composite modules, containing a set of submodules (\texttt{CompositeModule}).
 
-\texttt{System} is a top-level container that can contain \texttt{modules} from which one module represents the \texttt{topLevelModule}. There are four different module type:
+\texttt{System} is a top-level container that can contain \texttt{modules}, from which one module represents the \texttt{topLevelModule}. There are four different module type:
 
 \begin{itemize}
-	\item \texttt{StatemachineModule} represents an UML-like state machine.
-	\item \texttt{IoConnectionModule} defined by connections between input and output variables.
+	\item \texttt{StatemachineModule} represents an UML like state machine.
+	\item \texttt{IoConnectionModule} is defined by connections between input and output variables.
 	\item \texttt{TimerModule} describes a PLC timer in the system.
-	\item \texttt{EmptyModule} is a module without any state machine or IO connection.
+	\item \texttt{EmptyModule} is a module, without any state machine or IO connection.
 \end{itemize}
 
 \begin{figure}[htp]
@@ -50,7 +50,7 @@ The specification organised into modules (Figure~\ref{fig:plchsm_modules}), whic
 \label{fig:plchsm_modules}
 \end{figure}
 
-From these module types we are interested especially in the state machine notation. As shown on Figure~\ref{fig:plchsm_statemachine} the metamodel is similar to UML state machine's metamodel described previously (Subsection~\ref{sub:umlstatemachine}).
+From these module types, we are interested especially in the state machine notation. As shown on Figure~\ref{fig:plchsm_statemachine} the metamodel is similar to UML state machine's metamodel, described previously (Subsection~\ref{sub:umlstatemachine}).
 
 On the other hand PLCspecif state machines have some differences from the UML notation:
 
@@ -71,7 +71,7 @@ On the other hand PLCspecif state machines have some differences from the UML no
 \label{fig:plchsm_statemachine}
 \end{figure}
 
-Beside these differences PLCspecif has a bigger difference, which can improve the usability of a test model. Modules can handle input and output variables and can define their outputs using \texttt{VariableDefinitionExpression} objects (Figure~\ref{fig:plchsm_variables}). PLCspecif offers a wide range of possibilities to define an \texttt{Expression}, e.g. \texttt{SwitchCaseTable}, \texttt{DnfExpression}, \texttt{Contant}, \texttt{UnaryOperation}, \texttt{BinaryOperation}, \texttt{NaryOperation}. In our case the output definition of a single state machine can be a switch case table, where conditions checks whether the state machine is in a particular state, and the values are the possible values given by a variable or constant.
+Beside these differences, PLCspecif has a bigger difference, which can improve the usability of a test model. Modules can handle input and output variables and can define their outputs using \texttt{VariableDefinitionExpression} objects (Figure~\ref{fig:plchsm_variables}). PLCspecif offers a wide range of possibilities to define an \texttt{Expression}, e.g. \texttt{SwitchCaseTable}, \texttt{DnfExpression}, \texttt{Contant}, \texttt{UnaryOperation}, \texttt{BinaryOperation}, \texttt{NaryOperation}. In our case the output definition of a single state machine can be a switch case table, where conditions checks, whether the state machine is in a particular state and the values are the possible values, given by a variable or constant.
 
 \begin{figure}[htp]
 \centering
@@ -83,11 +83,11 @@ Beside these differences PLCspecif has a bigger difference, which can improve th
 \textbf{Conclusion:} We can see, that PLCspecif has some advantage over traditional UML modelling language in the field of model-based testing:
 
 \begin{itemize}
-	\item EMF Ecore is a reference implementation of OMG's Essential Meta-Object Facility, that's why syntax should conform with the original UML denotation.
-	\item PLCspecif is rather a subset of the UML state machine language, and so it is more simple.
+	\item EMF Ecore is a reference implementation of OMG's Essential Meta-Object Facility, that's why the syntax should conform with the original UML denotation.
+	\item PLCspecif is rather a subset of the UML state machine language, so it is more simple.
 	\item PLCspecif is able to express natively the outputs of a state machine, which can be utilised greatly by the test case generation.
-	\item As PLCspecif is based on the EMF Ecore metamodel engineers can take advantage of the entire EMF ecosystem and tooling by the whole MBT process.
-	\item UML language has only an informally given semantics, while PLCspecif has a complete formal behaviour specification.
+	\item As PLCspecif is based on the EMF Ecore metamodel, engineers can take advantage of the entire EMF ecosystem and tooling by the whole MBT process.
+	\item UML language has only an informally given semantics, while PLCspecif has a complete, formal behaviour specification.
 \end{itemize}
 
 % subsubsection plcspecif (end)
@@ -99,9 +99,9 @@ Beside these differences PLCspecif has a bigger difference, which can improve th
 
 The next step of model-based testing is the test planning.
 
-The scope of a generated test suite is always is referred to the corresponding state machine. In reality following the Law of Demeter and decoupling, that would mean one class or two classes.
+The scope of a generated test suite is always referred to the corresponding state machine. In reality, following the Law of Demeter and decoupling, that would mean one class or two classes.
 
-Another important question to discuss is the specification of chosen test selection criteria. We saw at the conclusions of the investigation of related works (Chapter~\ref{cha:relatedwork}), that even the most general and simplest criteria are not fully supported by all the available tools. They either implement complex criteria with a less useful, simple model, or they work with an expressive model and do not support the criteria completely.
+Another important question to discuss is the specification of chosen test selection criteria. We saw at the conclusions of related works (Chapter~\ref{cha:relatedwork}) that even the most general and simplest criteria are not fully supported by all the available tools. They either implement complex criteria with a less useful, simple model, or they work with an expressive model and do not support the criteria completely.
 
 At this point I tried to find a golden mean between the different approaches. I chose to implement the basic structural model coverage criteria (full state and transition coverage) on a model with moderate level of expressiveness. Formalisation of this criteria is mostly trivial and left to the implementation chapter (Chapter~\ref{cha:implementation}).
 
@@ -110,9 +110,9 @@ At this point I tried to find a golden mean between the different approaches. I 
 \subsection{Test generation}
 \label{sub:designtestgeneration}
 
-The third step is the test case generation. After examining the available tools we saw, that generally simple test case generation algorithms work fine on simple SUT representations, but as we increase the level of expressiveness so gets also the execution more slower. To generate test suites from complex models we need something more powerful.
+The third step is the test case generation. After examining the available tools, we saw that simple test case generation algorithms work fine on simple SUT representations, but as we increase the level of expressiveness, so gets also the execution more slower. To generate test suites from complex models, we need something more powerful.
 
-Traditional MBT test generation technologies involve model checking, deductive theorem proving and constraint solving. These methods all embed and utilise some powerful mechanism to generate test cases using complex criteria and models. To get the most of these methods usually an intermediate model is used, that maps the original test model to an applicable form and can be executed by e.g. a model checker. That's why our test model should be easily transformable to the intermediate model's notation.
+Traditional MBT test generation technologies involve model checking, deductive theorem proving and constraint solving. These methods all embed and utilise some powerful mechanism to generate test cases using complex criteria and models. To get the most of these methods, usually an intermediate model is used that maps the original test model to an applicable form and can be executed by e.g. a model checker. That's why our test model should be easily transformable to the intermediate model's notation.
 
 \subsubsection{Alloy}
 \label{ssub:alloy}
@@ -121,11 +121,11 @@ Alloy \cite{alloy}\cite{alloyfirst}\cite{psm2alloy} is a formal modelling langua
 
 The language has been developed on MIT and the first prototype was finished in 1997 in the form of a limited object modelling language. Later the features, performance and scalability have been improved.
 
-Alloy is a declarative language, so that it describes the behaviour without giving the precise execution mechanism. The language was influenced by the Z notation, which is a formal specification language used to describe and modell computer programs and systems. In contrary of Z, Alloy was designed for automatic analysis.
+Alloy is a declarative language, so that it describes the behaviour without giving the precise execution mechanism. The language was influenced by the Z notation, which is a formal specification language used to describe and model computer programs and systems. In contrary of Z, Alloy was designed for automatic analysis.
 
-OCL (Object Constraint Language) with UML are often used by MBT tools for expressing SUT 's behaviour. UML semantics can be imitated by an Alloy model, but Alloy can do even more. OCL is similar to Alloy, but the latter has a more conventional syntax and simpler semantics. So Alloy can combine the features of the two OMG standards and can serve as the input model of a model-based testing tool.
+OCL (Object Constraint Language) with UML are often used by MBT tools for expressing SUT 's behaviour. UML semantics can be imitated with an Alloy model, but Alloy can do even more. OCL is similar to Alloy, but the latter has a more conventional syntax and simpler semantics. So Alloy can combine the features of the two OMG standards and can serve as the input model of a model-based testing tool.
 
-Alloy Analyzer transforms problems into SAT formulas to solve them. The solver was inspired by model checkers, but it is implemented as a constraint solver, performing verification within a bounded scope. In constraint programming relations between variables are noted in the form of constraints that will be solved by giving a value to each variable so that the solution is consistent. If the constraints are inconsistent, then the problem is said to be unsatisfiable.
+Alloy Analyzer transforms problems into SAT formulas to solve them. The solver was inspired by model checkers, but it is implemented as a constraint solver, performing verification within a bounded scope. In constraint programming relations between variables are noted in the form of constraints that will be solved by giving a value to each variable, so that the solution is consistent. If the constraints are inconsistent, then the problem is said to be unsatisfiable.
 
 Alloy version 4 ships in the form of a self-contained JAR file, which includes a variety of supported SAT solver, the standard Alloy library, tutorial examples and an extensive API, that's why it is easy to incorporate into a custom solution.
 
@@ -147,7 +147,7 @@ run { some e: E | two[e] } for 2
 
 On line 6 there is a \texttt{fact} statement, which is an explicit constraint on the model. This constraint is used to ensure, there are not two signatures \texttt{E} having the same set of signatures \texttt{A}. 
 
-On line 7 there is a function statement, defined by \texttt{fun}, which is a parametrised expression that gets simply inlined at every invocation. Here function \texttt{count} is used to get the number of \texttt{A} signatures in a signature \texttt{E} . On line 8 there is a predicate, noted with \texttt{pred} that represents a formula, which can be evaluated to a boolean expression. Predicates can be executed for example with a \texttt{run} statement that instructs Alloy to search for a model that satisfies the given predicate. The presented statement checks whether there are models, where signatures \texttt{E} have two different signatures \texttt{A}.
+On line 7 there is a function statement, defined by \texttt{fun}, which is a parametrised expression that gets simply inlined at every invocation. Here function \texttt{count} is used to get the number of \texttt{A} signatures in a signature \texttt{E} . On line 8 there is a predicate, noted with \texttt{pred} that represents a formula, which can be evaluated to a boolean expression. Predicates can be executed for example with a \texttt{run} statement that instructs Alloy to search for a model that satisfies the given predicate. The presented statement checks, whether there are models, where signatures \texttt{E} have two different signatures \texttt{A}.
 
 \textbf{Conclusion}: To summarise the statements above, Alloy has the following benefits:
 
@@ -166,7 +166,7 @@ On line 7 there is a function statement, defined by \texttt{fun}, which is a par
 
 The last step of the testing process is the test execution. The available MBT tools seems to avoid the support of this step. This is somewhat surprising, because the real theoretical and technical difficulties are solved in the previous steps.
 
-Test scripts, adaptors and oracles can be generated from the prepared test suite and the SUT. EMF code generation facility are a perfect tool to help by this step, as well as by the test case generation.
+Test scripts, adapters and oracles can be generated from the prepared test suite and the SUT. EMF code generation facility are a perfect tool to help this step, as well as by the test case generation.
 
 % subsection designtestexecution (end)
 
@@ -179,13 +179,13 @@ Considering the previously described requirements the testing framework should h
 
 \begin{description}
 	\item[UC.1:] Model creation / editing\\
-		\textbf{Description:} The user is able to create and edit a test model, that represents the SUT's behaviour.\\
+		\textbf{Description:} The user is able to create and edit a test model that represents the SUT's behaviour.\\
 		\textbf{Priority:} High\\
 		\textbf{Risk:} High\\
 		\textbf{Scenarios:}\\
 			\-\hspace{0,5cm}\textbf{Main:} A PLCspecif instance model is created.
 	\item[UC.2:] Model validation\\
-		\textbf{Description:} The user is able to validate the test model whether it is well-formed and satisfies some given constraints.\\
+		\textbf{Description:} The user is able to validate the test model, whether it is well-formed and satisfies some given constraints.\\
 		\textbf{Priority:} Medium\\
 		\textbf{Risk:} Medium\\
 		\textbf{Scenarios:}\\
@@ -200,7 +200,7 @@ Considering the previously described requirements the testing framework should h
 			\-\hspace{0,5cm}\textbf{Alternate 1:} A suitable test suite is generated for full state coverage.\\
 			\-\hspace{0,5cm}\textbf{Alternate 2:} Test suite generation was unsuccessful, because the coverage criterion is unsatisfiable.
 	\item[UC.4:] Test suite execution\\
-		\textbf{Description:} The use can execute the generated test suite and see the results.\\
+		\textbf{Description:} The user can execute the generated test suite and see the results.\\
 		\textbf{Priority:} Medium\\
 		\textbf{Risk:} Low\\
 		\textbf{Scenarios:}\\
@@ -208,7 +208,7 @@ Considering the previously described requirements the testing framework should h
 			\-\hspace{0,5cm}\textbf{Alternate:} Test suite execution is failed, because the SUT may contain some error.
 \end{description}
 
-As the PLCspecif modelling framework already realised the first two use case, the testing framework can concentrate on the other two use case.
+As the PLCspecif modelling framework already realised the first two use case, the testing framework can concentrate on the other two use cases.
 
 \begin{figure}[htp]
 \centering
@@ -217,14 +217,14 @@ As the PLCspecif modelling framework already realised the first two use case, th
 \label{fig:designuc}
 \end{figure}
 
-Figure~\ref{fig:designcomponents} shows the main components of the testing framework. PLCspecif is based on the EMF platform \cite{emf}\cite{emfbook}, but the testing tool can also benefit from the EMF toolset. The required two use case can be realised with two Eclipse plugin. The first plugin will implement the the test suite generation and test execution tooling, the other will be the user interface of the testing tool. Before describing the behaviour and the implementation of the components in depths, the used EMF and the whole Eclipse platform have to be studied.
+Figure~\ref{fig:designcomponents} shows the main components of the testing framework. PLCspecif is based on the EMF platform \cite{emf}\cite{emfbook}, but the testing tool can also benefit from the EMF toolset. The required two use cases can be realised with two Eclipse plugins. The first plugin will implement the the test suite generation and test execution tooling, the other will be the user interface of the testing tool. Before describing the behaviour and the implementation of the components in depths, the used EMF and the whole Eclipse platform have to be studied.
 
 \newpage
 
 \subsection{Eclipse Modelling Framework}
 \label{sub:emf}
 
-Eclipse is an open source integrated development environment, that contains a base workspace and a highly extensible plugin system \cite{aosa}. The IDE was written mainly in Java, its primary use is for developing Java, C/C++, PHP applications but there are lot of other supported programming language and framework as well.
+Eclipse is an open source integrated development environment that contains a base workspace and a highly extensible plugin system \cite{aosa}. The IDE was written mainly in Java and its primary use is for developing Java, C/C++, PHP applications but there are lot of other supported programming language and framework as well.
 
 \begin{figure}[htp]
 \centering
@@ -233,11 +233,11 @@ Eclipse is an open source integrated development environment, that contains a ba
 \label{fig:designeclipse}
 \end{figure}
 
-The required tools for Java development are provided by the Java Development Tools (JDT), see on Figure~\ref{fig:designeclipse}. JDT includes Java editors, refactoring support, debugger, compiler and an incremental builder, that recompiles only those files, which have changed or their dependencies.
+The required tools for Java development are provided by the Java Development Tools (JDT), see on Figure~\ref{fig:designeclipse}. JDT includes Java editors, refactoring support, debugger, compiler and an incremental builder that recompiles only those files, which have changed or their dependencies.
 
 Plug-in Development Environment (PDE) provides tooling to extend the capabilities of Eclipse through plugins. Eclipse gained its popularity and power at first from its plugin system. In fact everything is a plugin in Eclipse, except a small run time kernel. All feature are developed and integrated in the same way as a plugin, that's why third party developers are able to join and improve the Eclipse ecosystem.
 
-Plugins are the base elements of the Eclipse component model. These plugins are in reality equal with OSGi bundles \cite{osgi}. OSGi is a modular system and service platforms, that implements a dynamic component model. The OSGi framework manages the bundles and their class loading, and provides a dynamic, runtime lifecycle management.
+Plugins are the base elements of the Eclipse component model. These plugins are in reality equal with OSGi bundles \cite{osgi}. OSGi is a modular system and service platforms that implements a dynamic component model. The OSGi framework manages the bundles, their class loading and provides a dynamic, runtime lifecycle management.
 
 \begin{figure}[htp]
 \centering
@@ -248,9 +248,9 @@ Plugins are the base elements of the Eclipse component model. These plugins are 
 
 OSGi supports runtime installation, starting, updating, stopping and uninstallation of bundles (Figure~\ref{fig:designosgi}). When an application is started, bundles are in installed state. If all dependencies are met, then it changes to resolved state. Once a bundle is resolved, it can be started. Finally it becomes active and is able to interact with other bundles.
 
-Essentially the OSGi bundles are JAR files with a manifest, that describes the dependencies of the bundle. The only difference is between bundles and plugins, that plugins have a \texttt{plugin.xml} file in their root directory, which contains metadata about the plugin. This plugin manifest provides an other way to extend the features of a particular plugin, called extensions and extension points.
+Essentially the OSGi bundles are JAR files with a manifest that describes the dependencies of the bundle. The only difference is between bundles and plugins that plugins have a \texttt{plugin.xml} file in their root directory, which contains metadata about the plugin. This plugin manifest provides an other way to extend the features of a particular plugin, called extensions and extension points.
 
-Extension points are considered public API, that other developers can use to build their own extension. Figure~\ref{fig:designcomponents} illustrates the components of the testing framework and which extension points they use to communicate with the Eclipse SDK. For example the test suite generator UI uses the \texttt{org.eclipse.ui.popupMenus} extension point to show a new menu item in the generated model editor's context menu.
+Extension points are considered public API that other developers can use to build their own extension. Figure~\ref{fig:designcomponents} illustrates the components of the testing framework and which extension points they use to communicate with the Eclipse SDK. For example the test suite generator UI uses the \texttt{org.eclipse.ui.popupMenus} extension point to show a new menu item in the generated model editor's context menu.
 
 \begin{figure}[htp]
 \centering
@@ -259,9 +259,9 @@ Extension points are considered public API, that other developers can use to bui
 \label{fig:designcomponents}
 \end{figure}
 
-When Eclipse starts, the platform runtime (Equinox) scans the manifests of the available plugins and builds a plugin registry. These plugins are discovered at the startup, but only activated by the actual usage, this is called \textit{lazy activation}. Lazy activation is enabled by the previously described OSGi platform, which results considerable performance improvements.
+When Eclipse starts, the platform runtime (Equinox) scans the manifests of the available plugins and builds a plugin registry. These plugins are discovered at the startup, but only activated by the actual usage. This is called \textit{lazy activation}. Lazy activation is enabled by the previously described OSGi platform, which results considerable performance improvements.
 
-Eclipse user interface is built by two other important components of the platform. Eclipse Modeling Framework (EMF) is used to generate a model workbench, that will be rendered into views. Default view renderer uses the Standard Widget Toolkit (SWT) to generate the code of the UI.
+Eclipse user interface is built by two other important components of the platform. Eclipse Modeling Framework (EMF) is used to generate a model workbench that will be rendered into views. Default view renderer uses the Standard Widget Toolkit (SWT) to generate the code of the UI.
 
 EMF is basically a modelling framework and code generation facility for building model-based tools. From a created model specification EMF is able to generate model classes, adapters for interacting with the model and a basic model editor.  Models can be specified using annotated Java classes, UML or XMI. XMI (XML Metadata Interchange) is a standard to exchange metadata information and it integrates three OMG standard e.g. UML, XML and MOF (Meta Object Facility, for describing metamodels). EMF consists of three main parts: EMF (Core), EMF.Edit and EMF.Codegen.
 
@@ -269,9 +269,9 @@ EMF is based on a metamodel, called the Ecore metamodel, which can express other
 
 EMF.Edit provides generic reusable classes for building editors for the previously created models.
 
-EMF.Codegen can generate all part of a complete model editor. The first level of code generation is the model generation. This consists of Java interfaces, implementation classes and factories. On second level resides the adapter classes, which adapt the model classes for editing and display. The highest level is the editor, where a basic model editor is generated to start with.
+EMF.Codegen can generate all part of a complete model editor. The first level of code generation is the model generation. This consists of Java interfaces, implementation classes and factories. On second level reside the adapter classes, which adapt the model classes for editing and display. The highest level is the editor, where a basic model editor is generated to start with.
 
-EMF have tools for model transformation as well. There are frameworks, that allows the engineers to use model-to-model and model-to-text transformations. For example ATL supports model-to-model, Acceleo \cite{acceleo} provides ways to transform models into text representations.
+EMF has tools for model transformation as well. There are frameworks that allow the engineers to use model-to-model and model-to-text transformations. For example ATL supports model-to-model, Acceleo \cite{acceleo} provides ways to transform models into text representations.
 
 % subsection emf (end)
 
